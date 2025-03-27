@@ -7,7 +7,7 @@
 	},
 	"files": {
 		"ignoreUnknown": false,
-		"ignore": ["./app/routeTree.gen.ts"]
+		"ignore": ["./apps/api/.wrangler", "./apps/web/app/routeTree.gen.ts"]
 	},
 	"formatter": {
 		"enabled": true,
