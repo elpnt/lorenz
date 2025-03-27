@@ -4,8 +4,8 @@
 	"scripts": {
 		"dev": "turbo run dev",
 		"check": "biome check --write",
-		"api": "pnpm --filter api",
-		"web": "pnpm --filter web"
+		"api": "pnpm --filter @lorenz/api",
+		"web": "pnpm --filter @lorenz/web"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "catalog:",
