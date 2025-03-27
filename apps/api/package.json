@@ -5,13 +5,13 @@
 		"deploy": "wrangler deploy --minify"
 	},
 	"dependencies": {
-		"@ai-sdk/openai": "catalog:",
-		"ai": "catalog:",
-		"hono": "catalog:",
-		"zod": "catalog:"
+		"@ai-sdk/openai": "^1.3.3",
+		"ai": "^4.2.6",
+		"hono": "^4.7.5",
+		"zod": "^3.24.2"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "catalog:",
-		"wrangler": "catalog:"
+		"@cloudflare/workers-types": "^4.20250321.0",
+		"wrangler": "^4.5.0"
 	}
 }
