@@ -3,11 +3,13 @@
 	"private": true,
 	"scripts": {
 		"dev": "turbo run dev",
-		"check": "biome check --write"
+		"check": "biome check --write",
+		"api": "pnpm --filter api",
+		"web": "pnpm --filter web"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "1.9.4",
-		"turbo": "^2.4.4"
+		"@biomejs/biome": "catalog:",
+		"turbo": "catalog:"
 	},
 	"packageManager": "pnpm@10.6.5"
 }

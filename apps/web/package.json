@@ -10,20 +10,17 @@
 		"check": "biome check --write"
 	},
 	"dependencies": {
-		"@tanstack/react-router": "^1.114.29",
-		"@tanstack/react-start": "^1.114.29",
-		"react": "^19.0.0",
-		"react-dom": "^19.0.0",
-		"vinxi": "^0.5.3"
+		"@tanstack/react-router": "catalog:",
+		"@tanstack/react-start": "catalog:",
+		"react": "catalog:",
+		"react-dom": "catalog:",
+		"vinxi": "catalog:"
 	},
 	"devDependencies": {
-		"@types/react": "^19.0.12",
-		"@types/react-dom": "^19.0.4",
-		"@vitejs/plugin-react": "^4.3.4",
-		"typescript": "^5.8.2",
-		"vite-tsconfig-paths": "^5.1.4"
-	},
-	"pnpm": {
-		"onlyBuiltDependencies": ["@parcel/watcher", "esbuild"]
+		"@types/react": "catalog:",
+		"@types/react-dom": "catalog:",
+		"@vitejs/plugin-react": "catalog:",
+		"typescript": "catalog:",
+		"vite-tsconfig-paths": "catalog:"
 	}
 }
