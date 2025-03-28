@@ -1,3 +1,6 @@
 node_modules/
 
+.vinxi
+.output
+
 .DS_Store

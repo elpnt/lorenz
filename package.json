@@ -3,9 +3,9 @@
 	"private": true,
 	"scripts": {
 		"dev": "turbo run dev",
-		"check": "biome check --write",
-		"api": "pnpm --filter @lorenz/api",
-		"web": "pnpm --filter @lorenz/web"
+		"build": "turbo run build",
+		"lint": "biome lint ",
+		"check": "biome check --write"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",

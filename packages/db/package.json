@@ -7,13 +7,9 @@
 		"auth:generate": "pnpm dlx @better-auth/cli generate --output ./src/schema/auth.ts -y"
 	},
 	"exports": {
-		"./add": {
-			"types": "./src/add.ts",
-			"default": "./dist/add.js"
-		},
-		"./subtract": {
-			"types": "./src/subtract.ts",
-			"default": "./dist/subtract.js"
+		".": {
+			"types": "./src/index.ts",
+			"default": "./src/index.ts"
 		}
 	},
 	"dependencies": {
@@ -25,7 +21,6 @@
 	"devDependencies": {
 		"@types/node": "^22.13.14",
 		"drizzle-kit": "^0.30.6",
-		"tsx": "^4.19.3",
 		"typescript": "latest"
 	}
 }
