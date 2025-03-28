@@ -1,0 +1,31 @@
+{
+	"name": "@lorenz/db",
+	"type": "module",
+	"scripts": {
+		"dev": "tsc --watch",
+		"build": "tsc",
+		"auth:generate": "pnpm dlx @better-auth/cli generate --output ./src/schema/auth.ts -y"
+	},
+	"exports": {
+		"./add": {
+			"types": "./src/add.ts",
+			"default": "./dist/add.js"
+		},
+		"./subtract": {
+			"types": "./src/subtract.ts",
+			"default": "./dist/subtract.js"
+		}
+	},
+	"dependencies": {
+		"@neondatabase/serverless": "^1.0.0",
+		"better-auth": "catalog:",
+		"dotenv": "^16.4.7",
+		"drizzle-orm": "^0.41.0"
+	},
+	"devDependencies": {
+		"@types/node": "^22.13.14",
+		"drizzle-kit": "^0.30.6",
+		"tsx": "^4.19.3",
+		"typescript": "latest"
+	}
+}
