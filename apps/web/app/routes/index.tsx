@@ -1,5 +1,7 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, redirect } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
+
+import { authClient } from "../lib/auth-client";
 
 const getServerMessage = createServerFn({
 	method: "GET",
@@ -16,6 +18,35 @@ export const Route = createFileRoute("/")({
 
 function Home() {
 	const text = Route.useLoaderData();
+	const { data, isPending } = authClient.useSession();
 
-	return <div>Hono says: {text}</div>;
+	if (isPending) {
+		return <div>Loading...</div>;
+	}
+
+	return (
+		<div>
+			<p>Hono says: {text}</p>
+			{data ? (
+				<div>
+					<pre>{JSON.stringify(data, null, 2)}</pre>
+					<button type="button" onClick={() => authClient.signOut()}>
+						Sign out
+					</button>
+				</div>
+			) : (
+				<button
+					type="button"
+					onClick={() =>
+						authClient.signIn.social({
+							provider: "google",
+							callbackURL: "http://localhost:3000/dashboard",
+						})
+					}
+				>
+					Sign in
+				</button>
+			)}
+		</div>
+	);
 }

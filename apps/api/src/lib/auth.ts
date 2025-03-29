@@ -1,8 +1,10 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import dotenv from "dotenv";
 import { drizzle } from "drizzle-orm/neon-http";
 
-import dotenv from "dotenv";
+import * as schema from "../db/schema";
+
 dotenv.config({ path: ".dev.vars" });
 
 const db = drizzle(process.env.DATABASE_URL);
@@ -12,6 +14,7 @@ export const auth = betterAuth({
 	secret: process.env.BETTER_AUTH_SECRET,
 	database: drizzleAdapter(db, {
 		provider: "pg",
+		schema,
 	}),
 	socialProviders: {
 		google: {
@@ -19,4 +22,5 @@ export const auth = betterAuth({
 			clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
 		},
 	},
+	trustedOrigins: ["http://localhost:3000"],
 });

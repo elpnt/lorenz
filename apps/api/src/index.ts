@@ -1,16 +1,27 @@
 import { Hono } from "hono";
+import { cors } from "hono/cors";
 
-import { db } from "./db";
 import { auth } from "./lib/auth";
 
 const app = new Hono<{ Bindings: CloudflareBindings }>();
 
-app.on(["POST", "GET"], "/api/auth/**", (c) => auth.handler(c.req.raw));
+app.use(
+	"/api/auth/*",
+	cors({
+		origin: "http://localhost:3000",
+		allowHeaders: ["Content-Type", "Authorization"],
+		allowMethods: ["POST", "GET", "OPTIONS"],
+		exposeHeaders: ["Content-Length"],
+		maxAge: 600,
+		credentials: true,
+	}),
+);
 
+app.on(["POST", "GET"], "/api/auth/*", (c) => {
+	return auth.handler(c.req.raw);
+});
 app.get("/", (c) => {
-	const x = db;
-	const clientId = process.env.GOOGLE_CLIENT_ID;
-	return c.text(`clientId: ${clientId}`);
+	return c.text("Hello from Hono🔥");
 });
 
 export default app;
