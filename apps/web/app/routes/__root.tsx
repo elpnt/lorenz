@@ -4,8 +4,6 @@ import {
 	Scripts,
 	createRootRoute,
 } from "@tanstack/react-router";
-// app/routes/__root.tsx
-import type { ReactNode } from "react";
 
 export const Route = createRootRoute({
 	head: () => ({
@@ -33,7 +31,7 @@ function RootComponent() {
 	);
 }
 
-function RootDocument({ children }: Readonly<{ children: ReactNode }>) {
+function RootDocument({ children }: Readonly<{ children: React.ReactNode }>) {
 	return (
 		<html lang="en">
 			<head>
