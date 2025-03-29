@@ -2,17 +2,24 @@
 	"name": "@lorenz/api",
 	"scripts": {
 		"dev": "wrangler dev --show-interactive-dev-session=false",
-		"deploy": "wrangler deploy --minify"
+		"deploy": "wrangler deploy --minify",
+		"cf-typegen": "wrangler types --env-interface CloudflareBindings",
+		"generate:auth-schema": "pnpm dlx @better-auth/cli generate --output ./src/db/schema/auth.ts -y",
+		"db:push": "drizzle-kit push"
 	},
 	"dependencies": {
-		"@lorenz/db": "workspace:*",
 		"@ai-sdk/openai": "^1.3.3",
+		"@neondatabase/serverless": "^1.0.0",
 		"ai": "^4.2.6",
+		"better-auth": "catalog:",
+		"dotenv": "^16.4.7",
+		"drizzle-orm": "^0.41.0",
 		"hono": "^4.7.5",
 		"zod": "^3.24.2"
 	},
 	"devDependencies": {
-		"@cloudflare/workers-types": "^4.20250321.0",
+		"@types/node": "^22.13.14",
+		"drizzle-kit": "^0.30.6",
 		"wrangler": "^4.5.1"
 	}
 }

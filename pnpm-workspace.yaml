@@ -4,5 +4,8 @@ packages:
 catalog:
   better-auth: ^1.2.5
 onlyBuiltDependencies:
-  - '@parcel/watcher'
+  - "@biomejs/biome"
+  - "@parcel/watcher"
   - esbuild
+  - sharp
+  - workerd
