@@ -21,6 +21,7 @@
 		"@lorenz/typescript-config": "workspace:*",
 		"@types/node": "^22.13.14",
 		"drizzle-kit": "^0.30.6",
+		"vite": "^6.2.3",
 		"wrangler": "^4.5.1"
 	}
 }

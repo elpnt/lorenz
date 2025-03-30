@@ -4,7 +4,7 @@
 	"scripts": {
 		"dev": "turbo run dev",
 		"build": "turbo run build",
-		"lint": "biome lint ",
+		"lint": "biome lint",
 		"check": "biome check --write"
 	},
 	"devDependencies": {

@@ -10,6 +10,8 @@
 		"ignore": [
 			"./apps/api/.wrangler",
 			"./apps/api/worker-configuration.d.ts",
+			"./apps/web/.output",
+			"./apps/web/.vinxi",
 			"./apps/web/app/routeTree.gen.ts"
 		]
 	},
