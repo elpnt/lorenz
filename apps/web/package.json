@@ -18,6 +18,7 @@
 		"vinxi": "^0.5.3"
 	},
 	"devDependencies": {
+		"@lorenz/typescript-config": "workspace:*",
 		"@types/react": "^19.0.12",
 		"@types/react-dom": "^19.0.4",
 		"@vitejs/plugin-react": "^4.3.4",

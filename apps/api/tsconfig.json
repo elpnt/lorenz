@@ -1,14 +1,10 @@
 {
+	"extends": "@lorenz/typescript-config/base.json",
 	"compilerOptions": {
-		"target": "ESNext",
-		"module": "ESNext",
-		"moduleResolution": "Bundler",
-		"strict": true,
-		"skipLibCheck": true,
 		"lib": ["ESNext"],
-		"types": ["./worker-configuration.d.ts", "node"],
 		"jsx": "react-jsx",
-		"jsxImportSource": "hono/jsx"
+		"jsxImportSource": "hono/jsx",
+		"types": ["./worker-configuration.d.ts", "node"]
 	},
 	"include": ["src/**/*", "drizzle.config.ts", "worker-configuration.d.ts"]
 }
