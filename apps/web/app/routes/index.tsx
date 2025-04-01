@@ -71,7 +71,7 @@ function Home() {
 					onClick={() =>
 						authClient.signIn.social({
 							provider: "google",
-							callbackURL: "http://localhost:3000/dashboard",
+							callbackURL: "http://localhost:3000",
 						})
 					}
 				>
