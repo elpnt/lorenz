@@ -9,17 +9,15 @@ import { dirname, join } from "node:path";
 function getAbsolutePath(value: string) {
 	return dirname(require.resolve(join(value, "package.json")));
 }
+
 const config: StorybookConfig = {
-	stories: [
-		// "../stories/**/*.mdx",
-		// "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
-		"../app/**/*.stories.tsx",
-	],
+	stories: ["../app/**/*.stories.tsx"],
 	addons: [
 		getAbsolutePath("@storybook/addon-essentials"),
 		getAbsolutePath("@storybook/addon-onboarding"),
 		getAbsolutePath("@chromatic-com/storybook"),
 		getAbsolutePath("@storybook/experimental-addon-test"),
+		getAbsolutePath("@storybook/addon-themes"),
 	],
 	framework: {
 		name: getAbsolutePath("@storybook/react-vite"),
