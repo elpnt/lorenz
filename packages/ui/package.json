@@ -1,0 +1,20 @@
+{
+	"name": "@lorenz/ui",
+	"version": "1.0.0",
+	"type": "module",
+	"description": "",
+	"exports": {
+		"./*": "./src/*.tsx"
+	},
+	"license": "MIT",
+	"packageManager": "pnpm@10.7.0",
+	"dependencies": {
+		"@lorenz/typescript-config": "workspace:*",
+		"react": "^19.0.0",
+		"react-aria-components": "^1.7.1",
+		"tailwind-variants": "^1.0.0"
+	},
+	"devDependencies": {
+		"@types/react": "^19.0.12"
+	}
+}

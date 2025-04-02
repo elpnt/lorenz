@@ -115,6 +115,9 @@ importers:
       '@lorenz/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
+      '@lorenz/ui':
+        specifier: workspace:*
+        version: link:../../packages/ui
       '@storybook/addon-essentials':
         specifier: ^8.6.11
         version: 8.6.11(@types/react@19.0.12)(storybook@8.6.11(prettier@3.5.3))
@@ -186,6 +189,25 @@ importers:
         version: 2.0.0(tailwindcss@4.0.17)
 
   packages/typescript-config: {}
+
+  packages/ui:
+    dependencies:
+      '@lorenz/typescript-config':
+        specifier: workspace:*
+        version: link:../typescript-config
+      react:
+        specifier: ^19.0.0
+        version: 19.0.0
+      react-aria-components:
+        specifier: ^1.7.1
+        version: 1.7.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      tailwind-variants:
+        specifier: ^1.0.0
+        version: 1.0.0(tailwindcss@4.0.17)
+    devDependencies:
+      '@types/react':
+        specifier: ^19.0.12
+        version: 19.0.12
 
 packages:
 

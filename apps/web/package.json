@@ -27,6 +27,7 @@
 	},
 	"devDependencies": {
 		"@chromatic-com/storybook": "^3",
+		"@lorenz/ui": "workspace:*",
 		"@lorenz/tailwind-config": "workspace:*",
 		"@lorenz/typescript-config": "workspace:*",
 		"@storybook/addon-essentials": "^8.6.11",

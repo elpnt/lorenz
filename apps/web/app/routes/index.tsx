@@ -2,7 +2,7 @@ import { useChat } from "@ai-sdk/react";
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 
-import Button from "../components/ui/button";
+import Button from "@lorenz/ui/button";
 import { authClient } from "../lib/auth-client";
 
 const getServerMessage = createServerFn({
