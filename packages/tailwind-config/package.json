@@ -1,0 +1,13 @@
+{
+	"name": "@lorenz/tailwind-config",
+	"version": "1.0.0",
+	"exports": {
+		"./styles.css": "./styles.css"
+	},
+	"packageManager": "pnpm@10.7.0",
+	"dependencies": {
+		"tailwindcss": "^4.0.17",
+		"tailwindcss-animate": "^1.0.7",
+		"tailwindcss-react-aria-components": "^2.0.0"
+	}
+}

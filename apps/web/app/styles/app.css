@@ -1,4 +1,2 @@
 @import "tailwindcss";
-@plugin "tailwindcss-react-aria-components";
-
-@custom-variant dark (&:where(.dark, .dark *));
+@import "@lorenz/tailwind-config/styles.css";

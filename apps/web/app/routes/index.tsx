@@ -2,6 +2,7 @@ import { useChat } from "@ai-sdk/react";
 import { createFileRoute, notFound } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 
+import Button from "../components/ui/button";
 import { authClient } from "../lib/auth-client";
 
 const getServerMessage = createServerFn({
@@ -33,13 +34,13 @@ function Home() {
 	}
 
 	return (
-		<div>
+		<div className="p-4">
 			<p>Hono says: {text}</p>
 			{data ? (
 				<div>
-					<button type="button" onClick={() => authClient.signOut()}>
+					<Button intent="outline" onPress={() => authClient.signOut()}>
 						Sign out
-					</button>
+					</Button>
 					<form onSubmit={handleSubmit}>
 						<input
 							type="text"
@@ -47,7 +48,7 @@ function Home() {
 							onChange={handleInputChange}
 							placeholder="Type a message..."
 						/>
-						<button type="submit">Send</button>
+						<Button type="submit">Send</Button>
 					</form>
 					<div>
 						{messages.map((message) => (

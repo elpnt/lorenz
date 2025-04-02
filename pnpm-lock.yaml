@@ -109,6 +109,9 @@ importers:
       '@chromatic-com/storybook':
         specifier: ^3
         version: 3.2.6(react@19.0.0)(storybook@8.6.11(prettier@3.5.3))
+      '@lorenz/tailwind-config':
+        specifier: workspace:*
+        version: link:../../packages/tailwind-config
       '@lorenz/typescript-config':
         specifier: workspace:*
         version: link:../../packages/typescript-config
@@ -160,9 +163,6 @@ importers:
       storybook:
         specifier: ^8.6.11
         version: 8.6.11(prettier@3.5.3)
-      tailwindcss-react-aria-components:
-        specifier: ^2.0.0
-        version: 2.0.0(tailwindcss@4.0.17)
       typescript:
         specifier: ^5.8.2
         version: 5.8.2
@@ -172,6 +172,18 @@ importers:
       vitest:
         specifier: ^3.0.9
         version: 3.0.9(@types/node@22.13.14)(@vitest/browser@3.0.9)(jiti@2.4.2)(lightningcss@1.29.2)(msw@2.7.3(@types/node@22.13.14)(typescript@5.8.2))(terser@5.39.0)(tsx@4.19.3)
+
+  packages/tailwind-config:
+    dependencies:
+      tailwindcss:
+        specifier: ^4.0.17
+        version: 4.0.17
+      tailwindcss-animate:
+        specifier: ^1.0.7
+        version: 1.0.7(tailwindcss@4.0.17)
+      tailwindcss-react-aria-components:
+        specifier: ^2.0.0
+        version: 2.0.0(tailwindcss@4.0.17)
 
   packages/typescript-config: {}
 
@@ -4960,6 +4972,11 @@ packages:
     engines: {node: '>=16.x', pnpm: '>=7.x'}
     peerDependencies:
       tailwindcss: '*'
+
+  tailwindcss-animate@1.0.7:
+    resolution: {integrity: sha512-bl6mpH3T7I3UFxuvDEXLxy/VuFxBk5bbzplh7tXI68mwMokNYd1t9qPBHlnyTwfa4JGC4zP516I1hYYtQ/vspA==}
+    peerDependencies:
+      tailwindcss: '>=3.0.0 || insiders'
 
   tailwindcss-react-aria-components@2.0.0:
     resolution: {integrity: sha512-l8YdpXX//qx0Mz2bW3YKLjboTQxR3zLrFhlHniAIn+mTwVM1yvT0Jp7Pn3eFrqi+qtOMmcJzXaF2rsKezSr0SQ==}
@@ -11025,6 +11042,10 @@ snapshots:
   tailwind-variants@1.0.0(tailwindcss@4.0.17):
     dependencies:
       tailwind-merge: 3.0.2
+      tailwindcss: 4.0.17
+
+  tailwindcss-animate@1.0.7(tailwindcss@4.0.17):
+    dependencies:
       tailwindcss: 4.0.17
 
   tailwindcss-react-aria-components@2.0.0(tailwindcss@4.0.17):
