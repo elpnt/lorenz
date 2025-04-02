@@ -47,6 +47,7 @@ function Home() {
 							value={input}
 							onChange={handleInputChange}
 							placeholder="Type a message..."
+							className="bg-zinc-50 p-2"
 						/>
 						<Button type="submit">Send</Button>
 					</form>

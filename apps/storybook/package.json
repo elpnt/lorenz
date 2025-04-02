@@ -1,0 +1,30 @@
+{
+	"name": "@lorenz/storybook",
+	"version": "1.0.0",
+	"type": "module",
+	"scripts": {
+		"dev": "storybook dev -p 6006",
+		"build": "storybook build"
+	},
+	"license": "MIT",
+	"packageManager": "pnpm@10.7.0",
+	"devDependencies": {
+		"@chromatic-com/storybook": "^3",
+		"@lorenz/tailwind-config": "workspace:*",
+		"@lorenz/typescript-config": "workspace:*",
+		"@lorenz/ui": "workspace:*",
+		"@storybook/addon-essentials": "^8.6.11",
+		"@storybook/addon-interactions": "^8.6.11",
+		"@storybook/addon-themes": "^8.6.11",
+		"@storybook/blocks": "^8.6.11",
+		"@storybook/react": "^8.6.11",
+		"@storybook/react-vite": "^8.6.11",
+		"@storybook/test": "^8.6.11",
+		"@tailwindcss/vite": "^4.0.17",
+		"@vitejs/plugin-react": "^4.3.4",
+		"storybook": "^8.6.11",
+		"tailwindcss": "^4.0.17",
+		"typescript": "^5.8.2",
+		"vite": "^6.2.3"
+	}
+}

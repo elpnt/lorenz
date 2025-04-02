@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-import { SearchIcon } from "lucide-react";
+// import { SearchIcon } from "lucide-react";
 
-import Button from "./button";
+import Button from "@lorenz/ui/button";
 
 const meta = {
 	title: "UI/Button",
@@ -57,9 +57,9 @@ export const Danger: Story = {
 	},
 };
 
-export const OnlyIcon: Story = {
-	args: {
-		children: <SearchIcon data-slot="icon" />,
-		size: "icon",
-	},
-};
+// export const OnlyIcon: Story = {
+// 	args: {
+// 		children: <SearchIcon data-slot="icon" />,
+// 		size: "icon",
+// 	},
+// };

@@ -12,7 +12,8 @@
 			"./apps/api/worker-configuration.d.ts",
 			"./apps/web/.output",
 			"./apps/web/.vinxi",
-			"./apps/web/app/routeTree.gen.ts"
+			"./apps/web/app/routeTree.gen.ts",
+			"./apps/storybook/storybook-static"
 		]
 	},
 	"formatter": {

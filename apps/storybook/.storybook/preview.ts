@@ -1,7 +1,7 @@
 import { withThemeByClassName } from "@storybook/addon-themes";
 import type { Decorator, Preview } from "@storybook/react";
 
-import "../app/styles/app.css";
+import "../styles.css";
 
 export const decorators: Decorator[] = [
 	withThemeByClassName({
