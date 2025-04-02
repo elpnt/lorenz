@@ -1,5 +1,5 @@
 import { useChat } from "@ai-sdk/react";
-import { createFileRoute, redirect } from "@tanstack/react-router";
+import { createFileRoute, notFound } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 
 import { authClient } from "../lib/auth-client";
@@ -7,9 +7,13 @@ import { authClient } from "../lib/auth-client";
 const getServerMessage = createServerFn({
 	method: "GET",
 }).handler(async () => {
-	const res = await fetch("http://localhost:8787");
-	const text = await res.text();
-	return text;
+	try {
+		const res = await fetch("http://localhost:8787");
+		const text = await res.text();
+		return text;
+	} catch {
+		throw notFound();
+	}
 });
 
 export const Route = createFileRoute("/")({
