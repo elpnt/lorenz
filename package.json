@@ -4,13 +4,13 @@
 	"scripts": {
 		"dev": "turbo run dev",
 		"build": "turbo run build",
+		"turbo": "turbo",
 		"lint": "biome lint",
 		"check": "biome check",
 		"fix": "biome check --write"
 	},
 	"devDependencies": {
 		"@biomejs/biome": "^1.9.4",
-		"@tailwindcss/language-server": "^0.14.12",
 		"turbo": "^2.4.4"
 	},
 	"packageManager": "pnpm@10.7.1",

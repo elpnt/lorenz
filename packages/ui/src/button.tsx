@@ -75,7 +75,7 @@ const buttonStyles = tv({
 			md: [
 				"px-[calc(--spacing(3.5)-1px)] py-[calc(--spacing(2.5)-1px)] sm:px-[calc(--spacing(3)-1px)] sm:py-[calc(--spacing(1.5)-1px)] sm:text-sm/6",
 			],
-			icon: ["size-11 sm:size-9"],
+			icon: ["size-11 sm:size-8"],
 		},
 	},
 	defaultVariants: {
@@ -107,8 +107,25 @@ export default function Button({
 			)}
 		>
 			{(values) => (
-				<>{typeof children === "function" ? children(values) : children}</>
+				<TouchTarget>
+					{typeof children === "function" ? children(values) : children}
+				</TouchTarget>
 			)}
 		</AriaButton>
+	);
+}
+
+/**
+ * Expand the hit area to at least 44×44px on touch devices
+ */
+export function TouchTarget({ children }: { children: React.ReactNode }) {
+	return (
+		<>
+			<span
+				className="absolute top-1/2 left-1/2 size-[max(100%,2.75rem)] -translate-x-1/2 -translate-y-1/2 pointer-fine:hidden"
+				aria-hidden="true"
+			/>
+			{children}
+		</>
 	);
 }

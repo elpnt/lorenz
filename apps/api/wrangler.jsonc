@@ -2,7 +2,7 @@
 	"$schema": "node_modules/wrangler/config-schema.json",
 	"name": "api",
 	"main": "src/index.ts",
-	"compatibility_date": "2025-03-27",
+	"compatibility_date": "2025-03-21",
 	"compatibility_flags": ["nodejs_compat", "nodejs_compat_populate_process_env"]
 	// "vars": {
 	//   "MY_VAR": "my-variable"

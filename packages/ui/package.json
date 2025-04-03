@@ -10,6 +10,7 @@
 	"packageManager": "pnpm@10.7.0",
 	"dependencies": {
 		"@lorenz/typescript-config": "workspace:*",
+		"motion": "^12.6.3",
 		"react": "^19.0.0",
 		"react-aria-components": "^1.7.1",
 		"tailwind-variants": "^1.0.0"
