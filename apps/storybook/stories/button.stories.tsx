@@ -1,6 +1,5 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
-// import { SearchIcon } from "lucide-react";
 
 import Button from "@lorenz/ui/button";
 
@@ -14,15 +13,12 @@ const meta = {
 	args: { onPress: fn() },
 	argTypes: {
 		intent: {
-			options: ["primary", "outline", "plain"],
+			options: ["primary", "outline", "plain", "danger"],
 			control: { type: "select" },
 		},
 		size: {
 			options: ["md", "icon"],
 			control: { type: "select" },
-		},
-		isDanger: {
-			control: { type: "boolean" },
 		},
 	},
 } satisfies Meta<typeof Button>;
@@ -53,13 +49,34 @@ export const Plain: Story = {
 export const Danger: Story = {
 	args: {
 		children: "Danger",
-		isDanger: true,
+		intent: "danger",
 	},
 };
 
-// export const OnlyIcon: Story = {
-// 	args: {
-// 		children: <SearchIcon data-slot="icon" />,
-// 		size: "icon",
-// 	},
-// };
+export const OnlyIcon: Story = {
+	args: {
+		children: <SearchIcon />,
+		size: "icon",
+	},
+};
+
+function SearchIcon() {
+	return (
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="24"
+			height="24"
+			viewBox="0 0 24 24"
+			fill="none"
+			stroke="currentColor"
+			strokeWidth="2"
+			strokeLinecap="round"
+			strokeLinejoin="round"
+			data-slot="icon"
+		>
+			<title>Search Icon</title>
+			<circle cx="11" cy="11" r="8" />
+			<path d="m21 21-4.3-4.3" />
+		</svg>
+	);
+}

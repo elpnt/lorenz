@@ -6,14 +6,14 @@
 	"scripts": {
 		"dev": "vinxi dev",
 		"build": "vinxi build",
-		"start": "vinxi start",
-		"check": "biome check --write"
+		"start": "vinxi start"
 	},
 	"dependencies": {
+		"@lorenz/ui": "workspace:*",
 		"@ai-sdk/react": "^1.2.5",
 		"@tailwindcss/vite": "^4.0.17",
-		"@tanstack/react-router": "^1.114.29",
-		"@tanstack/react-start": "^1.114.29",
+		"@tanstack/react-router": "^1.114.32",
+		"@tanstack/react-start": "^1.114.32",
 		"better-auth": "catalog:",
 		"lucide-react": "^0.486.0",
 		"react": "^19.0.0",
@@ -24,7 +24,6 @@
 		"vinxi": "^0.5.3"
 	},
 	"devDependencies": {
-		"@lorenz/ui": "workspace:*",
 		"@lorenz/tailwind-config": "workspace:*",
 		"@lorenz/typescript-config": "workspace:*",
 		"@types/node": "^22.13.14",
