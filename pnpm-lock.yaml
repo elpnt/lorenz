@@ -130,6 +130,9 @@ importers:
       '@ai-sdk/react':
         specifier: ^1.2.5
         version: 1.2.5(react@19.0.0)(zod@3.24.2)
+      '@heroicons/react':
+        specifier: ^2.2.0
+        version: 2.2.0(react@19.0.0)
       '@lorenz/ui':
         specifier: workspace:*
         version: link:../../packages/ui
@@ -211,12 +214,21 @@ importers:
       '@lorenz/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
+      '@tanstack/react-router':
+        specifier: ^1.114.32
+        version: 1.114.32(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
       motion:
         specifier: ^12.6.3
         version: 12.6.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react:
         specifier: ^19.0.0
         version: 19.0.0
+      react-aria:
+        specifier: ^3.38.1
+        version: 3.38.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react-aria-components:
         specifier: ^1.7.1
         version: 1.7.1(react-dom@19.0.0(react@19.0.0))(react@19.0.0)

@@ -9,8 +9,9 @@
 		"start": "vinxi start"
 	},
 	"dependencies": {
-		"@lorenz/ui": "workspace:*",
 		"@ai-sdk/react": "^1.2.5",
+		"@heroicons/react": "^2.2.0",
+		"@lorenz/ui": "workspace:*",
 		"@tailwindcss/vite": "^4.0.17",
 		"@tanstack/react-router": "^1.114.32",
 		"@tanstack/react-start": "^1.114.32",

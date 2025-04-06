@@ -10,8 +10,11 @@
 	"packageManager": "pnpm@10.7.0",
 	"dependencies": {
 		"@lorenz/typescript-config": "workspace:*",
+		"@tanstack/react-router": "^1.114.32",
+		"clsx": "^2.1.1",
 		"motion": "^12.6.3",
 		"react": "^19.0.0",
+		"react-aria": "^3.38.1",
 		"react-aria-components": "^1.7.1",
 		"tailwind-variants": "^1.0.0"
 	},
