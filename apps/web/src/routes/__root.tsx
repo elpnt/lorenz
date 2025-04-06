@@ -1,10 +1,8 @@
-import { Cog6ToothIcon, HomeIcon } from "@heroicons/react/20/solid";
 import {
 	HeadContent,
 	Outlet,
 	Scripts,
 	createRootRoute,
-	useLocation,
 } from "@tanstack/react-router";
 import {
 	type NavigateOptions,
@@ -12,16 +10,6 @@ import {
 	useRouter,
 } from "@tanstack/react-router";
 import { RouterProvider as ReactAriaRouterProvider } from "react-aria-components";
-
-import {
-	Sidebar,
-	SidebarBody,
-	SidebarItem,
-	SidebarLabel,
-	SidebarSection,
-	SidebarSpacer,
-} from "../components/sidebar";
-import { SidebarLayout } from "../components/sidebar-layout";
 
 declare module "react-aria-components" {
 	interface RouterConfig {
@@ -68,8 +56,6 @@ function RootComponent() {
 }
 
 function RootDocument({ children }: Readonly<{ children: React.ReactNode }>) {
-	const { pathname } = useLocation();
-
 	return (
 		<html
 			lang="en"
@@ -79,34 +65,8 @@ function RootDocument({ children }: Readonly<{ children: React.ReactNode }>) {
 				<HeadContent />
 			</head>
 			<body>
-				<SidebarLayout
-					sidebar={
-						<Sidebar>
-							<SidebarBody>
-								<SidebarSection>
-									<SidebarItem to="/" current={pathname === "/"}>
-										<HomeIcon />
-										<SidebarLabel>Home</SidebarLabel>
-									</SidebarItem>
-								</SidebarSection>
-								<SidebarSpacer />
-								<SidebarSection>
-									<SidebarItem
-										to="/settings"
-										current={pathname === "/settings"}
-									>
-										<Cog6ToothIcon />
-										<SidebarLabel>Settings</SidebarLabel>
-									</SidebarItem>
-								</SidebarSection>
-							</SidebarBody>
-						</Sidebar>
-					}
-					navbar={<div>Navbar</div>}
-				>
-					{children}
-					<Scripts />
-				</SidebarLayout>
+				{children}
+				<Scripts />
 			</body>
 		</html>
 	);

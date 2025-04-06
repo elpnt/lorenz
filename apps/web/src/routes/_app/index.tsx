@@ -3,7 +3,7 @@ import { createFileRoute, notFound } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 
 import Button from "@lorenz/ui/button";
-import { authClient } from "../lib/auth-client";
+import { authClient } from "../../lib/auth-client";
 
 const getServerMessage = createServerFn({
 	method: "GET",
@@ -17,7 +17,7 @@ const getServerMessage = createServerFn({
 	}
 });
 
-export const Route = createFileRoute("/")({
+export const Route = createFileRoute("/_app/")({
 	component: Home,
 	loader: async () => await getServerMessage(),
 });
