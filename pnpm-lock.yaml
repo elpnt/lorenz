@@ -148,9 +148,15 @@ importers:
       better-auth:
         specifier: 'catalog:'
         version: 1.2.5(typescript@5.8.2)
+      clsx:
+        specifier: ^2.1.1
+        version: 2.1.1
       lucide-react:
         specifier: ^0.486.0
         version: 0.486.0(react@19.0.0)
+      motion:
+        specifier: ^12.6.3
+        version: 12.6.3(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       react:
         specifier: ^19.0.0
         version: 19.0.0
@@ -214,9 +220,6 @@ importers:
       '@lorenz/typescript-config':
         specifier: workspace:*
         version: link:../typescript-config
-      '@tanstack/react-router':
-        specifier: ^1.114.32
-        version: 1.114.32(react-dom@19.0.0(react@19.0.0))(react@19.0.0)
       clsx:
         specifier: ^2.1.1
         version: 2.1.1

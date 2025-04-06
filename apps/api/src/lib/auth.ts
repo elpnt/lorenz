@@ -10,22 +10,22 @@ dotenv.config({ path: ".dev.vars" });
 const db = drizzle(process.env.DATABASE_URL);
 
 export const auth = betterAuth({
-  baseURL: process.env.BETTER_AUTH_URL,
-  secret: process.env.BETTER_AUTH_SECRET,
-  database: drizzleAdapter(db, {
-    provider: "pg",
-    schema,
-  }),
-  socialProviders: {
-    google: {
-      clientId: process.env.GOOGLE_CLIENT_ID as string,
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
-    },
-  },
-  trustedOrigins: ["http://localhost:3000"],
-  user: {
-    deleteUser: {
-      enabled: true,
-    },
-  },
+	baseURL: process.env.BETTER_AUTH_URL,
+	secret: process.env.BETTER_AUTH_SECRET,
+	database: drizzleAdapter(db, {
+		provider: "pg",
+		schema,
+	}),
+	socialProviders: {
+		google: {
+			clientId: process.env.GOOGLE_CLIENT_ID as string,
+			clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+		},
+	},
+	trustedOrigins: ["http://localhost:3000"],
+	user: {
+		deleteUser: {
+			enabled: true,
+		},
+	},
 });
