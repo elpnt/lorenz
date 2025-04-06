@@ -8,11 +8,13 @@
 		"turbo": "turbo",
 		"lint": "biome lint",
 		"check": "biome check",
-		"fix": "biome check --write"
+		"fix": "biome check --write",
+		"taze": "taze -r"
 	},
 	"devDependencies": {
-		"@biomejs/biome": "^1.9.4",
-		"turbo": "^2.4.4"
+		"@biomejs/biome": "catalog:",
+		"taze": "catalog:",
+		"turbo": "catalog:"
 	},
 	"packageManager": "pnpm@10.7.1",
 	"onlyBuiltDependencies": ["@biomejs/biome", "@parcel/watcher", "esbuild"]

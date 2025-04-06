@@ -10,31 +10,31 @@
 		"check-types": "tsc --noEmit"
 	},
 	"dependencies": {
-		"@ai-sdk/react": "^1.2.5",
-		"@heroicons/react": "^2.2.0",
+		"@ai-sdk/react": "catalog:",
+		"@heroicons/react": "catalog:",
 		"@lorenz/ui": "workspace:*",
-		"@tailwindcss/vite": "^4.0.17",
-		"@tanstack/react-router": "^1.114.32",
-		"@tanstack/react-start": "^1.114.32",
+		"@tailwindcss/vite": "catalog:",
+		"@tanstack/react-router": "catalog:",
+		"@tanstack/react-start": "catalog:",
 		"better-auth": "catalog:",
-		"clsx": "^2.1.1",
-		"lucide-react": "^0.486.0",
-		"motion": "^12.6.3",
-		"react": "^19.0.0",
-		"react-aria-components": "^1.7.1",
-		"react-dom": "^19.0.0",
-		"tailwind-variants": "^1.0.0",
-		"tailwindcss": "^4.0.17",
-		"vinxi": "^0.5.3"
+		"clsx": "catalog:",
+		"lucide-react": "catalog:",
+		"motion": "catalog:",
+		"react": "catalog:",
+		"react-aria-components": "catalog:",
+		"react-dom": "catalog:",
+		"tailwind-variants": "catalog:",
+		"tailwindcss": "catalog:",
+		"vinxi": "catalog:"
 	},
 	"devDependencies": {
 		"@lorenz/tailwind-config": "workspace:*",
 		"@lorenz/typescript-config": "workspace:*",
-		"@types/node": "^22.13.14",
-		"@types/react": "^19.0.12",
-		"@types/react-dom": "^19.0.4",
-		"@vitejs/plugin-react": "^4.3.4",
-		"typescript": "^5.8.2",
-		"vite-tsconfig-paths": "^5.1.4"
+		"@types/node": "catalog:",
+		"@types/react": "catalog:",
+		"@types/react-dom": "catalog:",
+		"@vitejs/plugin-react": "catalog:",
+		"typescript": "catalog:",
+		"vite-tsconfig-paths": "catalog:"
 	}
 }

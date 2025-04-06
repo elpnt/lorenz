@@ -7,17 +7,17 @@
 		"./*": "./src/*.tsx"
 	},
 	"license": "MIT",
-	"packageManager": "pnpm@10.7.0",
+	"packageManager": "pnpm@10.7.1",
 	"dependencies": {
-		"@lorenz/typescript-config": "workspace:*",
-		"clsx": "^2.1.1",
-		"motion": "^12.6.3",
-		"react": "^19.0.0",
-		"react-aria": "^3.38.1",
-		"react-aria-components": "^1.7.1",
-		"tailwind-variants": "^1.0.0"
+		"clsx": "catalog:",
+		"motion": "catalog:",
+		"react": "catalog:",
+		"react-aria": "catalog:",
+		"react-aria-components": "catalog:",
+		"tailwind-variants": "catalog:"
 	},
 	"devDependencies": {
-		"@types/react": "^19.0.12"
+		"@lorenz/typescript-config": "workspace:*",
+		"@types/react": "catalog:"
 	}
 }

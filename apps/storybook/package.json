@@ -7,28 +7,28 @@
 		"build": "storybook build"
 	},
 	"license": "MIT",
-	"packageManager": "pnpm@10.7.0",
+	"packageManager": "pnpm@10.7.1",
 	"devDependencies": {
-		"@chromatic-com/storybook": "^3",
+		"@chromatic-com/storybook": "catalog:",
 		"@lorenz/tailwind-config": "workspace:*",
 		"@lorenz/typescript-config": "workspace:*",
 		"@lorenz/ui": "workspace:*",
-		"@storybook/addon-essentials": "^8.6.11",
-		"@storybook/addon-interactions": "^8.6.11",
-		"@storybook/addon-themes": "^8.6.11",
-		"@storybook/blocks": "^8.6.11",
-		"@storybook/react": "^8.6.11",
-		"@storybook/react-vite": "^8.6.11",
-		"@storybook/test": "^8.6.11",
-		"@tailwindcss/vite": "^4.0.17",
-		"@types/react": "^19.0.12",
-		"@vitejs/plugin-react": "^4.3.4",
-		"storybook": "^8.6.11",
-		"tailwindcss": "^4.0.17",
-		"typescript": "^5.8.2",
-		"vite": "^6.2.3"
+		"@storybook/addon-essentials": "catalog:",
+		"@storybook/addon-interactions": "catalog:",
+		"@storybook/addon-themes": "catalog:",
+		"@storybook/blocks": "catalog:",
+		"@storybook/react": "catalog:",
+		"@storybook/react-vite": "catalog:",
+		"@storybook/test": "catalog:",
+		"@tailwindcss/vite": "catalog:",
+		"@types/react": "catalog:",
+		"@vitejs/plugin-react": "catalog:",
+		"storybook": "catalog:",
+		"tailwindcss": "catalog:",
+		"typescript": "catalog:",
+		"vite": "catalog:"
 	},
 	"dependencies": {
-		"@heroicons/react": "^2.2.0"
+		"@heroicons/react": "catalog:"
 	}
 }
