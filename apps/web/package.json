@@ -6,7 +6,8 @@
 	"scripts": {
 		"dev": "vinxi dev",
 		"build": "vinxi build",
-		"start": "vinxi start"
+		"start": "vinxi start",
+		"check-types": "tsc --noEmit"
 	},
 	"dependencies": {
 		"@ai-sdk/react": "^1.2.5",
