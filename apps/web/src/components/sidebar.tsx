@@ -3,7 +3,6 @@ import { LayoutGroup, motion } from "motion/react";
 import { useId } from "react";
 import { Button, type ButtonProps } from "react-aria-components";
 
-import { TouchTarget } from "@lorenz/ui/button";
 import { Link, type LinkProps } from "@tanstack/react-router";
 
 export function Sidebar({
@@ -185,7 +184,7 @@ export const SidebarItem = ({
 					data-current={current ? "true" : undefined}
 					ref={ref as React.RefObject<HTMLButtonElement>}
 				>
-					<TouchTarget>{children}</TouchTarget>
+					{children}
 				</Button>
 			)}
 		</span>

@@ -8,7 +8,7 @@ import { type VariantProps, tv } from "tailwind-variants";
 
 const solidClasses = clsx(
 	// Optical border, implemented as the button background to avoid corner artifacts
-	"border-transparent bg-(--btn-border)",
+	"border-transparent bg-(--btn-border) has-[text]:bg-green-500",
 	// Dark mode: border is rendered on `after` so background is set to button background
 	"dark:bg-(--btn-bg)",
 	// Button background, implemented as foreground layer to stack on top of pseudo-border layer
@@ -38,7 +38,7 @@ const buttonStyles = tv({
 		// Focus
 		"focus-visible:outline-2 outline-offset-2 outline-blue-500",
 		// Icon
-		"*:data-[slot=icon]:-mx-0.5 *:data-[slot=icon]:my-0.5 *:data-[slot=icon]:size-5 *:data-[slot=icon]:shrink-0 *:data-[slot=icon]:self-center *:data-[slot=icon]:not-only-child:text-(--btn-icon) sm:*:data-[slot=icon]:my-1 sm:*:data-[slot=icon]:size-4 forced-colors:[--btn-icon:ButtonText] forced-colors:data-hover:[--btn-icon:ButtonText]",
+		"*:data-[slot=icon]:-mx-0.5 *:data-[slot=icon]:my-0.5 *:data-[slot=icon]:size-5 *:data-[slot=icon]:shrink-0 *:data-[slot=icon]:self-center sm:*:data-[slot=icon]:my-1 sm:*:data-[slot=icon]:size-4 forced-colors:[--btn-icon:ButtonText] forced-colors:data-hover:[--btn-icon:ButtonText]",
 	],
 	variants: {
 		intent: {
@@ -74,7 +74,10 @@ const buttonStyles = tv({
 		},
 		size: {
 			md: [
+				// Spacing
 				"px-[calc(--spacing(3.5)-1px)] py-[calc(--spacing(2.5)-1px)] sm:px-[calc(--spacing(3)-1px)] sm:py-[calc(--spacing(1.5)-1px)] sm:text-sm/6",
+				// Icon color
+				"*:data-[slot=icon]:text-(--btn-icon)",
 			],
 			icon: ["size-11 sm:size-8"],
 		},

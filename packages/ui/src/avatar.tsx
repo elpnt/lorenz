@@ -3,7 +3,6 @@ import {
 	Button as AriaButton,
 	type ButtonProps as AriaButtonProps,
 } from "react-aria-components";
-import { TouchTarget } from "./button";
 
 type AvatarProps = {
 	src?: string | null;
@@ -78,9 +77,7 @@ export const AvatarButton = ({
 
 	return (
 		<AriaButton {...props} className={classes} ref={ref}>
-			<TouchTarget>
-				<Avatar src={src} square={square} initials={initials} alt={alt} />
-			</TouchTarget>
+			<Avatar src={src} square={square} initials={initials} alt={alt} />
 		</AriaButton>
 	);
 };

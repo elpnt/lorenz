@@ -4,8 +4,6 @@ import { useId } from "react";
 import { Button, type ButtonProps } from "react-aria-components";
 import { cnBase } from "tailwind-variants";
 
-import { TouchTarget } from "./button";
-
 export function Navbar({
 	className,
 	...props
@@ -105,7 +103,7 @@ export const NavbarItem = ({
 				data-current={current ? "true" : undefined}
 				ref={ref}
 			>
-				<TouchTarget>{children}</TouchTarget>
+				{children}
 			</Button>
 		</span>
 	);
