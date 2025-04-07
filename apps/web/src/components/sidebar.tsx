@@ -128,7 +128,7 @@ type SidebarItemProps = {
 	className?: string;
 	children: React.ReactNode;
 	ref?: React.Ref<HTMLButtonElement | HTMLAnchorElement>;
-} & (Omit<ButtonProps, "className"> | Omit<LinkProps, "className">);
+} & (Omit<ButtonProps, "className"> | LinkProps);
 
 const sidebarItemClasses = clsx(
 	// Base

@@ -1,3 +1,4 @@
+import clsx from "clsx";
 import {
 	Button as AriaButton,
 	type ButtonProps as AriaButtonProps,
@@ -5,7 +6,7 @@ import {
 } from "react-aria-components";
 import { type VariantProps, tv } from "tailwind-variants";
 
-const solidClasses = [
+const solidClasses = clsx(
 	// Optical border, implemented as the button background to avoid corner artifacts
 	"border-transparent bg-(--btn-border)",
 	// Dark mode: border is rendered on `after` so background is set to button background
@@ -28,7 +29,7 @@ const solidClasses = [
 	"dark:after:-inset-px dark:after:rounded-lg",
 	// Disabled
 	"data-disabled:before:shadow-none data-disabled:after:shadow-none",
-];
+);
 
 const buttonStyles = tv({
 	base: [

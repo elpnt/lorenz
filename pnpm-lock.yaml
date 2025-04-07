@@ -45,6 +45,9 @@ catalogs:
     '@storybook/test':
       specifier: ^8.6.12
       version: 8.6.12
+    '@tailwindcss/language-server':
+      specifier: ^0.14.13
+      version: 0.14.13
     '@tailwindcss/vite':
       specifier: ^4.1.3
       version: 4.1.3
@@ -152,6 +155,9 @@ importers:
       '@biomejs/biome':
         specifier: 'catalog:'
         version: 1.9.4
+      '@tailwindcss/language-server':
+        specifier: 'catalog:'
+        version: 0.14.13
       taze:
         specifier: 'catalog:'
         version: 19.0.4
@@ -2676,6 +2682,11 @@ packages:
 
   '@swc/helpers@0.5.15':
     resolution: {integrity: sha512-JQ5TuMi45Owi4/BIMAJBoSQoOJu12oOk/gADqlcUL9JEdHB8vyjUSsxqeNXnmXHjYKMi2WcYtezGEEhqUI/E2g==}
+
+  '@tailwindcss/language-server@0.14.13':
+    resolution: {integrity: sha512-oLBJMAW63CCqChyT9DtgHe/R6r4kcCJgbqj/cHGTzfGCRIs0Kx52X26+XHSMlQ7sazLkZ+4+P8b2+3EXt0TGfA==}
+    engines: {node: '>=18.0.0'}
+    hasBin: true
 
   '@tailwindcss/node@4.1.3':
     resolution: {integrity: sha512-H/6r6IPFJkCfBJZ2dKZiPJ7Ueb2wbL592+9bQEl2r73qbX6yGnmQVIfiUvDRB2YI0a3PWDrzUwkvQx1XW1bNkA==}
@@ -7864,6 +7875,8 @@ snapshots:
   '@swc/helpers@0.5.15':
     dependencies:
       tslib: 2.8.1
+
+  '@tailwindcss/language-server@0.14.13': {}
 
   '@tailwindcss/node@4.1.3':
     dependencies:
