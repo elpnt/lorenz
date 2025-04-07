@@ -5,7 +5,8 @@
 				"experimental": {
 					"configFile": {
 						"packages/tailwind-config/styles.css": ["packages/ui/src/**"],
-						"apps/web/src/styles/app.css": ["apps/web/src/**"]
+						"apps/web/src/styles/app.css": ["apps/web/src/**"],
+						"apps/storybook/styles.css": ["apps/storybook/stories/**"]
 					}
 				},
 				"classFunctions": ["clsx", "tv", "cn", "cva"]
