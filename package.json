@@ -13,7 +13,6 @@
 	},
 	"devDependencies": {
 		"@biomejs/biome": "catalog:",
-		"@tailwindcss/language-server": "catalog:",
 		"taze": "catalog:",
 		"turbo": "catalog:"
 	},
