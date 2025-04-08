@@ -1,4 +1,8 @@
-import { Cog6ToothIcon, HomeIcon } from "@heroicons/react/20/solid";
+import {
+	BookOpenIcon,
+	Cog6ToothIcon,
+	HomeIcon,
+} from "@heroicons/react/20/solid";
 import { Outlet, createFileRoute } from "@tanstack/react-router";
 import { useLocation } from "@tanstack/react-router";
 import { useRouter } from "@tanstack/react-router";
@@ -35,6 +39,10 @@ function RouteComponent() {
 								<SidebarItem to="/" current={pathname === "/"}>
 									<HomeIcon />
 									<SidebarLabel>Home</SidebarLabel>
+								</SidebarItem>
+								<SidebarItem to="/vocab" current={pathname === "/vocab"}>
+									<BookOpenIcon />
+									<SidebarLabel>Vocabulary</SidebarLabel>
 								</SidebarItem>
 								<SidebarItem to="/settings" current={pathname === "/settings"}>
 									<Cog6ToothIcon />
