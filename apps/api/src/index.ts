@@ -1,6 +1,7 @@
 import { Hono } from "hono";
 import { cors } from "hono/cors";
 
+import { authMiddleware } from "./middleware";
 import authRoutes from "./routes/auth";
 import chatRoutes from "./routes/chat";
 import vocabRoutes from "./routes/vocab";
@@ -18,10 +19,8 @@ app.use(
 		credentials: true,
 	}),
 );
-
-// app.get("/", async (c) => {
-// 	return c.text("Hello World!");
-// });
+app.use("/chat", cors({ origin: "http://localhost:3000" }));
+app.use(authMiddleware);
 
 app
 	.route("/auth", authRoutes)

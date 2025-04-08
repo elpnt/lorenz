@@ -21,7 +21,6 @@ catalog:
   "@storybook/react": ^8.6.12
   "@storybook/react-vite": ^8.6.12
   "@storybook/test": ^8.6.12
-  "@tailwindcss/language-server": ^0.14.13
   "@tailwindcss/vite": ^4.1.3
   "@tanstack/react-router": ^1.115.0
   "@tanstack/react-start": ^1.115.1

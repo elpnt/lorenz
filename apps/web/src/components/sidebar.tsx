@@ -1,9 +1,9 @@
+import { Link, type LinkProps } from "@tanstack/react-router";
 import clsx from "clsx";
 import { LayoutGroup, motion } from "motion/react";
-import { useId } from "react";
+import { useContext, useId } from "react";
 import { Button, type ButtonProps } from "react-aria-components";
-
-import { Link, type LinkProps } from "@tanstack/react-router";
+import { OverlayTriggerStateContext } from "react-aria-components";
 
 export function Sidebar({
 	className,
@@ -160,6 +160,8 @@ export const SidebarItem = ({
 	ref,
 	...props
 }: SidebarItemProps) => {
+	const state = useContext(OverlayTriggerStateContext);
+
 	return (
 		<span className={clsx(className, "relative")}>
 			{current && (
@@ -170,8 +172,9 @@ export const SidebarItem = ({
 			)}
 			{"to" in props ? (
 				<Link
-					className={sidebarItemClasses}
 					{...props}
+					className={sidebarItemClasses}
+					onClick={() => state?.close()}
 					data-current={current ? "true" : undefined}
 					ref={ref as React.RefObject<HTMLAnchorElement>}
 				>
