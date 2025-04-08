@@ -1,29 +1,14 @@
 import { useChat } from "@ai-sdk/react";
-import { createFileRoute, notFound } from "@tanstack/react-router";
-import { createServerFn } from "@tanstack/react-start";
+import { createFileRoute } from "@tanstack/react-router";
 
 import Button from "@lorenz/ui/button";
 import { authClient } from "../../lib/auth-client";
 
-const getServerMessage = createServerFn({
-	method: "GET",
-}).handler(async () => {
-	try {
-		const res = await fetch("http://localhost:8787");
-		const text = await res.text();
-		return text;
-	} catch {
-		throw notFound();
-	}
-});
-
 export const Route = createFileRoute("/_app/")({
 	component: Home,
-	loader: async () => await getServerMessage(),
 });
 
 function Home() {
-	const text = Route.useLoaderData();
 	const { data, isPending } = authClient.useSession();
 	const { messages, input, handleInputChange, handleSubmit } = useChat({
 		api: "http://localhost:8787/chat",
@@ -35,7 +20,6 @@ function Home() {
 
 	return (
 		<div className="p-4">
-			<p>Hono says: {text}</p>
 			{data ? (
 				<div>
 					<Button intent="outline" onPress={() => authClient.signOut()}>

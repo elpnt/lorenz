@@ -11,7 +11,14 @@ const db = drizzle(process.env.DATABASE_URL);
 
 export const auth = betterAuth({
 	baseURL: process.env.BETTER_AUTH_URL,
+	basePath: "/auth",
 	secret: process.env.BETTER_AUTH_SECRET,
+	session: {
+		cookieCache: {
+			enabled: true,
+			maxAge: 5 * 60, // 5 minutes
+		},
+	},
 	database: drizzleAdapter(db, {
 		provider: "pg",
 		schema,
