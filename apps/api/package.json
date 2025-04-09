@@ -9,6 +9,7 @@
 	},
 	"dependencies": {
 		"@ai-sdk/openai": "catalog:",
+		"@hono/zod-validator": "catalog:",
 		"@neondatabase/serverless": "catalog:",
 		"ai": "catalog:",
 		"better-auth": "catalog:",
