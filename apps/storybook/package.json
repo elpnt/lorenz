@@ -7,7 +7,7 @@
 		"build": "storybook build"
 	},
 	"license": "MIT",
-	"packageManager": "pnpm@10.7.1",
+	"packageManager": "pnpm@10.8.0",
 	"devDependencies": {
 		"@chromatic-com/storybook": "catalog:",
 		"@lorenz/tailwind-config": "workspace:*",

@@ -3,7 +3,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import Button from "@lorenz/ui/button";
 import {
 	Dialog,
-	DialogBody,
+	DialogActions,
 	DialogDescription,
 	DialogTitle,
 	DialogTrigger,
@@ -21,7 +21,8 @@ const meta = {
 export default meta;
 type Story = StoryObj<typeof meta>;
 
-export const Default: Story = {
+export const DialogStory: Story = {
+	name: "Dialog",
 	render: () => {
 		return (
 			<DialogTrigger>
@@ -32,7 +33,39 @@ export const Default: Story = {
 						The refund will be reflected in the customer’s bank account 2 to 3
 						business days after processing.
 					</DialogDescription>
-					<DialogBody>Hello world</DialogBody>
+					<DialogActions>
+						<Button intent="plain" slot="close">
+							Cancel
+						</Button>
+						<Button intent="primary" slot="close">
+							Refund
+						</Button>
+					</DialogActions>
+				</Dialog>
+			</DialogTrigger>
+		);
+	},
+};
+
+export const AlertDialog: Story = {
+	render: () => {
+		return (
+			<DialogTrigger>
+				<Button>Open</Button>
+				<Dialog role="alertdialog">
+					<DialogTitle>Delete Account</DialogTitle>
+					<DialogDescription>
+						This action is irreversible. Are you sure you want to delete your
+						account?
+					</DialogDescription>
+					<DialogActions>
+						<Button intent="plain" slot="close">
+							Cancel
+						</Button>
+						<Button intent="danger" slot="close">
+							Delete
+						</Button>
+					</DialogActions>
 				</Dialog>
 			</DialogTrigger>
 		);

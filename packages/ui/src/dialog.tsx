@@ -28,7 +28,12 @@ interface DialogProps extends AriaDialogProps {
 	size?: keyof typeof sizes;
 }
 
-const Dialog = ({ children, className, size = "lg" }: DialogProps) => {
+const Dialog = ({
+	children,
+	className,
+	size = "lg",
+	...props
+}: DialogProps) => {
 	return (
 		<AriaModalOverlay
 			isDismissable
@@ -51,11 +56,13 @@ const Dialog = ({ children, className, size = "lg" }: DialogProps) => {
 						isEntering &&
 							"animate-in duration-100 ease-out fade-in slide-in-from-bottom-12 sm:slide-in-from-top-0 sm:zoom-in-95",
 						isExiting &&
-							"animate-out duration-100 ease-in translate-y-12 fade-out sm:translate-y-0",
+							"animate-out duration-100 ease-in translate-y-12 fade-out sm:translate-y-0 sm:zoom-out-95",
 					)
 				}
 			>
-				<AriaDialog className="outline-hidden relative">{children}</AriaDialog>
+				<AriaDialog className="outline-hidden relative" {...props}>
+					{children}
+				</AriaDialog>
 			</AriaModal>
 		</AriaModalOverlay>
 	);
@@ -86,4 +93,26 @@ const DialogBody = ({
 	<div className={clsx(className, "mt-6")} {...props} />
 );
 
-export { Dialog, DialogBody, DialogTitle, DialogTrigger, DialogDescription };
+const DialogActions = ({
+	className,
+	...props
+}: React.ComponentPropsWithRef<"div">) => {
+	return (
+		<div
+			{...props}
+			className={clsx(
+				className,
+				"mt-8 flex flex-col-reverse items-center justify-end gap-3 *:w-full sm:flex-row sm:*:w-auto",
+			)}
+		/>
+	);
+};
+
+export {
+	Dialog,
+	DialogBody,
+	DialogTitle,
+	DialogTrigger,
+	DialogDescription,
+	DialogActions,
+};
