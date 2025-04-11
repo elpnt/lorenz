@@ -1,8 +1,8 @@
 import { relations } from "drizzle-orm";
 
 import { user } from "./auth";
-import { vocabularies } from "./vocab";
+import { vocabulary } from "./vocab";
 
 export const userRelations = relations(user, ({ many }) => ({
-	vocabularies: many(vocabularies),
+	vocabulary: many(vocabulary),
 }));

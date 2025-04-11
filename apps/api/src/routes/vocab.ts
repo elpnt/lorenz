@@ -1,19 +1,23 @@
 import { Hono } from "hono";
+import { validator } from "hono/validator";
 import { z } from "zod";
 
-import { validator } from "hono/validator";
 import { db } from "../db";
-
-const app = new Hono<{ Bindings: CloudflareBindings }>();
+import type { SessionVariables } from "../types";
 
 const newVocabSchema = z.object({
-	front: z.string().min(2).max(100),
-	back: z.string().min(2).max(1000),
+	front: z.string().min(1).max(100),
+	back: z.string().min(1).max(1000),
 });
+
+const app = new Hono<{
+	Bindings: CloudflareBindings;
+	Variables: SessionVariables;
+}>();
 
 app
 	.get("/", async (c) => {
-		const result = await db.query.vocabularies.findMany({
+		const result = await db.query.vocabulary.findMany({
 			where: (vocab, { eq }) => eq(vocab.userId, "/* TODO */"),
 		});
 		return c.json(result);
@@ -28,7 +32,17 @@ app
 			return parsed.data;
 		}),
 		async (c) => {
+			const user = c.get("user");
+			const session = c.get("session");
+
+			if (!user) {
+				return c.text("Unauthorized", 401);
+			}
+
 			const { front, back } = c.req.valid("json");
+			console.log({ front, back });
+
+			return c.json({ message: "Vocabulary created successfully" });
 		},
 	);
 

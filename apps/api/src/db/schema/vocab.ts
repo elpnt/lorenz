@@ -1,7 +1,7 @@
 import { pgTable, serial, text, timestamp } from "drizzle-orm/pg-core";
 import { user } from "./auth";
 
-export const vocabularies = pgTable("vocabularies", {
+export const vocabulary = pgTable("vocabulary", {
 	id: serial().primaryKey(),
 	userId: text().references(() => user.id),
 	front: text().notNull(),
