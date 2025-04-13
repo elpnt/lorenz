@@ -5,7 +5,7 @@ import Button from "./button";
 import { Dropdown, DropdownItem, DropdownMenu } from "./dropdown";
 
 const meta = {
-	title: "UI/Dropdown",
+	title: "Dropdown",
 	component: Dropdown,
 	parameters: {
 		layout: "centered",

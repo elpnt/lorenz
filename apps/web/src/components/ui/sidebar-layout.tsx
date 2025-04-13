@@ -25,16 +25,12 @@ function CloseMenuIcon() {
 	);
 }
 
-function MobileSidebar({
-	open,
-	onOpenChange,
-	children,
-}: React.PropsWithChildren<{
-	open: boolean;
-	onOpenChange: (open: boolean) => void;
-}>) {
+function MobileSidebar({ children }: { children: React.ReactNode }) {
 	return (
-		<AriaDialogTrigger isOpen={open} onOpenChange={onOpenChange}>
+		<AriaDialogTrigger>
+			<NavbarItem aria-label="Open navigation">
+				<OpenMenuIcon />
+			</NavbarItem>
 			<AriaModalOverlay
 				isDismissable
 				className={({ isEntering, isExiting }) =>
@@ -89,20 +85,10 @@ export function SidebarLayout({
 			{/* Sidebar on desktop */}
 			<div className="fixed inset-y-0 left-0 w-64 max-lg:hidden">{sidebar}</div>
 
-			{/* Sidebar on mobile */}
-			<MobileSidebar open={showSidebar} onOpenChange={setShowSidebar}>
-				{sidebar}
-			</MobileSidebar>
-
 			{/* Navbar on mobile */}
 			<header className="flex items-center px-4 lg:hidden">
 				<div className="py-2.5">
-					<NavbarItem
-						onPress={() => setShowSidebar(true)}
-						aria-label="Open navigation"
-					>
-						<OpenMenuIcon />
-					</NavbarItem>
+					<MobileSidebar>{sidebar}</MobileSidebar>
 				</div>
 				<div className="min-w-0 flex-1">{navbar}</div>
 			</header>

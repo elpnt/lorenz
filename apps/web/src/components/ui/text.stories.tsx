@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { Code, Strong, Text, TextLink } from "./text";
 
 export default {
-	title: "UI/Text",
+	title: "Text",
 	component: Text,
 	argTypes: {
 		children: { control: "text" },

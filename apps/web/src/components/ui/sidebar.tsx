@@ -126,12 +126,26 @@ export function SidebarHeading({
 	);
 }
 
-type SidebarItemProps = {
+type BaseSidebarItemProps = {
 	current?: boolean;
 	className?: string;
 	children: React.ReactNode;
-	ref?: React.Ref<HTMLButtonElement | HTMLAnchorElement>;
-} & (Omit<AriaButtonProps, "className"> | LinkProps);
+};
+
+type SidebarLinkItemProps = BaseSidebarItemProps &
+	LinkProps & {
+		href: string; // Make href required for Link variant
+		ref?: React.Ref<HTMLAnchorElement>;
+	};
+
+type SidebarButtonItemProps = BaseSidebarItemProps &
+	Omit<AriaButtonProps, "className"> & {
+		href?: never; // Ensure href is never present for Button variant
+		ref?: React.Ref<HTMLButtonElement>;
+	};
+
+// Combine them into a discriminated union
+type SidebarItemProps = SidebarLinkItemProps | SidebarButtonItemProps;
 
 const sidebarItemClasses = clsx(
 	// Base
@@ -176,7 +190,7 @@ export const SidebarItem = ({
 			)}
 			{"href" in props ? (
 				<Link
-					{...props}
+					{...(props as SidebarLinkItemProps)}
 					className={sidebarItemClasses}
 					onClick={() => state?.close()}
 					data-current={current ? "true" : undefined}
@@ -186,7 +200,7 @@ export const SidebarItem = ({
 				</Link>
 			) : (
 				<AriaButton
-					{...(props as AriaButtonProps)}
+					{...(props as SidebarButtonItemProps)}
 					className={clsx("cursor-default", sidebarItemClasses)}
 					data-current={current ? "true" : undefined}
 					ref={ref as React.RefObject<HTMLButtonElement>}
