@@ -6,8 +6,8 @@ import {
 	ModalOverlay as AriaModalOverlay,
 } from "react-aria-components";
 
-import { NavbarItem } from "@lorenz/ui/navbar";
 import { clsx } from "clsx";
+import { NavbarItem } from "./navbar";
 
 function OpenMenuIcon() {
 	return (

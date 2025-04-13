@@ -12,7 +12,11 @@ function getAbsolutePath(value: string): string {
 const config: StorybookConfig = {
 	stories: [
 		// "../stories/**/*.mdx",
-		"../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+		// "../stories/**/*.stories.@(js|jsx|mjs|ts|tsx)",
+		{
+			directory: "../../web/src",
+			titlePrefix: "Web",
+		},
 	],
 	addons: [
 		getAbsolutePath("@storybook/addon-essentials"),
@@ -23,6 +27,13 @@ const config: StorybookConfig = {
 	framework: {
 		name: getAbsolutePath("@storybook/react-vite"),
 		options: {},
+	},
+	typescript: {
+		reactDocgenTypescriptOptions: {
+			// この設定は monorepo 配下にある各種コンポーネントの JSDoc を認識させるために必要。
+			// cf. https://github.com/storybookjs/storybook/issues/21399#issuecomment-1473800791
+			include: ["../../../**/*.tsx"],
+		},
 	},
 };
 export default config;

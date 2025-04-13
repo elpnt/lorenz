@@ -2,7 +2,7 @@ import { MagnifyingGlassIcon, PlusIcon } from "@heroicons/react/16/solid";
 import type { Meta, StoryObj } from "@storybook/react";
 import { fn } from "@storybook/test";
 
-import Button from "@lorenz/ui/button";
+import Button from "./button";
 
 const meta = {
 	title: "UI/Button",

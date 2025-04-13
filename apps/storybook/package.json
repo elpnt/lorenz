@@ -12,7 +12,6 @@
 		"@chromatic-com/storybook": "catalog:",
 		"@lorenz/tailwind-config": "workspace:*",
 		"@lorenz/typescript-config": "workspace:*",
-		"@lorenz/ui": "workspace:*",
 		"@storybook/addon-essentials": "catalog:",
 		"@storybook/addon-interactions": "catalog:",
 		"@storybook/addon-themes": "catalog:",

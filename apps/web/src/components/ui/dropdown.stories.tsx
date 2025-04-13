@@ -1,8 +1,8 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
 import { ChevronDownIcon } from "@heroicons/react/16/solid";
-import Button from "@lorenz/ui/button";
-import { Dropdown, DropdownItem, DropdownMenu } from "@lorenz/ui/dropdown";
+import Button from "./button";
+import { Dropdown, DropdownItem, DropdownMenu } from "./dropdown";
 
 const meta = {
 	title: "UI/Dropdown",

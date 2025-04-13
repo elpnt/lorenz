@@ -14,8 +14,8 @@ import {
 	SidebarItem,
 	SidebarLabel,
 	SidebarSection,
-} from "../components/sidebar";
-import { SidebarLayout } from "../components/sidebar-layout";
+} from "../components/ui/sidebar";
+import { SidebarLayout } from "../components/ui/sidebar-layout";
 
 /* App layout */
 export const Route = createFileRoute("/_app")({

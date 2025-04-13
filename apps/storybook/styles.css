@@ -1,4 +1,4 @@
 @import "tailwindcss";
 @import "@lorenz/tailwind-config/styles.css";
 
-@source "../../packages/ui/**/*.tsx";
+@source "../web/src/**/*.tsx";
