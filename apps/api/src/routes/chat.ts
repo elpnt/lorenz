@@ -2,10 +2,9 @@ import { openai } from "@ai-sdk/openai";
 import { streamText } from "ai";
 import { Hono } from "hono";
 import { stream } from "hono/streaming";
+import type { Env } from "../types";
 
-const app = new Hono<{ Bindings: CloudflareBindings }>();
-
-app.post("/", async (c) => {
+const app = new Hono<Env>().post("/", async (c) => {
 	const { messages } = await c.req.json();
 	const result = streamText({
 		model: openai("gpt-4o"),
