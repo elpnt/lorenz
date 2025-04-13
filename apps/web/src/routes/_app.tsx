@@ -36,15 +36,18 @@ function RouteComponent() {
 					<Sidebar>
 						<SidebarBody>
 							<SidebarSection>
-								<SidebarItem to="/" current={pathname === "/"}>
+								<SidebarItem href="/" current={pathname === "/"}>
 									<HomeIcon />
 									<SidebarLabel>Home</SidebarLabel>
 								</SidebarItem>
-								<SidebarItem to="/vocab" current={pathname === "/vocab"}>
+								<SidebarItem href="/vocab" current={pathname === "/vocab"}>
 									<BookOpenIcon />
 									<SidebarLabel>Vocabulary</SidebarLabel>
 								</SidebarItem>
-								<SidebarItem to="/settings" current={pathname === "/settings"}>
+								<SidebarItem
+									href="/settings"
+									current={pathname === "/settings"}
+								>
 									<Cog6ToothIcon />
 									<SidebarLabel>Settings</SidebarLabel>
 								</SidebarItem>

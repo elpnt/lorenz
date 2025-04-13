@@ -12,15 +12,15 @@ import {
 } from "@tanstack/react-router";
 import { RouterProvider as ReactAriaRouterProvider } from "react-aria-components";
 
+// @ts-ignore
+import appCss from "../styles/app.css?url";
+
 declare module "react-aria-components" {
 	interface RouterConfig {
 		href: ToOptions["to"];
 		routerOptions: Omit<NavigateOptions, keyof ToOptions>;
 	}
 }
-
-// @ts-ignore
-import appCss from "../styles/app.css?url";
 
 export const Route = createRootRouteWithContext<{
 	queryClient: QueryClient;

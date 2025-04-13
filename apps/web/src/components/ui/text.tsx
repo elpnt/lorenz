@@ -1,5 +1,5 @@
 import clsx from "clsx";
-// import { Link } from './link'
+import { Link, type LinkProps } from "./link";
 
 export function Text({
 	className,
@@ -17,17 +17,17 @@ export function Text({
 	);
 }
 
-// export function TextLink({ className, ...props }: React.ComponentPropsWithoutRef<typeof Link>) {
-//   return (
-//     <Link
-//       {...props}
-//       className={clsx(
-//         className,
-//         'text-zinc-950 underline decoration-zinc-950/50 data-hover:decoration-zinc-950 dark:text-white dark:decoration-white/50 dark:data-hover:decoration-white'
-//       )}
-//     />
-//   )
-// }
+export function TextLink({ className, ...props }: LinkProps) {
+	return (
+		<Link
+			{...props}
+			className={clsx(
+				className,
+				"text-zinc-950 underline decoration-zinc-950/50 data-hover:decoration-zinc-950 dark:text-white dark:decoration-white/50 dark:data-hover:decoration-white",
+			)}
+		/>
+	);
+}
 
 export function Strong({
 	className,

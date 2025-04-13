@@ -1,9 +1,13 @@
-import { Link, type LinkProps } from "@tanstack/react-router";
 import clsx from "clsx";
 import { LayoutGroup, motion } from "motion/react";
 import { useContext, useId } from "react";
-import { Button, type ButtonProps } from "react-aria-components";
-import { OverlayTriggerStateContext } from "react-aria-components";
+import {
+	Button as AriaButton,
+	type ButtonProps as AriaButtonProps,
+	OverlayTriggerStateContext,
+} from "react-aria-components";
+
+import { Link, type LinkProps } from "./link";
 
 export function Sidebar({
 	className,
@@ -127,7 +131,7 @@ type SidebarItemProps = {
 	className?: string;
 	children: React.ReactNode;
 	ref?: React.Ref<HTMLButtonElement | HTMLAnchorElement>;
-} & (Omit<ButtonProps, "className"> | LinkProps);
+} & (Omit<AriaButtonProps, "className"> | LinkProps);
 
 const sidebarItemClasses = clsx(
 	// Base
@@ -170,7 +174,7 @@ export const SidebarItem = ({
 					className="absolute inset-y-2 -left-4 w-0.5 rounded-full bg-zinc-950 dark:bg-white"
 				/>
 			)}
-			{"to" in props ? (
+			{"href" in props ? (
 				<Link
 					{...props}
 					className={sidebarItemClasses}
@@ -181,14 +185,14 @@ export const SidebarItem = ({
 					{children}
 				</Link>
 			) : (
-				<Button
-					{...props}
+				<AriaButton
+					{...(props as AriaButtonProps)}
 					className={clsx("cursor-default", sidebarItemClasses)}
 					data-current={current ? "true" : undefined}
 					ref={ref as React.RefObject<HTMLButtonElement>}
 				>
 					{children}
-				</Button>
+				</AriaButton>
 			)}
 		</span>
 	);
