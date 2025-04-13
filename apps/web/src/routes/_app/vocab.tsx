@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import Button from "../../components/ui/button";
+import { Button } from "../../components/ui/button";
 import { api } from "../../lib/api-client";
 
 export const Route = createFileRoute("/_app/vocab")({

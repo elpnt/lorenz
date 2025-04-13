@@ -44,10 +44,9 @@ const buttonStyles = tv({
 		intent: {
 			primary: [
 				solidClasses,
-				// Color
 				"text-white [--btn-bg:var(--color-zinc-900)] [--btn-border:var(--color-zinc-950)]/90 [--btn-hover-overlay:var(--color-white)]/10",
-				"dark:text-zinc-950 dark:[--btn-bg:white] dark:[--btn-hover-overlay:var(--color-zinc-950)]/5",
-				"[--btn-icon:var(--color-zinc-400)] data-active:[--btn-icon:var(--color-zinc-300)] hover:[--btn-icon:var(--color-zinc-300)] dark:[--btn-icon:var(--color-zinc-500)] dark:data-active:[--btn-icon:var(--color-zinc-400)] dark:hover:[--btn-icon:var(--color-zinc-400)]",
+				"dark:text-white dark:[--btn-bg:var(--color-zinc-600)] dark:[--btn-hover-overlay:var(--color-white)]/5",
+				"[--btn-icon:var(--color-zinc-400)] data-active:[--btn-icon:var(--color-zinc-300)] data-hover:[--btn-icon:var(--color-zinc-300)]",
 			],
 			outline: [
 				// Base
@@ -67,7 +66,6 @@ const buttonStyles = tv({
 			],
 			danger: [
 				solidClasses,
-				// Color
 				"text-white [--btn-hover-overlay:var(--color-white)]/10 [--btn-bg:var(--color-red-600)] [--btn-border:var(--color-red-700)]/90",
 				"[--btn-icon:var(--color-red-300)] data-active:[--btn-icon:var(--color-red-200)] hover:[--btn-icon:var(--color-red-200)]",
 			],
@@ -94,7 +92,7 @@ interface ButtonProps
 	ref?: React.Ref<HTMLButtonElement>;
 }
 
-export default function Button({
+export function Button({
 	className,
 	intent,
 	size,
