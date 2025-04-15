@@ -66,7 +66,6 @@ export const Invalid: Story = {
 	args: {
 		label: "Full name",
 		isInvalid: true,
-		placeholder: "Enter text",
 		errorMessage: "This field is required",
 	},
 };
