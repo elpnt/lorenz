@@ -1,5 +1,6 @@
 import {
 	BookOpenIcon,
+	ChatBubbleLeftIcon,
 	Cog6ToothIcon,
 	HomeIcon,
 } from "@heroicons/react/20/solid";
@@ -39,6 +40,10 @@ function RouteComponent() {
 								<SidebarItem href="/" current={pathname === "/"}>
 									<HomeIcon />
 									<SidebarLabel>Home</SidebarLabel>
+								</SidebarItem>
+								<SidebarItem href="/chat" current={pathname === "/chat"}>
+									<ChatBubbleLeftIcon />
+									<SidebarLabel>Chat</SidebarLabel>
 								</SidebarItem>
 								<SidebarItem href="/vocab" current={pathname === "/vocab"}>
 									<BookOpenIcon />
