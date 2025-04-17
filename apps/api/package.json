@@ -8,7 +8,7 @@
 		"db:push": "drizzle-kit push"
 	},
 	"exports": {
-		"./types": "./apptype.d.ts"
+		"./types": "./types.d.ts"
 	},
 	"dependencies": {
 		"@ai-sdk/anthropic": "^1.2.10",

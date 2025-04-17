@@ -94,7 +94,7 @@ export function SidebarLayout({
 			</header>
 
 			{/* Content */}
-			<main className="flex flex-1 flex-col pb-2 lg:min-w-0 lg:pt-2 lg:pr-2 lg:pl-64 max-lg:h-[calc(100vh-theme(spacing.14))] lg:h-[calc(100vh-theme(spacing.2))]">
+			<main className="flex flex-1 flex-col pb-2 lg:min-w-0 lg:pt-2 lg:pr-2 lg:pl-64 lg:h-[calc(100vh-var(--spacing)*0.5)]">
 				<div className="grow rounded-lg bg-white overflow-y-scroll lg:ring-1 lg:shadow-xs lg:ring-zinc-950/5 dark:bg-zinc-900 dark:lg:ring-white/10">
 					<div className="w-full flex-1 flex flex-col h-full">{children}</div>
 				</div>
