@@ -1,2 +1,22 @@
 @import "tailwindcss";
 @import "@lorenz/tailwind-config/styles.css";
+
+@layer utilities {
+	@keyframes scale-rotate-in {
+		0% {
+			transform: scale(0.5) rotate(-180deg);
+			opacity: 0;
+		}
+		70% {
+			transform: scale(1.1) rotate(10deg);
+			opacity: 1;
+		}
+		100% {
+			transform: scale(1) rotate(0deg);
+			opacity: 1;
+		}
+	}
+	.animate-scale-rotate-in {
+		animation: scale-rotate-in 0.5s cubic-bezier(0.56, 1.36, 0.5, 1) both;
+	}
+}

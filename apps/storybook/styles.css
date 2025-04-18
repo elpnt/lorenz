@@ -2,3 +2,5 @@
 @import "@lorenz/tailwind-config/styles.css";
 
 @source "../web/src/**/*.tsx";
+
+@custom-variant dark (&:where(.dark, .dark *));
