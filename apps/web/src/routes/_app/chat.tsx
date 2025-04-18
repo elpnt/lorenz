@@ -1,5 +1,5 @@
 import { useChat } from "@ai-sdk/react";
-import { PaperAirplaneIcon } from "@heroicons/react/16/solid";
+import { PaperAirplaneIcon, StopIcon } from "@heroicons/react/16/solid";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
 
@@ -19,10 +19,11 @@ const UserMessage = ({ text }: { text: string }) => (
 );
 
 function RouteComponent() {
-	const { messages, input, handleInputChange, handleSubmit } = useChat({
-		api: "http://localhost:8787/chat",
-		maxSteps: 2,
-	});
+	const { messages, input, handleInputChange, handleSubmit, isLoading, stop } =
+		useChat({
+			api: "http://localhost:8787/chat",
+			maxSteps: 2,
+		});
 
 	const inputRef = useRef<HTMLTextAreaElement>(null);
 
@@ -49,19 +50,17 @@ function RouteComponent() {
 												const callId = part.toolInvocation.toolCallId;
 												switch (part.toolInvocation.state) {
 													case "call":
-														// return <div key={callId}>Call</div>;
 														return (
 															<pre key={callId}>
 																{JSON.stringify(part.toolInvocation, null, 2)}
 															</pre>
 														);
 													case "partial-call":
-														return <div key={callId}>Partial Call</div>;
-													// return (
-													// 	<pre key={callId}>
-													// 		{JSON.stringify(part.toolInvocation, null, 2)}
-													// 	</pre>
-													// );
+														return (
+															<pre key={callId}>
+																{JSON.stringify(part.toolInvocation, null, 2)}
+															</pre>
+														);
 													case "result": {
 														const result: ToolResult["result"] =
 															part.toolInvocation.result;
@@ -79,24 +78,6 @@ function RouteComponent() {
 											}
 										}
 									})}
-									{/* <pre className="text-xs">
-										{JSON.stringify(message.parts, null, 2)}
-									</pre> */}
-									{/* {message.parts.map((part, i) => {
-										switch (part.type) {
-											case "text":
-												return (
-													<div key={`${message.id}-${i}`}>{part.text}</div>
-												);
-											case "tool-invocation":
-												return (
-													// <div>{part.toolInvocation.result.corrected}</div>
-													<pre className="text-xs">
-														{JSON.stringify(part.toolInvocation, null, 2)}
-													</pre>
-												);
-										}
-									})} */}
 								</div>
 							)}
 						</div>
@@ -119,9 +100,15 @@ function RouteComponent() {
 							className="text-base/6 sm:text-sm/6 resize-none size-full focus:outline-none"
 						/>
 						<div className="flex justify-end">
-							<Button type="submit" size="icon">
-								<PaperAirplaneIcon />
-							</Button>
+							{isLoading ? (
+								<Button type="button" size="icon" onClick={stop}>
+									<StopIcon />
+								</Button>
+							) : (
+								<Button type="submit" size="icon">
+									<PaperAirplaneIcon />
+								</Button>
+							)}
 						</div>
 					</form>
 				</div>

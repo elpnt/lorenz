@@ -56,7 +56,7 @@ Important:
 `,
 		messages,
 		tools,
-		toolCallStreaming: true,
+		// toolCallStreaming: true,
 		maxSteps: 2,
 	});
 
