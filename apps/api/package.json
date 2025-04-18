@@ -11,7 +11,7 @@
 		"./types": "./types.d.ts"
 	},
 	"dependencies": {
-		"@ai-sdk/anthropic": "^1.2.10",
+		"@ai-sdk/anthropic": "catalog:",
 		"@ai-sdk/openai": "catalog:",
 		"@hono/zod-validator": "catalog:",
 		"@neondatabase/serverless": "catalog:",
