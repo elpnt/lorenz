@@ -43,14 +43,25 @@ function RouteComponent() {
 									{message.parts.map((part, index) => {
 										switch (part.type) {
 											case "text":
-												return <div key={part.text}>{part.text}</div>;
+												// biome-ignore lint:
+												return <div key={index}>{part.text}</div>;
 											case "tool-invocation": {
 												const callId = part.toolInvocation.toolCallId;
 												switch (part.toolInvocation.state) {
 													case "call":
-														return <div key={callId}>Fixing...</div>;
+														// return <div key={callId}>Call</div>;
+														return (
+															<pre key={callId}>
+																{JSON.stringify(part.toolInvocation, null, 2)}
+															</pre>
+														);
 													case "partial-call":
-														return <div key={callId}>Partial call...</div>;
+														return <div key={callId}>Partial Call</div>;
+													// return (
+													// 	<pre key={callId}>
+													// 		{JSON.stringify(part.toolInvocation, null, 2)}
+													// 	</pre>
+													// );
 													case "result": {
 														const result: ToolResult["result"] =
 															part.toolInvocation.result;
