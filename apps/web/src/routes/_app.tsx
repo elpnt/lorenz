@@ -9,6 +9,7 @@ import { useLocation } from "@tanstack/react-router";
 import { useRouter } from "@tanstack/react-router";
 import { RouterProvider as ReactAriaRouterProvider } from "react-aria-components";
 
+import { AccountDropdown } from "../components/account-dropdown";
 import {
 	Sidebar,
 	SidebarBody,
@@ -18,7 +19,6 @@ import {
 	SidebarSection,
 } from "../components/ui/sidebar";
 import { SidebarLayout } from "../components/ui/sidebar-layout";
-import { UserButton } from "../components/user-button";
 
 /* App layout */
 export const Route = createFileRoute("/_app")({
@@ -61,7 +61,7 @@ function RouteComponent() {
 							</SidebarSection>
 						</SidebarBody>
 						<SidebarFooter>
-							<UserButton />
+							<AccountDropdown />
 						</SidebarFooter>
 					</Sidebar>
 				}
