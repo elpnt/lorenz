@@ -137,7 +137,7 @@ function RouteComponent() {
 						/>
 						<div className="flex justify-end">
 							{status === "streaming" ? (
-								<Button type="button" size="icon" onClick={stop}>
+								<Button type="button" size="icon" onPress={stop}>
 									<StopIcon />
 								</Button>
 							) : (

@@ -192,7 +192,7 @@ export const SidebarItem = ({
 				<Link
 					{...(props as SidebarLinkItemProps)}
 					className={sidebarItemClasses}
-					onClick={() => state?.close()}
+					onPress={() => state?.close()}
 					data-current={current ? "true" : undefined}
 					ref={ref as React.RefObject<HTMLAnchorElement>}
 				>
