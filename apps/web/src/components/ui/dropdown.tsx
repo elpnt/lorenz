@@ -15,7 +15,18 @@ function DropdownMenu({
 	className?: string;
 }) {
 	return (
-		<AriaPopover>
+		<AriaPopover
+			className={({ isEntering, isExiting, placement }) =>
+				clsx([
+					isEntering && "animate-in fade-in",
+					isExiting && "animate-out fade-out",
+					placement === "bottom" && "slide-in-from-top-1 slide-out-to-top-1",
+					placement === "top" && "slide-in-from-bottom-1 slide-out-to-bottom-1",
+					placement === "right" && "slide-in-from-left-1 slide-out-to-left-1",
+					placement === "left" && "slide-in-from-right-1 slide-out-to-right-1",
+				])
+			}
+		>
 			<AriaMenu
 				className={clsx(
 					className,
