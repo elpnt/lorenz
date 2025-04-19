@@ -2,6 +2,7 @@ import clsx from "clsx";
 import {
 	Menu as AriaMenu,
 	MenuItem as AriaMenuItem,
+	type MenuItemProps as AriaMenuItemProps,
 	MenuTrigger as AriaMenuTrigger,
 	Popover as AriaPopover,
 } from "react-aria-components";
@@ -42,13 +43,16 @@ function DropdownMenu({
 	);
 }
 
+interface DropdownItemProps extends AriaMenuItemProps {
+	danger?: boolean;
+}
+
 function DropdownItem({
 	children,
 	className,
-}: {
-	children: React.ReactNode;
-	className?: string;
-}) {
+	danger,
+	...props
+}: DropdownItemProps) {
 	return (
 		<AriaMenuItem
 			className={clsx(
@@ -58,7 +62,8 @@ function DropdownItem({
 				// Text styles
 				"text-left text-base/6 text-zinc-950 sm:text-sm/6 dark:text-white forced-colors:text-[CanvasText]",
 				// Focus
-				"data-focused:bg-blue-500 data-focused:text-white",
+				danger ? "data-focused:bg-red-500" : "data-focused:bg-blue-500",
+				"data-focused:text-white",
 				// Disabled state
 				"data-disabled:opacity-50",
 				// Forced colors mode
@@ -71,6 +76,7 @@ function DropdownItem({
 				// Avatar
 				"*:data-[slot=avatar]:mr-2.5 *:data-[slot=avatar]:-ml-1 *:data-[slot=avatar]:size-6 sm:*:data-[slot=avatar]:mr-2 sm:*:data-[slot=avatar]:size-5",
 			)}
+			{...props}
 		>
 			{children}
 		</AriaMenuItem>

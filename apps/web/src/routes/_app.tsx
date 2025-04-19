@@ -12,11 +12,13 @@ import { RouterProvider as ReactAriaRouterProvider } from "react-aria-components
 import {
 	Sidebar,
 	SidebarBody,
+	SidebarFooter,
 	SidebarItem,
 	SidebarLabel,
 	SidebarSection,
 } from "../components/ui/sidebar";
 import { SidebarLayout } from "../components/ui/sidebar-layout";
+import { UserButton } from "../components/user-button";
 
 /* App layout */
 export const Route = createFileRoute("/_app")({
@@ -58,6 +60,9 @@ function RouteComponent() {
 								</SidebarItem>
 							</SidebarSection>
 						</SidebarBody>
+						<SidebarFooter>
+							<UserButton />
+						</SidebarFooter>
 					</Sidebar>
 				}
 				navbar={<div>Navbar</div>}

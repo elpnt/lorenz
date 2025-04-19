@@ -1,6 +1,11 @@
 import type { Meta, StoryObj } from "@storybook/react";
 
-import { ChevronDownIcon } from "@heroicons/react/16/solid";
+import {
+	ChevronDownIcon,
+	EyeIcon,
+	PencilSquareIcon,
+	TrashIcon,
+} from "@heroicons/react/20/solid";
 import { Button } from "./button";
 import { Dropdown, DropdownItem, DropdownMenu } from "./dropdown";
 
@@ -27,7 +32,33 @@ export const Default: Story = {
 				<DropdownMenu>
 					<DropdownItem>View</DropdownItem>
 					<DropdownItem>Edit</DropdownItem>
-					<DropdownItem>Delete</DropdownItem>
+					<DropdownItem danger>Delete</DropdownItem>
+				</DropdownMenu>
+			</>
+		),
+	},
+};
+
+export const WithIcon: Story = {
+	args: {
+		children: (
+			<>
+				<Button intent="outline">
+					Open
+					<ChevronDownIcon />
+				</Button>
+				<DropdownMenu>
+					<DropdownItem>
+						<EyeIcon />
+						View
+					</DropdownItem>
+					<DropdownItem>
+						<PencilSquareIcon />
+						Edit
+					</DropdownItem>
+					<DropdownItem danger>
+						<TrashIcon /> Delete
+					</DropdownItem>
 				</DropdownMenu>
 			</>
 		),
