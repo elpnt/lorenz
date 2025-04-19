@@ -17,6 +17,7 @@ export default {
 			</div>
 		),
 	],
+	tags: ["autodocs"],
 } satisfies Meta<typeof TextField>;
 
 type Story = StoryObj<typeof TextField>;
