@@ -21,7 +21,15 @@ function RouteComponent() {
 			className="grid w-full max-w-sm grid-cols-1 gap-8"
 		>
 			{/* <Logo className="h-6 text-zinc-950 dark:text-white forced-colors:text-[CanvasText]" /> */}
-			<Heading>Sign in to your account</Heading>
+			<div className="space-y-1">
+				<Heading>Sign in to your account</Heading>
+				<Text>
+					Don’t have an account?{" "}
+					<TextLink href="/signup">
+						<Strong>Sign up</Strong>
+					</TextLink>
+				</Text>
+			</div>
 			<TextField label="Email" name="email" type="email" />
 			<TextField label="Password" name="password" type="password" />
 			<div className="flex items-center justify-between">
@@ -50,12 +58,6 @@ function RouteComponent() {
 				<GoogleIcon />
 				Google
 			</Button>
-			<Text>
-				Don’t have an account?{" "}
-				<TextLink href="/signup">
-					<Strong>Sign up</Strong>
-				</TextLink>
-			</Text>
 		</form>
 	);
 }
