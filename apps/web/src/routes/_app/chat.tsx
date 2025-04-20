@@ -50,6 +50,8 @@ function RouteComponent() {
 		inputRef.current?.focus();
 	}, []);
 
+	console.log({ status });
+
 	return (
 		<>
 			<div className="flex-1 overflow-y-scroll p-6 lg:p-10 ">
@@ -91,14 +93,13 @@ function RouteComponent() {
 											case "tool-invocation": {
 												const callId = part.toolInvocation.toolCallId;
 												switch (part.toolInvocation.state) {
+													case "partial-call":
 													case "call":
-														return <div key={callId}>Reviewing...</div>;
-													// case "partial-call":
-													// 	return (
-													// 		<pre key={callId}>
-													// 			{JSON.stringify(part.toolInvocation, null, 2)}
-													// 		</pre>
-													// 	);
+														return (
+															<div key={callId} className="animate-pulse">
+																Reviewing...
+															</div>
+														);
 													case "result": {
 														const result: ToolResult["result"] =
 															part.toolInvocation.result;

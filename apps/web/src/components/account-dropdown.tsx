@@ -29,7 +29,7 @@ export const AccountDropdown = () => {
 					</span>
 				</span>
 			</SidebarItem>
-			<DropdownMenu>
+			<DropdownMenu className="min-w-(--trigger-width)">
 				<DropdownItem href="/settings">Settings</DropdownItem>
 				<DropdownItem
 					onAction={() =>

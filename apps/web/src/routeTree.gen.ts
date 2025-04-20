@@ -14,7 +14,7 @@ import { Route as rootRoute } from './routes/__root'
 import { Route as AuthImport } from './routes/_auth'
 import { Route as AppImport } from './routes/_app'
 import { Route as AppIndexImport } from './routes/_app/index'
-import { Route as AuthSignupImport } from './routes/_auth.signup'
+import { Route as AuthRegisterImport } from './routes/_auth.register'
 import { Route as AuthLoginImport } from './routes/_auth.login'
 import { Route as AuthForgotPasswordImport } from './routes/_auth.forgot-password'
 import { Route as AppVocabImport } from './routes/_app/vocab'
@@ -40,9 +40,9 @@ const AppIndexRoute = AppIndexImport.update({
   getParentRoute: () => AppRoute,
 } as any)
 
-const AuthSignupRoute = AuthSignupImport.update({
-  id: '/signup',
-  path: '/signup',
+const AuthRegisterRoute = AuthRegisterImport.update({
+  id: '/register',
+  path: '/register',
   getParentRoute: () => AuthRoute,
 } as any)
 
@@ -142,11 +142,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthLoginImport
       parentRoute: typeof AuthImport
     }
-    '/_auth/signup': {
-      id: '/_auth/signup'
-      path: '/signup'
-      fullPath: '/signup'
-      preLoaderRoute: typeof AuthSignupImport
+    '/_auth/register': {
+      id: '/_auth/register'
+      path: '/register'
+      fullPath: '/register'
+      preLoaderRoute: typeof AuthRegisterImport
       parentRoute: typeof AuthImport
     }
     '/_app/': {
@@ -182,13 +182,13 @@ const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 interface AuthRouteChildren {
   AuthForgotPasswordRoute: typeof AuthForgotPasswordRoute
   AuthLoginRoute: typeof AuthLoginRoute
-  AuthSignupRoute: typeof AuthSignupRoute
+  AuthRegisterRoute: typeof AuthRegisterRoute
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
   AuthForgotPasswordRoute: AuthForgotPasswordRoute,
   AuthLoginRoute: AuthLoginRoute,
-  AuthSignupRoute: AuthSignupRoute,
+  AuthRegisterRoute: AuthRegisterRoute,
 }
 
 const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
@@ -201,7 +201,7 @@ export interface FileRoutesByFullPath {
   '/vocab': typeof AppVocabRoute
   '/forgot-password': typeof AuthForgotPasswordRoute
   '/login': typeof AuthLoginRoute
-  '/signup': typeof AuthSignupRoute
+  '/register': typeof AuthRegisterRoute
   '/': typeof AppIndexRoute
 }
 
@@ -213,7 +213,7 @@ export interface FileRoutesByTo {
   '/vocab': typeof AppVocabRoute
   '/forgot-password': typeof AuthForgotPasswordRoute
   '/login': typeof AuthLoginRoute
-  '/signup': typeof AuthSignupRoute
+  '/register': typeof AuthRegisterRoute
   '/': typeof AppIndexRoute
 }
 
@@ -227,7 +227,7 @@ export interface FileRoutesById {
   '/_app/vocab': typeof AppVocabRoute
   '/_auth/forgot-password': typeof AuthForgotPasswordRoute
   '/_auth/login': typeof AuthLoginRoute
-  '/_auth/signup': typeof AuthSignupRoute
+  '/_auth/register': typeof AuthRegisterRoute
   '/_app/': typeof AppIndexRoute
 }
 
@@ -241,7 +241,7 @@ export interface FileRouteTypes {
     | '/vocab'
     | '/forgot-password'
     | '/login'
-    | '/signup'
+    | '/register'
     | '/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -252,7 +252,7 @@ export interface FileRouteTypes {
     | '/vocab'
     | '/forgot-password'
     | '/login'
-    | '/signup'
+    | '/register'
     | '/'
   id:
     | '__root__'
@@ -264,7 +264,7 @@ export interface FileRouteTypes {
     | '/_app/vocab'
     | '/_auth/forgot-password'
     | '/_auth/login'
-    | '/_auth/signup'
+    | '/_auth/register'
     | '/_app/'
   fileRoutesById: FileRoutesById
 }
@@ -308,7 +308,7 @@ export const routeTree = rootRoute
       "children": [
         "/_auth/forgot-password",
         "/_auth/login",
-        "/_auth/signup"
+        "/_auth/register"
       ]
     },
     "/_app/chat": {
@@ -335,8 +335,8 @@ export const routeTree = rootRoute
       "filePath": "_auth.login.tsx",
       "parent": "/_auth"
     },
-    "/_auth/signup": {
-      "filePath": "_auth.signup.tsx",
+    "/_auth/register": {
+      "filePath": "_auth.register.tsx",
       "parent": "/_auth"
     },
     "/_app/": {
