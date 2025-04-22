@@ -4,7 +4,7 @@ import {
 	Cog6ToothIcon,
 	HomeIcon,
 } from "@heroicons/react/20/solid";
-import { Outlet, createFileRoute } from "@tanstack/react-router";
+import { Outlet, createFileRoute, redirect } from "@tanstack/react-router";
 import { useLocation } from "@tanstack/react-router";
 import { useRouter } from "@tanstack/react-router";
 import { RouterProvider as ReactAriaRouterProvider } from "react-aria-components";
@@ -19,10 +19,22 @@ import {
 	SidebarSection,
 } from "../components/ui/sidebar";
 import { SidebarLayout } from "../components/ui/sidebar-layout";
+import { authClient } from "../lib/auth-client";
 
 /* App layout */
 export const Route = createFileRoute("/_app")({
 	component: RouteComponent,
+	beforeLoad: async ({ location }) => {
+		const { data: session } = await authClient.getSession();
+		if (!session) {
+			throw redirect({
+				to: "/login",
+				search: {
+					redirect: location.href,
+				},
+			});
+		}
+	},
 });
 
 function RouteComponent() {

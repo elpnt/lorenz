@@ -41,12 +41,12 @@ function Login() {
 			<Divider>Or continue with</Divider>
 			<Button
 				intent="outline"
-				onPress={() =>
-					authClient.signIn.social({
+				onPress={async () => {
+					await authClient.signIn.social({
 						provider: "google",
-						callbackURL: "http://localhost:3000",
-					})
-				}
+						callbackURL: "http://localhost:3000/auth-callback",
+					});
+				}}
 			>
 				<GoogleIcon />
 				Google

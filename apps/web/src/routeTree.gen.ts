@@ -17,6 +17,7 @@ import { Route as AppIndexImport } from './routes/_app/index'
 import { Route as AuthRegisterImport } from './routes/_auth.register'
 import { Route as AuthLoginImport } from './routes/_auth.login'
 import { Route as AuthForgotPasswordImport } from './routes/_auth.forgot-password'
+import { Route as AuthAuthCallbackImport } from './routes/_auth.auth-callback'
 import { Route as AppVocabImport } from './routes/_app/vocab'
 import { Route as AppSettingsImport } from './routes/_app/settings'
 import { Route as AppDashboardImport } from './routes/_app/dashboard'
@@ -55,6 +56,12 @@ const AuthLoginRoute = AuthLoginImport.update({
 const AuthForgotPasswordRoute = AuthForgotPasswordImport.update({
   id: '/forgot-password',
   path: '/forgot-password',
+  getParentRoute: () => AuthRoute,
+} as any)
+
+const AuthAuthCallbackRoute = AuthAuthCallbackImport.update({
+  id: '/auth-callback',
+  path: '/auth-callback',
   getParentRoute: () => AuthRoute,
 } as any)
 
@@ -128,6 +135,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppVocabImport
       parentRoute: typeof AppImport
     }
+    '/_auth/auth-callback': {
+      id: '/_auth/auth-callback'
+      path: '/auth-callback'
+      fullPath: '/auth-callback'
+      preLoaderRoute: typeof AuthAuthCallbackImport
+      parentRoute: typeof AuthImport
+    }
     '/_auth/forgot-password': {
       id: '/_auth/forgot-password'
       path: '/forgot-password'
@@ -180,12 +194,14 @@ const AppRouteChildren: AppRouteChildren = {
 const AppRouteWithChildren = AppRoute._addFileChildren(AppRouteChildren)
 
 interface AuthRouteChildren {
+  AuthAuthCallbackRoute: typeof AuthAuthCallbackRoute
   AuthForgotPasswordRoute: typeof AuthForgotPasswordRoute
   AuthLoginRoute: typeof AuthLoginRoute
   AuthRegisterRoute: typeof AuthRegisterRoute
 }
 
 const AuthRouteChildren: AuthRouteChildren = {
+  AuthAuthCallbackRoute: AuthAuthCallbackRoute,
   AuthForgotPasswordRoute: AuthForgotPasswordRoute,
   AuthLoginRoute: AuthLoginRoute,
   AuthRegisterRoute: AuthRegisterRoute,
@@ -199,6 +215,7 @@ export interface FileRoutesByFullPath {
   '/dashboard': typeof AppDashboardRoute
   '/settings': typeof AppSettingsRoute
   '/vocab': typeof AppVocabRoute
+  '/auth-callback': typeof AuthAuthCallbackRoute
   '/forgot-password': typeof AuthForgotPasswordRoute
   '/login': typeof AuthLoginRoute
   '/register': typeof AuthRegisterRoute
@@ -211,6 +228,7 @@ export interface FileRoutesByTo {
   '/dashboard': typeof AppDashboardRoute
   '/settings': typeof AppSettingsRoute
   '/vocab': typeof AppVocabRoute
+  '/auth-callback': typeof AuthAuthCallbackRoute
   '/forgot-password': typeof AuthForgotPasswordRoute
   '/login': typeof AuthLoginRoute
   '/register': typeof AuthRegisterRoute
@@ -225,6 +243,7 @@ export interface FileRoutesById {
   '/_app/dashboard': typeof AppDashboardRoute
   '/_app/settings': typeof AppSettingsRoute
   '/_app/vocab': typeof AppVocabRoute
+  '/_auth/auth-callback': typeof AuthAuthCallbackRoute
   '/_auth/forgot-password': typeof AuthForgotPasswordRoute
   '/_auth/login': typeof AuthLoginRoute
   '/_auth/register': typeof AuthRegisterRoute
@@ -239,6 +258,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/settings'
     | '/vocab'
+    | '/auth-callback'
     | '/forgot-password'
     | '/login'
     | '/register'
@@ -250,6 +270,7 @@ export interface FileRouteTypes {
     | '/dashboard'
     | '/settings'
     | '/vocab'
+    | '/auth-callback'
     | '/forgot-password'
     | '/login'
     | '/register'
@@ -262,6 +283,7 @@ export interface FileRouteTypes {
     | '/_app/dashboard'
     | '/_app/settings'
     | '/_app/vocab'
+    | '/_auth/auth-callback'
     | '/_auth/forgot-password'
     | '/_auth/login'
     | '/_auth/register'
@@ -306,6 +328,7 @@ export const routeTree = rootRoute
     "/_auth": {
       "filePath": "_auth.tsx",
       "children": [
+        "/_auth/auth-callback",
         "/_auth/forgot-password",
         "/_auth/login",
         "/_auth/register"
@@ -326,6 +349,10 @@ export const routeTree = rootRoute
     "/_app/vocab": {
       "filePath": "_app/vocab.tsx",
       "parent": "/_app"
+    },
+    "/_auth/auth-callback": {
+      "filePath": "_auth.auth-callback.tsx",
+      "parent": "/_auth"
     },
     "/_auth/forgot-password": {
       "filePath": "_auth.forgot-password.tsx",

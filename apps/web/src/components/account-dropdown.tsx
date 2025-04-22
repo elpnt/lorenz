@@ -15,6 +15,7 @@ export const AccountDropdown = () => {
 				<span className="flex min-w-0 items-center gap-3">
 					<Avatar
 						src={data?.user.image}
+						initials={data?.user.name[0]}
 						className="size-10"
 						square
 						alt="Avatar"
