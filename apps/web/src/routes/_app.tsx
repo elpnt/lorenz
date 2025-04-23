@@ -7,8 +7,9 @@ import {
 import { Outlet, createFileRoute, redirect } from "@tanstack/react-router";
 import { useLocation } from "@tanstack/react-router";
 import { useRouter } from "@tanstack/react-router";
-import { RouterProvider as ReactAriaRouterProvider } from "react-aria-components";
+import { createServerFn } from "@tanstack/react-start";
 
+import { getHeaders } from "@tanstack/react-start/server";
 import { AccountDropdown } from "../components/account-dropdown";
 import {
 	Sidebar,
@@ -19,72 +20,62 @@ import {
 	SidebarSection,
 } from "../components/ui/sidebar";
 import { SidebarLayout } from "../components/ui/sidebar-layout";
-import { authClient } from "../lib/auth-client";
+import { getSession } from "../lib/auth-client";
+
+const getSessionOnServer = createServerFn().handler(async () => {
+	const session = await getSession({
+		fetchOptions: { headers: getHeaders() as HeadersInit },
+	});
+	return session;
+});
 
 /* App layout */
 export const Route = createFileRoute("/_app")({
-	component: RouteComponent,
-	beforeLoad: async () => {
-		let data = null;
-		let attempts = 0;
-		while (data === null && attempts < 10) {
-			const session = await authClient.getSession();
-			data = session.data;
-			if (!data) {
-				attempts++;
-				await new Promise((resolve) => setTimeout(resolve, 300));
-			}
-		}
-		if (!data) {
+	component: AppLayout,
+	beforeLoad: async ({ context }) => {
+		const { data: session, error } = await getSessionOnServer();
+		if (!session) {
 			throw redirect({ to: "/login" });
 		}
 	},
 });
 
-function RouteComponent() {
+function AppLayout() {
 	const router = useRouter();
 	const { pathname } = useLocation();
 
 	return (
-		<ReactAriaRouterProvider
-			navigate={(to, options) => router.navigate({ to, ...options })}
-			useHref={(to) => router.buildLocation({ to }).href}
+		<SidebarLayout
+			sidebar={
+				<Sidebar>
+					<SidebarBody>
+						<SidebarSection>
+							<SidebarItem href="/" current={pathname === "/"}>
+								<HomeIcon />
+								<SidebarLabel>Home</SidebarLabel>
+							</SidebarItem>
+							<SidebarItem href="/chat" current={pathname === "/chat"}>
+								<ChatBubbleLeftIcon />
+								<SidebarLabel>Chat</SidebarLabel>
+							</SidebarItem>
+							<SidebarItem href="/vocab" current={pathname === "/vocab"}>
+								<BookOpenIcon />
+								<SidebarLabel>Vocabulary</SidebarLabel>
+							</SidebarItem>
+							<SidebarItem href="/settings" current={pathname === "/settings"}>
+								<Cog6ToothIcon />
+								<SidebarLabel>Settings</SidebarLabel>
+							</SidebarItem>
+						</SidebarSection>
+					</SidebarBody>
+					<SidebarFooter>
+						<AccountDropdown />
+					</SidebarFooter>
+				</Sidebar>
+			}
+			navbar={<div>Navbar</div>}
 		>
-			<SidebarLayout
-				sidebar={
-					<Sidebar>
-						<SidebarBody>
-							<SidebarSection>
-								<SidebarItem href="/" current={pathname === "/"}>
-									<HomeIcon />
-									<SidebarLabel>Home</SidebarLabel>
-								</SidebarItem>
-								<SidebarItem href="/chat" current={pathname === "/chat"}>
-									<ChatBubbleLeftIcon />
-									<SidebarLabel>Chat</SidebarLabel>
-								</SidebarItem>
-								<SidebarItem href="/vocab" current={pathname === "/vocab"}>
-									<BookOpenIcon />
-									<SidebarLabel>Vocabulary</SidebarLabel>
-								</SidebarItem>
-								<SidebarItem
-									href="/settings"
-									current={pathname === "/settings"}
-								>
-									<Cog6ToothIcon />
-									<SidebarLabel>Settings</SidebarLabel>
-								</SidebarItem>
-							</SidebarSection>
-						</SidebarBody>
-						<SidebarFooter>
-							<AccountDropdown />
-						</SidebarFooter>
-					</Sidebar>
-				}
-				navbar={<div>Navbar</div>}
-			>
-				<Outlet />
-			</SidebarLayout>
-		</ReactAriaRouterProvider>
+			<Outlet />
+		</SidebarLayout>
 	);
 }

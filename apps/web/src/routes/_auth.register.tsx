@@ -6,7 +6,7 @@ import { Divider } from "../components/ui/divider";
 import { Heading } from "../components/ui/heading";
 import { Strong, Text, TextLink } from "../components/ui/text";
 import { TextField } from "../components/ui/text-field";
-import { authClient } from "../lib/auth-client";
+import { signIn } from "../lib/auth-client";
 
 export const Route = createFileRoute("/_auth/register")({
 	component: Register,
@@ -31,7 +31,7 @@ function Register() {
 			<Button
 				intent="outline"
 				onPress={async () => {
-					await authClient.signIn.social({
+					await signIn.social({
 						provider: "google",
 						callbackURL: "http://localhost:3000",
 					});

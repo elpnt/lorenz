@@ -1,7 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 
 import { Button } from "../../components/ui/button";
-import { authClient } from "../../lib/auth-client";
+import { deleteUser } from "../../lib/auth-client";
 
 export const Route = createFileRoute("/_app/settings")({
 	component: RouteComponent,
@@ -14,7 +14,7 @@ function RouteComponent() {
 				intent="danger"
 				onPress={async () => {
 					try {
-						await authClient.deleteUser();
+						await deleteUser();
 						// TODO: Replace with a goodbye page
 						window.location.href = "http://localhost:3000";
 					} catch (error) {

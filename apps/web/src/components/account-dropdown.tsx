@@ -1,13 +1,13 @@
 import { useRouter } from "@tanstack/react-router";
 
-import { authClient } from "../lib/auth-client";
+import { signOut, useSession } from "../lib/auth-client";
 import { Avatar } from "./ui/avatar";
 import { Dropdown, DropdownItem, DropdownMenu } from "./ui/dropdown";
 import { SidebarItem } from "./ui/sidebar";
 
 export const AccountDropdown = () => {
 	const router = useRouter();
-	const { data } = authClient.useSession();
+	const { data } = useSession();
 
 	return (
 		<Dropdown>
@@ -34,7 +34,7 @@ export const AccountDropdown = () => {
 				<DropdownItem href="/settings">Settings</DropdownItem>
 				<DropdownItem
 					onAction={() =>
-						authClient.signOut({
+						signOut({
 							fetchOptions: {
 								onSuccess: () => {
 									router.navigate({ to: "/login" });

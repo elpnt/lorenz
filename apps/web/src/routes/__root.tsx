@@ -10,6 +10,7 @@ import {
 	type ToOptions,
 	useRouter,
 } from "@tanstack/react-router";
+import type { Session } from "better-auth";
 import { RouterProvider as ReactAriaRouterProvider } from "react-aria-components";
 
 // @ts-ignore
@@ -24,6 +25,7 @@ declare module "react-aria-components" {
 
 export const Route = createRootRouteWithContext<{
 	queryClient: QueryClient;
+	session: Session | null;
 }>()({
 	head: () => ({
 		meta: [
@@ -41,6 +43,7 @@ export const Route = createRootRouteWithContext<{
 		links: [{ rel: "stylesheet", href: appCss }],
 	}),
 	component: RootComponent,
+	errorComponent: ({ error }) => <div>{error.message}</div>,
 });
 
 function RootComponent() {

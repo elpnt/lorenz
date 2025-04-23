@@ -1,5 +1,6 @@
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
+import { reactStartCookies } from "better-auth/react-start";
 import dotenv from "dotenv";
 import { drizzle } from "drizzle-orm/neon-http";
 
@@ -35,4 +36,7 @@ export const auth = betterAuth({
 			enabled: true,
 		},
 	},
+	plugins: [
+		reactStartCookies(), // make sure this is the last plugin in the array
+	],
 });

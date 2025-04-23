@@ -1,13 +1,13 @@
 import { createFileRoute } from "@tanstack/react-router";
 
-import { authClient } from "../../lib/auth-client";
+import { useSession } from "../../lib/auth-client";
 
 export const Route = createFileRoute("/_app/")({
 	component: Home,
 });
 
 function Home() {
-	const { data, isPending } = authClient.useSession();
+	const { data, isPending } = useSession();
 	if (isPending) {
 		return <div>Loading...</div>;
 	}
