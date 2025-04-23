@@ -50,8 +50,6 @@ function RouteComponent() {
 		inputRef.current?.focus();
 	}, []);
 
-	console.log({ status });
-
 	return (
 		<>
 			<div className="flex-1 overflow-y-scroll p-6 lg:p-10 ">

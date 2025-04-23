@@ -10,6 +10,7 @@
 		"check-types": "tsc --noEmit"
 	},
 	"dependencies": {
+		"@lorenz/db": "workspace:*",
 		"@ai-sdk/react": "catalog:",
 		"@heroicons/react": "catalog:",
 		"@tailwindcss/vite": "catalog:",

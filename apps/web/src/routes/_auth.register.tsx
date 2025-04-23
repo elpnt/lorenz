@@ -33,7 +33,7 @@ function Register() {
 				onPress={async () => {
 					await authClient.signIn.social({
 						provider: "google",
-						callbackURL: "http://localhost:3000/auth-callback",
+						callbackURL: "http://localhost:3000",
 					});
 				}}
 			>

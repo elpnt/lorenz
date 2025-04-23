@@ -11,6 +11,7 @@
 		"./types": "./types.d.ts"
 	},
 	"dependencies": {
+		"@lorenz/db": "workspace:*",
 		"@ai-sdk/anthropic": "catalog:",
 		"@ai-sdk/openai": "catalog:",
 		"@hono/zod-validator": "catalog:",

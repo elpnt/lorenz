@@ -1,0 +1,17 @@
+{
+	"name": "@lorenz/db",
+	"version": "1.0.0",
+	"type": "module",
+	"main": "./index.ts",
+	"scripts": {
+		"db:push": "drizzle-kit push"
+	},
+	"packageManager": "pnpm@10.8.1",
+	"dependencies": {
+		"@lorenz/typescript-config": "workspace:*",
+		"@neondatabase/serverless": "catalog:",
+		"dotenv": "catalog:",
+		"drizzle-kit": "catalog:",
+		"drizzle-orm": "catalog:"
+	}
+}

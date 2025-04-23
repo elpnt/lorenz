@@ -24,15 +24,19 @@ import { authClient } from "../lib/auth-client";
 /* App layout */
 export const Route = createFileRoute("/_app")({
 	component: RouteComponent,
-	beforeLoad: async ({ location }) => {
-		const { data: session } = await authClient.getSession();
-		if (!session) {
-			throw redirect({
-				to: "/login",
-				search: {
-					redirect: location.href,
-				},
-			});
+	beforeLoad: async () => {
+		let data = null;
+		let attempts = 0;
+		while (data === null && attempts < 10) {
+			const session = await authClient.getSession();
+			data = session.data;
+			if (!data) {
+				attempts++;
+				await new Promise((resolve) => setTimeout(resolve, 300));
+			}
+		}
+		if (!data) {
+			throw redirect({ to: "/login" });
 		}
 	},
 });
