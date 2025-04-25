@@ -19,14 +19,14 @@ const avatarUrl =
 
 export const Circle: Story = {
 	args: {
-		className: "size-10",
+		className: "size-20",
 		src: avatarUrl,
 	},
 };
 
 export const Square: Story = {
 	args: {
-		className: "size-10",
+		className: "size-20",
 		src: avatarUrl,
 		square: true,
 	},
@@ -34,7 +34,7 @@ export const Square: Story = {
 
 export const WithInitials: Story = {
 	args: {
-		className: "size-10 bg-zinc-900 text-white dark:bg-white dark:text-black",
+		className: "size-20 bg-zinc-900 text-white dark:bg-white dark:text-black",
 		initials: "mk",
 	},
 };
@@ -42,7 +42,7 @@ export const WithInitials: Story = {
 export const AsButton: Story = {
 	render: () => (
 		<AvatarButton
-			className="size-10"
+			className="size-20"
 			src={avatarUrl}
 			onPress={() => alert("clicked!")}
 		/>

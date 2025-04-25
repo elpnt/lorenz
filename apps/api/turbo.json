@@ -1,0 +1,10 @@
+{
+	"$schema": "https://turborepo.com/schema.json",
+	"extends": ["//"],
+	"tasks": {
+		"cf-typegen": {},
+		"dev": {
+			"dependsOn": ["cf-typegen"]
+		}
+	}
+}

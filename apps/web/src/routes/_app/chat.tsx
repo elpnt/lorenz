@@ -5,6 +5,7 @@ import {
 	PaperAirplaneIcon,
 	StopIcon,
 } from "@heroicons/react/16/solid";
+import { CheckIcon } from "@heroicons/react/16/solid";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
 
@@ -29,7 +30,9 @@ export function Note({ children }: { children: React.ReactNode }) {
 const UserMessage = ({ text, ok }: { text: string; ok?: boolean }) => (
 	<div className="flex justify-end items-center gap-1">
 		{ok && (
-			<CheckCircleIcon className="w-5 h-5 text-emerald-400 animate-scale-rotate-in" />
+			<div className="p-0.5 bg-emerald-500 rounded-full animate-scale-rotate-in flex items-center justify-center">
+				<CheckIcon className="text-white stroke-4 size-4" />
+			</div>
 		)}
 		<div className="max-w-64 sm:max-w-lg bg-zinc-100 px-4 py-2.5 dark:bg-zinc-700 dark:text-white rounded-xl">
 			{text}
@@ -133,6 +136,13 @@ function RouteComponent() {
 							value={input}
 							onChange={handleInputChange}
 							className="text-base/6 sm:text-sm/6 resize-none size-full focus:outline-none"
+							onKeyDown={(e) => {
+								if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
+									e.preventDefault();
+									handleSubmit(e);
+									inputRef.current?.focus();
+								}
+							}}
 						/>
 						<div className="flex justify-end">
 							{status === "streaming" ? (

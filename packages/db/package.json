@@ -6,7 +6,7 @@
 	"scripts": {
 		"db:push": "drizzle-kit push"
 	},
-	"packageManager": "pnpm@10.8.1",
+	"packageManager": "pnpm@10.9.0",
 	"dependencies": {
 		"@lorenz/typescript-config": "workspace:*",
 		"@neondatabase/serverless": "catalog:",

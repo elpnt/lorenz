@@ -3,11 +3,11 @@
 	"version": "1.0.0",
 	"type": "module",
 	"scripts": {
-		"storybook": "storybook dev -p 6006",
+		"dev": "storybook dev -p 6006",
 		"build": "storybook build"
 	},
 	"license": "MIT",
-	"packageManager": "pnpm@10.8.1",
+	"packageManager": "pnpm@10.9.0",
 	"devDependencies": {
 		"@chromatic-com/storybook": "catalog:",
 		"@lorenz/tailwind-config": "workspace:*",

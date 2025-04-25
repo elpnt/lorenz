@@ -1,7 +1,7 @@
 {
 	"name": "api",
 	"scripts": {
-		"dev": "wrangler dev",
+		"dev": "wrangler dev --show-interactive-dev-session false",
 		"deploy": "wrangler deploy --minify",
 		"cf-typegen": "wrangler types --env-interface Bindings",
 		"generate:auth-schema": "pnpm dlx @better-auth/cli generate --output ./src/db/schema/auth.ts -y",
@@ -11,10 +11,10 @@
 		"./types": "./types.d.ts"
 	},
 	"dependencies": {
-		"@lorenz/db": "workspace:*",
 		"@ai-sdk/anthropic": "catalog:",
 		"@ai-sdk/openai": "catalog:",
 		"@hono/zod-validator": "catalog:",
+		"@lorenz/db": "workspace:*",
 		"@neondatabase/serverless": "catalog:",
 		"ai": "catalog:",
 		"better-auth": "catalog:",
