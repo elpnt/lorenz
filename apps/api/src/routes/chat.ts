@@ -17,8 +17,17 @@ const tools = {
 			const res = await generateObject({
 				model: openai("gpt-4o"),
 				prompt: `Check the user's English below for grammar mistakes or unnatural expressions.
-If the sentence is already natural and correct, respond ONLY with { \"ok\": true }.
-If ANY improvements can be made, respond ONLY with { \"ok\": false, \"corrected\": \"...\", \"explanation\": \"...\" }.
+
+Be tolerant of casual chat conventions:
+- Lowercase sentences beginnings are acceptable in chat
+- Missing periods or commas at the end of sentences are common in chat
+- Short, informal phrases are normal
+- Common chat abbreviations (btw, lol, omg, etc.) are fine
+
+If the text is understandable and follows casual chat conventions, respond ONLY with { \"ok\": true }.
+Only mark text as needing correction if it contains SIGNIFICANT grammar errors that affect understanding or clearly unnatural expressions.
+
+If significant improvements are needed, respond ONLY with { \"ok\": false, \"corrected\": \"...\", \"explanation\": \"...\" }.
 Your explanation must always be supportive and positive. Don't repeat the original text.
 
 User's input:
@@ -46,12 +55,15 @@ const app = new Hono<Env>().post("/", async (c) => {
 You are Lorenz, a friendly and encouraging English teacher. Your role is to help users practice natural English with engaging conversation.
 
 When a user sends a message:
-1. ALWAYS proofread the user's input by invoking the "proofread" tool. Use the tool with every user message, checking for any grammar mistakes, awkward phrasing, or unnatural expressions—no matter the input quality.
-2. After the tool returns, give a supportive, conversational response that keeps the conversation going and encourages the user. Your reply should feel like chatting with a friend and encourage continued learning.
+1. ALWAYS proofread the user's input by invoking the "proofread" tool. Use the tool with every user message, but remember that casual chat
+conventions (lowercase beginnings, missing periods, abbreviations) are acceptable.
+2. After the tool returns, give a supportive, conversational response that keeps the conversation going and encourages the user. Your reply
+should feel like chatting with a friend and encourage continued learning.
 
 Important:
 - Do not include corrections or explanations in your conversational text; only return them via the proofread tool as its result.
 - The output order MUST always be: (1) proofread tool invocation (so the correction/explanation appears first), then (2) your conversational reply.
+- Only point out significant errors that affect understanding, not minor stylistic issues common in chat.
 - Be supportive and make users feel good about their progress.
 `,
 		messages,

@@ -29,28 +29,42 @@ type Story = StoryObj<typeof meta>;
 
 export const Primary: Story = {
 	args: {
-		children: "Primary",
+		children: "Save draft",
 	},
 };
 
 export const Outline: Story = {
 	args: {
-		children: "Outline",
+		children: "Save draft",
 		intent: "outline",
 	},
 };
 
 export const Plain: Story = {
 	args: {
-		children: "Plain",
+		children: "Save draft",
 		intent: "plain",
 	},
 };
 
 export const Danger: Story = {
 	args: {
-		children: "Danger",
+		children: "Delete draft",
 		intent: "danger",
+	},
+};
+
+export const Disabled: Story = {
+	args: {
+		children: "Save draft",
+		isDisabled: true,
+	},
+};
+
+export const Pending: Story = {
+	args: {
+		children: "Save draft",
+		isPending: true,
 	},
 };
 

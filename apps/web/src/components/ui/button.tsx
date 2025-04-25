@@ -6,6 +6,8 @@ import {
 } from "react-aria-components";
 import { type VariantProps, tv } from "tailwind-variants";
 
+import { ProgressCircle } from "./progress";
+
 const solidClasses = clsx(
 	// Optical border, implemented as the button background to avoid corner artifacts
 	"border-transparent bg-(--btn-border) has-[text]:bg-green-500",
@@ -37,6 +39,8 @@ const buttonStyles = tv({
 		"relative isolate inline-flex items-baseline justify-center gap-x-2 rounded-lg border text-base/6 font-semibold",
 		// Focus
 		"focus-visible:outline-2 outline-offset-2 outline-blue-500",
+		// Disabled
+		"disabled:opacity-50",
 		// Icon
 		"*:data-[slot=icon]:-mx-0.5 *:data-[slot=icon]:my-0.5 *:data-[slot=icon]:size-5 *:data-[slot=icon]:shrink-0 *:data-[slot=icon]:self-center sm:*:data-[slot=icon]:my-1 sm:*:data-[slot=icon]:size-4 forced-colors:[--btn-icon:ButtonText] forced-colors:data-hover:[--btn-icon:ButtonText]",
 	],
@@ -108,9 +112,24 @@ export function Button({
 				buttonStyles({ ...renderProps, intent, size, className }),
 			)}
 		>
-			{(values) => (
+			{({ isPending, ...values }) => (
 				<TouchTarget>
-					{typeof children === "function" ? children(values) : children}
+					{isPending && (
+						<div className="absolute inset-0 flex items-center justify-center">
+							<ProgressCircle />
+						</div>
+					)}
+					{isPending ? (
+						<span className="invisible">
+							{typeof children === "function"
+								? children({ isPending, ...values })
+								: children}
+						</span>
+					) : typeof children === "function" ? (
+						children({ isPending, ...values })
+					) : (
+						children
+					)}
 				</TouchTarget>
 			)}
 		</AriaButton>

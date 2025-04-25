@@ -16,12 +16,19 @@ export default meta;
 type Story = StoryObj<typeof Listbox>;
 
 export const Default: Story = {
-	args: {
-		children: (
-			<>
-				<ListboxOption>Hello</ListboxOption>
-				<ListboxOption>World</ListboxOption>
-			</>
-		),
-	},
+	render: () => (
+		<Listbox defaultSelectedKey="hello">
+			<ListboxOption id="hello">Hello</ListboxOption>
+			<ListboxOption id="world">World</ListboxOption>
+		</Listbox>
+	),
+	// args: {
+	// 	defaultSelectedKey: "hello",
+	// 	children: (
+	// 		<>
+	// 			<ListboxOption id="hello">Hello</ListboxOption>
+	// 			<ListboxOption id="world">World</ListboxOption>
+	// 		</>
+	// 	),
+	// },
 };

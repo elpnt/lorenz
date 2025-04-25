@@ -28,7 +28,6 @@ const app = new Hono<Env>()
 		}),
 		async (c) => {
 			const user = c.get("user");
-			const session = c.get("session");
 
 			if (!user) {
 				return c.text("Unauthorized", 401);

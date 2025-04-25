@@ -9,7 +9,7 @@ export const Route = createFileRoute("/_app/settings")({
 
 function RouteComponent() {
 	return (
-		<div>
+		<div className="p-4">
 			<Button
 				intent="danger"
 				onPress={async () => {

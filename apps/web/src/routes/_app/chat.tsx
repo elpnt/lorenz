@@ -18,8 +18,8 @@ export const Route = createFileRoute("/_app/chat")({
 
 export function Note({ children }: { children: React.ReactNode }) {
 	return (
-		<div className="my-6 flex gap-2.5 rounded-2xl border border-emerald-500/20 bg-emerald-50/50 p-4 leading-6 text-emerald-900 dark:border-emerald-500/30 dark:bg-emerald-500/5 dark:text-emerald-200 dark:[--tw-prose-links-hover:theme(colors.emerald.300)] dark:[--tw-prose-links:theme(colors.white)]">
-			<InformationCircleIcon className="mt-1 h-4 w-4 flex-none fill-emerald-500 stroke-white dark:fill-emerald-200/20 dark:stroke-emerald-200" />
+		<div className="my-6 flex gap-2.5 rounded-2xl border border-orange-500/20 bg-orange-50/50 p-4 leading-6 text-orange-900 dark:border-orange-500/30 dark:bg-orange-500/5 dark:text-orange-200 dark:[--tw-prose-links-hover:theme(colors.orange.300)] dark:[--tw-prose-links:theme(colors.white)]">
+			<InformationCircleIcon className="mt-1 h-4 w-4 flex-none fill-orange-500 stroke-white dark:fill-orange-200/20 dark:stroke-orange-200" />
 			<div className="[&>:first-child]:mt-0 [&>:last-child]:mb-0">
 				{children}
 			</div>
@@ -135,7 +135,7 @@ function RouteComponent() {
 							placeholder="Ask anything..."
 							value={input}
 							onChange={handleInputChange}
-							className="text-base/6 sm:text-sm/6 resize-none size-full focus:outline-none"
+							className="text-base/6 sm:text-sm/6 resize-none size-full focus:outline-none placeholder-zinc-500 dark:text-white"
 							onKeyDown={(e) => {
 								if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
 									e.preventDefault();

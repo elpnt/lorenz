@@ -39,7 +39,7 @@ const Dialog = ({
 			isDismissable
 			className={({ isEntering, isExiting }) =>
 				clsx(
-					"fixed inset-0 bg-black/10 data-closed:opacity-0",
+					"fixed inset-0 bg-black/10 data-closed:opacity-0 dark:bg-zinc-950/50",
 					"grid min-h-full grid-rows-[1fr_auto] justify-items-center sm:grid-rows-[1fr_auto_3fr] sm:p-4 will-change-transform",
 					isEntering && "animate-in duration-100 ease-out fade-in",
 					isExiting && "animate-out duration-100 ease-in fade-out",
@@ -49,7 +49,6 @@ const Dialog = ({
 			<AriaModal
 				className={({ isEntering, isExiting }) =>
 					clsx(
-						className,
 						sizes[size],
 						"flex h-full flex-col  bg-white ring-1 shadow-xs ring-zinc-950/5 dark:bg-zinc-900 dark:ring-white/10",
 						"row-start-2 w-full min-w-0 rounded-t-3xl bg-white p-(--gutter) ring-1 shadow-lg ring-zinc-950/10 [--gutter:--spacing(8)] sm:mb-auto sm:rounded-2xl dark:bg-zinc-900 dark:ring-white/10 forced-colors:outline",
@@ -57,6 +56,7 @@ const Dialog = ({
 							"animate-in duration-100 ease-out fade-in slide-in-from-bottom-12 sm:slide-in-from-top-0 sm:zoom-in-95",
 						isExiting &&
 							"animate-out duration-100 ease-in translate-y-12 fade-out sm:translate-y-0 sm:zoom-out-95",
+						className,
 					)
 				}
 			>

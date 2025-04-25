@@ -1,13 +1,13 @@
 import clsx from "clsx";
 import {
 	Button as AriaButton,
-	ListBox as AriaListBox,
-	ListBoxItem as AriaListBoxItem,
-	type ListBoxProps as AriaListBoxProps,
+	ListBox as AriaListbox,
+	ListBoxItem as AriaListboxItem,
+	type ListBoxItemProps as AriaListboxItemProps,
 	Popover as AriaPopover,
 	Select as AriaSelect,
+	type SelectProps as AriaSelectProps,
 	SelectValue as AriaSelectValue,
-	type ListBoxItemProps,
 } from "react-aria-components";
 
 function ChevronUpDownIcon() {
@@ -36,7 +36,7 @@ function ChevronUpDownIcon() {
 	);
 }
 
-interface ListboxProps<T extends object> extends AriaListBoxProps<T> {
+interface ListboxProps<T extends object> extends AriaSelectProps<T> {
 	className?: string;
 	label?: string;
 	description?: string;
@@ -101,7 +101,7 @@ function Listbox<T extends object>({ className, ...props }: ListboxProps<T>) {
 					])
 				}
 			>
-				<AriaListBox
+				<AriaListbox
 					className={clsx(
 						"min-w-(--trigger-width)",
 						// Anchor positioning
@@ -123,15 +123,19 @@ function Listbox<T extends object>({ className, ...props }: ListboxProps<T>) {
 					)}
 				>
 					{props.children}
-				</AriaListBox>
+				</AriaListbox>
 			</AriaPopover>
 		</AriaSelect>
 	);
 }
 
-function ListboxOption({ className, children, ...props }: ListBoxItemProps) {
+function ListboxOption({
+	className,
+	children,
+	...props
+}: AriaListboxItemProps) {
 	return (
-		<AriaListBoxItem
+		<AriaListboxItem
 			{...props}
 			className={clsx(
 				className,
@@ -155,9 +159,8 @@ function ListboxOption({ className, children, ...props }: ListBoxItemProps) {
 				"*:data-[slot=avatar]:mr-2.5 *:data-[slot=avatar]:-ml-1 *:data-[slot=avatar]:size-6 sm:*:data-[slot=avatar]:mr-2 sm:*:data-[slot=avatar]:size-5",
 			)}
 		>
-			{/* {({ isSelected }) => children} */}
 			{children}
-		</AriaListBoxItem>
+		</AriaListboxItem>
 	);
 }
 
