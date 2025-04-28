@@ -9,7 +9,6 @@ import { useLocation } from "@tanstack/react-router";
 import { useRouter } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 
-import { getHeaders } from "@tanstack/react-start/server";
 import { AccountDropdown } from "../components/account-dropdown";
 import {
 	Sidebar,
@@ -20,20 +19,15 @@ import {
 	SidebarSection,
 } from "../components/ui/sidebar";
 import { SidebarLayout } from "../components/ui/sidebar-layout";
-import { getSession } from "../lib/auth-client";
+import { getServerSession } from "../lib/auth-server";
 
-const getSessionOnServer = createServerFn().handler(async () => {
-	const session = await getSession({
-		fetchOptions: { headers: getHeaders() as HeadersInit },
-	});
-	return session;
-});
+const getSessionOnServer = createServerFn().handler(getServerSession);
 
 /* App layout */
 export const Route = createFileRoute("/_app")({
 	component: AppLayout,
-	beforeLoad: async ({ context }) => {
-		const { data: session, error } = await getSessionOnServer();
+	beforeLoad: async () => {
+		const { data: session } = await getSessionOnServer();
 		if (!session) {
 			throw redirect({ to: "/login" });
 		}

@@ -58,7 +58,7 @@ function Listbox<T extends object>({ className, ...props }: ListboxProps<T>) {
 					// Hide default focus styles
 					"focus:outline-hidden",
 					// Focus ring
-					"after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:ring-transparent after:ring-inset data-focus:after:ring-2 data-focus:after:ring-blue-500",
+					"after:pointer-events-none after:absolute after:inset-0 after:rounded-lg after:ring-transparent after:ring-inset focus:after:ring-2 focus:after:ring-blue-500",
 					// Disabled state
 					"data-disabled:opacity-50 data-disabled:before:bg-zinc-950/5 data-disabled:before:shadow-none",
 				])}
@@ -74,13 +74,13 @@ function Listbox<T extends object>({ className, ...props }: ListboxProps<T>) {
 						// Typography
 						"text-left text-base/6 text-zinc-950 placeholder:text-zinc-500 sm:text-sm/6 dark:text-white forced-colors:text-[CanvasText]",
 						// Border
-						"border border-zinc-950/10 group-data-active:border-zinc-950/20 group-data-hover:border-zinc-950/20 dark:border-white/10 dark:group-data-active:border-white/20 dark:group-data-hover:border-white/20",
+						"border border-zinc-950/10 group-data-active:border-zinc-950/20 group-hover:border-zinc-950/20 dark:border-white/10 dark:group-data-active:border-white/20 dark:group-hover:border-white/20",
 						// Background color
 						"bg-transparent dark:bg-white/5",
 						// Invalid state
-						"group-data-invalid:border-red-500 group-data-hover:group-data-invalid:border-red-500 dark:group-data-invalid:border-red-600 dark:data-hover:group-data-invalid:border-red-600",
+						"group-data-invalid:border-red-500 group-hover:group-data-invalid:border-red-500 dark:group-data-invalid:border-red-600 dark:hover:group-data-invalid:border-red-600",
 						// Disabled state
-						"group-data-disabled:border-zinc-950/20 group-data-disabled:opacity-100 dark:group-data-disabled:border-white/15 dark:group-data-disabled:bg-white/[2.5%] dark:group-data-disabled:data-hover:border-white/15",
+						"group-data-disabled:border-zinc-950/20 group-data-disabled:opacity-100 dark:group-data-disabled:border-white/15 dark:group-data-disabled:bg-white/[2.5%] dark:group-data-disabled:hover:border-white/15",
 					])}
 				>
 					<AriaSelectValue />

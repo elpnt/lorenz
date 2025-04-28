@@ -35,7 +35,6 @@ function RouteComponent() {
 							const res = await api.vocab.$post({
 								json: { front: "hello", back: "world" },
 							});
-							// await new Promise((resolve) => setTimeout(resolve, 1000));
 							if (res.ok) {
 								setOpen(false);
 							}

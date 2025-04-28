@@ -2,7 +2,11 @@
 	"$schema": "https://turborepo.com/schema.json",
 	"extends": ["//"],
 	"tasks": {
-		"cf-typegen": {},
+		"cf-typegen": {
+			"inputs": [".dev.vars"],
+			"outputs": ["worker-configuration.d.ts"],
+			"cache": true
+		},
 		"dev": {
 			"dependsOn": ["cf-typegen"]
 		}
