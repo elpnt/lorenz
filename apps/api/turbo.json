@@ -5,7 +5,8 @@
 		"cf-typegen": {
 			"inputs": [".dev.vars"],
 			"outputs": ["worker-configuration.d.ts"],
-			"cache": true
+			"cache": true,
+			"outputLogs": "new-only"
 		},
 		"dev": {
 			"dependsOn": ["cf-typegen"]
