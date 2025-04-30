@@ -63,6 +63,13 @@ export const WithDescription: Story = {
 	},
 };
 
+export const AutoFocus: Story = {
+	args: {
+		label: "Full name",
+		autoFocus: true,
+	},
+};
+
 export const Invalid: Story = {
 	args: {
 		label: "Full name",

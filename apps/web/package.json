@@ -30,7 +30,8 @@
 		"react-dom": "catalog:",
 		"tailwind-variants": "catalog:",
 		"tailwindcss": "catalog:",
-		"vinxi": "catalog:"
+		"vinxi": "catalog:",
+		"zod": "catalog:"
 	},
 	"devDependencies": {
 		"@lorenz/tailwind-config": "workspace:*",

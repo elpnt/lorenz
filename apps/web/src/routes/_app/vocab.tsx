@@ -32,8 +32,12 @@ function RouteComponent() {
 						onSubmit={async (e) => {
 							e.preventDefault();
 							setIsPending(true);
+							const formData = new FormData(e.currentTarget);
 							const res = await api.vocab.$post({
-								json: { front: "hello", back: "world" },
+								json: {
+									front: formData.get("front") as string,
+									back: formData.get("back") as string,
+								},
 							});
 							if (res.ok) {
 								setOpen(false);
@@ -43,8 +47,8 @@ function RouteComponent() {
 					>
 						<DialogBody>
 							<FieldGroup>
-								<TextField label="Front" name="" />
-								<TextField label="Back" name="" />
+								<TextField label="Front" name="front" autoFocus />
+								<TextField label="Back" name="back" />
 							</FieldGroup>
 						</DialogBody>
 						<DialogActions>

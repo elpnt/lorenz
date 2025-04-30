@@ -8,6 +8,7 @@ import {
 	Modal as AriaModal,
 	ModalOverlay as AriaModalOverlay,
 } from "react-aria-components";
+import { Button, type ButtonProps } from "./button";
 import { Text } from "./text";
 
 const DialogTrigger = AriaDialogTrigger;
@@ -108,6 +109,10 @@ const DialogActions = ({
 	);
 };
 
+const DialogClose = ({ intent = "plain", ...props }: ButtonProps) => {
+	return <Button slot="close" intent={intent} {...props} />;
+};
+
 export {
 	Dialog,
 	DialogBody,
@@ -115,4 +120,5 @@ export {
 	DialogTrigger,
 	DialogDescription,
 	DialogActions,
+	DialogClose,
 };

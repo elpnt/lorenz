@@ -4,6 +4,7 @@ import { Button } from "./button";
 import {
 	Dialog,
 	DialogActions,
+	DialogClose,
 	DialogDescription,
 	DialogTitle,
 	DialogTrigger,
@@ -34,9 +35,7 @@ export const DialogStory: Story = {
 						business days after processing.
 					</DialogDescription>
 					<DialogActions>
-						<Button intent="plain" slot="close">
-							Cancel
-						</Button>
+						<DialogClose>Cancel</DialogClose>
 						<Button intent="primary" slot="close">
 							Refund
 						</Button>
@@ -59,9 +58,7 @@ export const AlertDialog: Story = {
 						account?
 					</DialogDescription>
 					<DialogActions>
-						<Button intent="plain" slot="close">
-							Cancel
-						</Button>
+						<DialogClose>Cancel</DialogClose>
 						<Button intent="danger" slot="close">
 							Delete
 						</Button>

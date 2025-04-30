@@ -1,15 +1,14 @@
 import { useChat } from "@ai-sdk/react";
 import {
-	CheckCircleIcon,
 	InformationCircleIcon,
 	PaperAirplaneIcon,
 	StopIcon,
 } from "@heroicons/react/16/solid";
 import { CheckIcon } from "@heroicons/react/16/solid";
 import { createFileRoute } from "@tanstack/react-router";
+import type { ToolResult } from "api/types";
 import { useEffect, useRef } from "react";
 
-import type { ToolResult } from "api/types";
 import { Button } from "../../components/ui/button";
 
 export const Route = createFileRoute("/_app/chat")({
@@ -48,14 +47,26 @@ function RouteComponent() {
 		});
 
 	const inputRef = useRef<HTMLTextAreaElement>(null);
+	const scrollContainerRef = useRef<HTMLDivElement>(null);
 
 	useEffect(() => {
 		inputRef.current?.focus();
 	}, []);
 
+	// biome-ignore lint/correctness/useExhaustiveDependencies: force scroll
+	useEffect(() => {
+		if (scrollContainerRef.current) {
+			scrollContainerRef.current.scrollTop =
+				scrollContainerRef.current.scrollHeight;
+		}
+	}, [messages]);
+
 	return (
 		<>
-			<div className="flex-1 overflow-y-scroll p-6 lg:p-10 ">
+			<div
+				ref={scrollContainerRef}
+				className="flex-1 overflow-y-scroll p-6 lg:p-10 "
+			>
 				<div className="mx-auto max-w-3xl space-y-8">
 					{messages.map((message, i) => (
 						<div key={message.id} className="whitespace-pre-wrap">

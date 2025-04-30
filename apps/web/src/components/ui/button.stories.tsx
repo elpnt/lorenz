@@ -21,6 +21,9 @@ const meta = {
 			options: ["md", "icon"],
 			control: { type: "select" },
 		},
+		isPending: {
+			control: { type: "boolean" },
+		},
 	},
 } satisfies Meta<typeof Button>;
 
@@ -63,7 +66,12 @@ export const Disabled: Story = {
 
 export const Pending: Story = {
 	args: {
-		children: "Save draft",
+		children: (
+			<>
+				<PlusIcon className="h-4" />
+				Add item
+			</>
+		),
 		isPending: true,
 	},
 };

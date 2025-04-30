@@ -90,7 +90,7 @@ const buttonStyles = tv({
 	},
 });
 
-interface ButtonProps
+export interface ButtonProps
 	extends AriaButtonProps,
 		VariantProps<typeof buttonStyles> {
 	ref?: React.Ref<HTMLButtonElement>;
@@ -112,41 +112,7 @@ export function Button({
 				buttonStyles({ ...renderProps, intent, size, className }),
 			)}
 		>
-			{({ isPending, ...values }) => (
-				<TouchTarget>
-					{isPending && (
-						<div className="absolute inset-0 flex items-center justify-center">
-							<ProgressCircle />
-						</div>
-					)}
-					{isPending ? (
-						<span className="invisible">
-							{typeof children === "function"
-								? children({ isPending, ...values })
-								: children}
-						</span>
-					) : typeof children === "function" ? (
-						children({ isPending, ...values })
-					) : (
-						children
-					)}
-				</TouchTarget>
-			)}
-		</AriaButton>
-	);
-}
-
-/**
- * Expand the hit area to at least 44×44px on touch devices
- */
-export function TouchTarget({ children }: { children: React.ReactNode }) {
-	return (
-		<>
-			<span
-				className="absolute top-1/2 left-1/2 size-[max(100%,2.75rem)] -translate-x-1/2 -translate-y-1/2 pointer-fine:hidden"
-				aria-hidden="true"
-			/>
 			{children}
-		</>
+		</AriaButton>
 	);
 }
