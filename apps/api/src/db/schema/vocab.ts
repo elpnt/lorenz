@@ -3,7 +3,9 @@ import { user } from "./auth";
 
 export const vocabulary = pgTable("vocabulary", {
 	id: serial().primaryKey(),
-	userId: text().references(() => user.id),
+	userId: text()
+		.references(() => user.id)
+		.notNull(),
 	front: text().notNull(),
 	back: text().notNull(),
 	createdAt: timestamp().defaultNow().notNull(),

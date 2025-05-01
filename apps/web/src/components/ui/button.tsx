@@ -6,8 +6,6 @@ import {
 } from "react-aria-components";
 import { type VariantProps, tv } from "tailwind-variants";
 
-import { ProgressCircle } from "./progress";
-
 const solidClasses = clsx(
 	// Optical border, implemented as the button background to avoid corner artifacts
 	"border-transparent bg-(--btn-border) has-[text]:bg-green-500",

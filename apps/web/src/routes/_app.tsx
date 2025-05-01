@@ -6,7 +6,6 @@ import {
 } from "@heroicons/react/20/solid";
 import { Outlet, createFileRoute, redirect } from "@tanstack/react-router";
 import { useLocation } from "@tanstack/react-router";
-import { useRouter } from "@tanstack/react-router";
 import { createServerFn } from "@tanstack/react-start";
 
 import { AccountDropdown } from "../components/account-dropdown";
@@ -35,7 +34,6 @@ export const Route = createFileRoute("/_app")({
 });
 
 function AppLayout() {
-	const router = useRouter();
 	const { pathname } = useLocation();
 
 	return (

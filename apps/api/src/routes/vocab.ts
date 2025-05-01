@@ -3,6 +3,7 @@ import { validator } from "hono/validator";
 import { z } from "zod";
 
 import { db } from "../db";
+import { vocabulary } from "../db/schema";
 import type { Env } from "../types";
 
 const newVocabSchema = z.object({
@@ -12,8 +13,12 @@ const newVocabSchema = z.object({
 
 const app = new Hono<Env>()
 	.get("/", async (c) => {
+		const user = c.get("user");
+		if (!user) {
+			return c.text("Unauthorized", 401);
+		}
 		const result = await db.query.vocabulary.findMany({
-			where: (vocab, { eq }) => eq(vocab.userId, "/* TODO */"),
+			where: (vocab, { eq }) => eq(vocab.userId, user.id),
 		});
 		return c.json(result);
 	})
@@ -34,7 +39,7 @@ const app = new Hono<Env>()
 			}
 
 			const { front, back } = c.req.valid("json");
-			console.log({ front, back });
+			await db.insert(vocabulary).values({ front, back, userId: user.id });
 
 			return c.json({ message: "Vocabulary created successfully" });
 		},
