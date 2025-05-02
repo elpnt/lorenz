@@ -3,6 +3,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { useState } from "react";
 import { Form } from "react-aria-components";
 
+import { useCreateVocabMutation } from "../../api/vocab/create-vocab";
 import { vocabQueryOptions } from "../../api/vocab/get-vocab";
 import { Button } from "../../components/ui/button";
 import {
@@ -14,7 +15,6 @@ import {
 } from "../../components/ui/dialog";
 import { FieldGroup } from "../../components/ui/fieldset";
 import { TextField } from "../../components/ui/text-field";
-import { api } from "../../lib/api-client";
 
 export const Route = createFileRoute("/_app/vocab")({
 	component: RouteComponent,
@@ -25,9 +25,9 @@ export const Route = createFileRoute("/_app/vocab")({
 
 function RouteComponent() {
 	const [open, setOpen] = useState(false);
-	const [isPending, setIsPending] = useState(false);
 
 	const vocabQuery = useSuspenseQuery(vocabQueryOptions());
+	const mutation = useCreateVocabMutation();
 
 	return (
 		<div className="p-4">
@@ -38,18 +38,13 @@ function RouteComponent() {
 					<Form
 						onSubmit={async (e) => {
 							e.preventDefault();
-							setIsPending(true);
 							const formData = new FormData(e.currentTarget);
-							const res = await api.vocab.$post({
-								json: {
-									front: formData.get("front") as string,
-									back: formData.get("back") as string,
-								},
-							});
-							if (res.ok) {
-								setOpen(false);
-							}
-							setIsPending(false);
+							const front = formData.get("front") as string;
+							const back = formData.get("back") as string;
+							console.log("form:", { front, back });
+							// await mutation.mutateAsync({ data: { front, back } });
+							mutation.mutate({ front, back });
+							setOpen(false);
 						}}
 					>
 						<DialogBody>
@@ -67,7 +62,11 @@ function RouteComponent() {
 							<Button intent="plain" slot="close">
 								Cancel
 							</Button>
-							<Button intent="primary" type="submit" isPending={isPending}>
+							<Button
+								intent="primary"
+								type="submit"
+								isPending={mutation.isPending}
+							>
 								Create
 							</Button>
 						</DialogActions>

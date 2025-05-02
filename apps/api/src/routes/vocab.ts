@@ -39,6 +39,7 @@ const app = new Hono<Env>()
 			}
 
 			const { front, back } = c.req.valid("json");
+			console.log("server:", { front, back });
 			await db.insert(vocabulary).values({ front, back, userId: user.id });
 
 			return c.json({ message: "Vocabulary created successfully" });

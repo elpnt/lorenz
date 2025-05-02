@@ -23,3 +23,12 @@ declare module "@tanstack/react-router" {
 		router: ReturnType<typeof createRouter>;
 	}
 }
+
+type QueryKey = ["vocab", ...ReadonlyArray<unknown>];
+
+declare module "@tanstack/react-query" {
+	interface Register {
+		queryKey: QueryKey;
+		mutationKey: QueryKey;
+	}
+}
