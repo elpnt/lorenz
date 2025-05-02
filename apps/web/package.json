@@ -10,6 +10,7 @@
 		"check-types": "tsc --noEmit"
 	},
 	"dependencies": {
+		"@lorenz/api": "workspace:*",
 		"@ai-sdk/react": "catalog:",
 		"@heroicons/react": "catalog:",
 		"@lorenz/db": "workspace:*",
@@ -19,7 +20,6 @@
 		"@tanstack/react-router": "catalog:",
 		"@tanstack/react-router-with-query": "catalog:",
 		"@tanstack/react-start": "catalog:",
-		"api": "workspace:*",
 		"better-auth": "catalog:",
 		"clsx": "catalog:",
 		"hono": "catalog:",

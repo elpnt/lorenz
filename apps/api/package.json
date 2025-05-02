@@ -1,5 +1,5 @@
 {
-	"name": "api",
+	"name": "@lorenz/api",
 	"scripts": {
 		"dev": "wrangler dev --show-interactive-dev-session false",
 		"deploy": "wrangler deploy --minify",

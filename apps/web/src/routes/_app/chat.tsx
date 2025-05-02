@@ -5,8 +5,8 @@ import {
 	StopIcon,
 } from "@heroicons/react/16/solid";
 import { CheckIcon } from "@heroicons/react/16/solid";
+import type { ToolResult } from "@lorenz/api/types";
 import { createFileRoute } from "@tanstack/react-router";
-import type { ToolResult } from "api/types";
 import { useEffect, useRef } from "react";
 
 import { Button } from "../../components/ui/button";
@@ -63,6 +63,7 @@ function RouteComponent() {
 
 	return (
 		<>
+			<Button onPress={() => console.log(messages)}>console</Button>
 			<div
 				ref={scrollContainerRef}
 				className="flex-1 overflow-y-scroll p-6 lg:p-10 "

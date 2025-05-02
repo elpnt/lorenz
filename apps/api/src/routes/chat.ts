@@ -70,6 +70,8 @@ Important:
 		tools,
 		// toolCallStreaming: true,
 		maxSteps: 2,
+		onFinish: (result) =>
+			console.log(JSON.stringify(result.response.messages, null, 2)),
 	});
 
 	// Need this for Cloudflare Workers
