@@ -4,6 +4,8 @@ import { Hono } from "hono";
 import { stream } from "hono/streaming";
 import { z } from "zod";
 
+import { db } from "../db";
+import { chatConversation, chatMessage } from "../db/schema/chat";
 import type { Env } from "../types";
 
 const tools = {
@@ -49,6 +51,17 @@ export type ToolResult = ToolResultUnion<typeof tools>;
 
 const app = new Hono<Env>().post("/", async (c) => {
 	const { messages } = await c.req.json();
+	const user = c.get("user");
+	let conversationId: number | null = null;
+	
+	if (user) {
+		const [newConversation] = await db.insert(chatConversation)
+			.values({ userId: user.id })
+			.returning({ id: chatConversation.id });
+		
+		conversationId = newConversation.id;
+	}
+	
 	const result = streamText({
 		model: openai("gpt-4o"),
 		system: `
@@ -70,8 +83,25 @@ Important:
 		tools,
 		// toolCallStreaming: true,
 		maxSteps: 2,
-		onFinish: (result) =>
-			console.log(JSON.stringify(result.response.messages, null, 2)),
+		onFinish: async (result) => {
+			console.log(JSON.stringify(result.response.messages, null, 2));
+			
+			if (conversationId) {
+				for (const message of result.response.messages) {
+					// toolCallsの抽出
+					const toolCalls = message.parts?.filter(part => 
+						part.type === 'tool-invocation'
+					);
+					
+					await db.insert(chatMessage).values({
+						conversationId,
+						role: message.role,
+						content: message.content,
+						toolCalls: toolCalls ? toolCalls : null
+					});
+				}
+			}
+		},
 	});
 
 	// Need this for Cloudflare Workers
