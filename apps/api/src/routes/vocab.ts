@@ -1,9 +1,9 @@
+import { createClient } from "@lorenz/db";
+import { vocabulary } from "@lorenz/db/schema";
 import { Hono } from "hono";
 import { validator } from "hono/validator";
 import { z } from "zod";
 
-import { db } from "../db";
-import { vocabulary } from "../db/schema";
 import type { Env } from "../types";
 
 const newVocabSchema = z.object({
@@ -17,6 +17,7 @@ const app = new Hono<Env>()
 		if (!user) {
 			return c.text("Unauthorized", 401);
 		}
+		const db = createClient(c.env.DATABASE_URL);
 		const result = await db.query.vocabulary.findMany({
 			where: (vocab, { eq }) => eq(vocab.userId, user.id),
 		});
@@ -37,9 +38,8 @@ const app = new Hono<Env>()
 			if (!user) {
 				return c.text("Unauthorized", 401);
 			}
-
+			const db = createClient(c.env.DATABASE_URL);
 			const { front, back } = c.req.valid("json");
-			console.log("server:", { front, back });
 			await db.insert(vocabulary).values({ front, back, userId: user.id });
 
 			return c.json({ message: "Vocabulary created successfully" });

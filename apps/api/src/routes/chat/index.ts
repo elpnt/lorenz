@@ -4,7 +4,7 @@ import { Hono } from "hono";
 import { stream } from "hono/streaming";
 import { z } from "zod";
 
-import type { Env } from "../types";
+import type { Env } from "../../types";
 
 const tools = {
 	proofread: tool({
@@ -47,11 +47,34 @@ ${userText}
 
 export type ToolResult = ToolResultUnion<typeof tools>;
 
-const app = new Hono<Env>().post("/", async (c) => {
-	const { messages } = await c.req.json();
-	const result = streamText({
-		model: openai("gpt-4o"),
-		system: `
+const app = new Hono<Env>()
+	.get("/:id", async (c) => {
+		const { id } = c.req.param();
+		return c.json({ message: `You requested chat with ID ${id}` });
+	})
+	.post(
+		"/",
+		// validator("json", (value, c) => {
+		// 	const parsed = schema.safeParse(value);
+		// 	if (!parsed.success) {
+		// 		return c.json({ error: "Invalid request body" }, 400);
+		// 	}
+		// 	return parsed.data;
+		// }),
+		async (c) => {
+			// const { message } = c.req.valid("json");
+			const { messages } = await c.req.json();
+			// const user = c.get("user");
+			// const db = createClient(c.env.DATABASE_URL);
+			// const conversationId: number | null = null;
+
+			// if (user) {
+			// 	const [newConversation] = await db.insert(chat).values({ id: "123" });
+			// }
+
+			const result = streamText({
+				model: openai("gpt-4o"),
+				system: `
 You are Lorenz, a friendly and encouraging English teacher. Your role is to help users practice natural English with engaging conversation.
 
 When a user sends a message:
@@ -66,23 +89,24 @@ Important:
 - Only point out significant errors that affect understanding, not minor stylistic issues common in chat.
 - Be supportive and make users feel good about their progress.
 `,
-		messages,
-		tools,
-		// toolCallStreaming: true,
-		maxSteps: 2,
-		onFinish: (result) =>
-			console.log(JSON.stringify(result.response.messages, null, 2)),
-	});
+				messages,
+				tools,
+				maxSteps: 2,
+				onFinish: (result) => {
+					console.log(JSON.stringify(result, null, 2));
+				},
+			});
 
-	// Need this for Cloudflare Workers
-	// See also: https://hono.dev/docs/helpers/streaming#streamtext
-	c.header("Content-Encoding", "Identity");
+			// Need this for Cloudflare Workers
+			// See also: https://hono.dev/docs/helpers/streaming#streamtext
+			c.header("Content-Encoding", "Identity");
 
-	// Mark the response as a Vercel AI SDK v1 data stream:
-	c.header("X-Vercel-AI-Data-Stream", "v1");
-	c.header("Content-Type", "text/plain; charset=utf-8");
+			// Mark the response as a Vercel AI SDK v1 data stream:
+			c.header("X-Vercel-AI-Data-Stream", "v1");
+			c.header("Content-Type", "text/plain; charset=utf-8");
 
-	return stream(c, (stream) => stream.pipe(result.toDataStream()));
-});
+			return stream(c, (stream) => stream.pipe(result.toDataStream()));
+		},
+	);
 
 export default app;

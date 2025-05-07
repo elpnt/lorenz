@@ -63,7 +63,6 @@ function RouteComponent() {
 
 	return (
 		<>
-			<Button onPress={() => console.log(messages)}>console</Button>
 			<div
 				ref={scrollContainerRef}
 				className="flex-1 overflow-y-scroll p-6 lg:p-10 "

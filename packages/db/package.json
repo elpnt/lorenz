@@ -6,6 +6,10 @@
 	"scripts": {
 		"db:push": "drizzle-kit push"
 	},
+	"exports": {
+		".": "./index.ts",
+		"./schema": "./schema/index.ts"
+	},
 	"packageManager": "pnpm@10.10.0",
 	"dependencies": {
 		"@lorenz/typescript-config": "workspace:*",
