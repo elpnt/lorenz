@@ -13,7 +13,6 @@
 		"@lorenz/api": "workspace:*",
 		"@ai-sdk/react": "catalog:",
 		"@heroicons/react": "catalog:",
-		"@lorenz/db": "workspace:*",
 		"@tailwindcss/vite": "catalog:",
 		"@tanstack/react-query": "catalog:",
 		"@tanstack/react-query-devtools": "catalog:",

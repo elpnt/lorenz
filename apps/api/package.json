@@ -14,7 +14,6 @@
 		"@ai-sdk/anthropic": "catalog:",
 		"@ai-sdk/openai": "catalog:",
 		"@hono/zod-validator": "catalog:",
-		"@lorenz/db": "workspace:*",
 		"@neondatabase/serverless": "catalog:",
 		"ai": "catalog:",
 		"better-auth": "catalog:",

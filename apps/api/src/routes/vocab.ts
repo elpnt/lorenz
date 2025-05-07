@@ -1,9 +1,9 @@
-import { createClient } from "@lorenz/db";
-import { vocabulary } from "@lorenz/db/schema";
 import { Hono } from "hono";
 import { validator } from "hono/validator";
 import { z } from "zod";
 
+import { createClient } from "../db";
+import { vocabulary } from "../db/schema";
 import type { Env } from "../types";
 
 const newVocabSchema = z.object({

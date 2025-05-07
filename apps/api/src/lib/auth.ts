@@ -1,9 +1,10 @@
-import * as schema from "@lorenz/db/schema";
 import { betterAuth } from "better-auth";
 import { drizzleAdapter } from "better-auth/adapters/drizzle";
 import { reactStartCookies } from "better-auth/react-start";
 import dotenv from "dotenv";
 import { drizzle } from "drizzle-orm/neon-http";
+
+import * as schema from "../db/schema";
 
 dotenv.config({ path: ".dev.vars" });
 

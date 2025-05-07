@@ -1,6 +1,7 @@
-import type { DB } from "@lorenz/db";
-import { chat } from "@lorenz/db/schema";
 import { eq } from "drizzle-orm";
+import type { DB } from "../db";
+
+import { chat } from "../db/schema";
 
 export async function getChatById(db: DB, { id }: { id: string }) {
 	try {

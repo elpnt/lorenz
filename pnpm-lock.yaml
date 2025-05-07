@@ -182,9 +182,6 @@ importers:
       '@hono/zod-validator':
         specifier: 'catalog:'
         version: 0.4.3(hono@4.7.8)(zod@3.24.3)
-      '@lorenz/db':
-        specifier: workspace:*
-        version: link:../../packages/db
       '@neondatabase/serverless':
         specifier: 'catalog:'
         version: 1.0.0
@@ -292,9 +289,6 @@ importers:
       '@lorenz/api':
         specifier: workspace:*
         version: link:../api
-      '@lorenz/db':
-        specifier: workspace:*
-        version: link:../../packages/db
       '@tailwindcss/vite':
         specifier: 'catalog:'
         version: 4.1.5(vite@6.3.4(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1))
@@ -383,24 +377,6 @@ importers:
       vite-tsconfig-paths:
         specifier: 'catalog:'
         version: 5.1.4(typescript@5.8.3)(vite@6.3.4(@types/node@22.15.3)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(tsx@4.19.3)(yaml@2.7.1))
-
-  packages/db:
-    dependencies:
-      '@lorenz/typescript-config':
-        specifier: workspace:*
-        version: link:../typescript-config
-      '@neondatabase/serverless':
-        specifier: 'catalog:'
-        version: 1.0.0
-      dotenv:
-        specifier: 'catalog:'
-        version: 16.5.0
-      drizzle-kit:
-        specifier: 'catalog:'
-        version: 0.30.6
-      drizzle-orm:
-        specifier: 'catalog:'
-        version: 0.41.0(@cloudflare/workers-types@4.20250327.0)(@neondatabase/serverless@1.0.0)(@opentelemetry/api@1.9.0)(@types/pg@8.11.11)(gel@2.0.2)(kysely@0.27.6)
 
   packages/tailwind-config:
     dependencies:
