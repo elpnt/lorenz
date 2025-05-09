@@ -46,7 +46,7 @@ function AppLayout() {
 								<HomeIcon />
 								<SidebarLabel>Home</SidebarLabel>
 							</SidebarItem>
-							<SidebarItem href="/chat" current={pathname === "/chat"}>
+							<SidebarItem href="/chat" current={pathname.startsWith("/chat")}>
 								<ChatBubbleLeftIcon />
 								<SidebarLabel>Chat</SidebarLabel>
 							</SidebarItem>

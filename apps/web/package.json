@@ -26,6 +26,7 @@
 		"lucide-react": "catalog:",
 		"motion": "catalog:",
 		"react": "catalog:",
+		"react-aria": "catalog:",
 		"react-aria-components": "catalog:",
 		"react-dom": "catalog:",
 		"tailwind-variants": "catalog:",

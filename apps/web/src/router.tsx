@@ -24,7 +24,7 @@ declare module "@tanstack/react-router" {
 	}
 }
 
-type QueryKey = ["vocab", ...ReadonlyArray<unknown>];
+type QueryKey = ["chat" | "vocab", ...ReadonlyArray<unknown>];
 
 declare module "@tanstack/react-query" {
 	interface Register {

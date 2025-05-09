@@ -11,8 +11,10 @@ import { Hono } from "hono";
 import { stream } from "hono/streaming";
 import { z } from "zod";
 
+import { asc, eq } from "drizzle-orm";
 import { validator } from "hono/validator";
 import { createClient } from "../../db";
+import { chat } from "../../db/schema";
 import {
 	getChatById,
 	getMessagesByChatId,
@@ -66,9 +68,28 @@ ${userText}
 export type ToolResult = ToolResultUnion<typeof tools>;
 
 const app = new Hono<Env>()
+	.get("/", async (c) => {
+		const user = c.get("user");
+		if (!user) {
+			return c.json({ error: "Unauthorized" }, 401);
+		}
+		const db = createClient(c.env.DATABASE_URL);
+		const res = await db.query.chat.findMany({
+			where: eq(chat.userId, user.id),
+			orderBy: asc(chat.createdAt),
+			columns: { id: true, title: true },
+		});
+		return c.json(res);
+	})
 	.get("/:id", async (c) => {
+		const user = c.get("user");
+		if (!user) {
+			return c.json({ error: "Unauthorized" }, 401);
+		}
+		const db = createClient(c.env.DATABASE_URL);
 		const { id } = c.req.param();
-		return c.json({ message: `You requested chat with ID ${id}` });
+		const chat = await getChatById(db, { id });
+		return c.json(chat);
 	})
 	.post(
 		"/",

@@ -5,13 +5,8 @@ import {
 	Scripts,
 	createRootRouteWithContext,
 } from "@tanstack/react-router";
-import {
-	type NavigateOptions,
-	type ToOptions,
-	useRouter,
-} from "@tanstack/react-router";
+import type { NavigateOptions, ToOptions } from "@tanstack/react-router";
 import type { Session } from "better-auth";
-import { RouterProvider as ReactAriaRouterProvider } from "react-aria-components";
 
 // @ts-ignore
 import appCss from "../styles/app.css?url";
@@ -47,17 +42,10 @@ export const Route = createRootRouteWithContext<{
 });
 
 function RootComponent() {
-	const router = useRouter();
-
 	return (
-		<ReactAriaRouterProvider
-			navigate={(to, options) => router.navigate({ to, ...options })}
-			useHref={(to) => router.buildLocation({ to }).href}
-		>
-			<RootDocument>
-				<Outlet />
-			</RootDocument>
-		</ReactAriaRouterProvider>
+		<RootDocument>
+			<Outlet />
+		</RootDocument>
 	);
 }
 
