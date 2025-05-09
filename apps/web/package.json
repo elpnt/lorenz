@@ -10,15 +10,16 @@
 		"check-types": "tsc --noEmit"
 	},
 	"dependencies": {
-		"@lorenz/api": "workspace:*",
 		"@ai-sdk/react": "catalog:",
 		"@heroicons/react": "catalog:",
+		"@lorenz/api": "workspace:*",
 		"@tailwindcss/vite": "catalog:",
 		"@tanstack/react-query": "catalog:",
 		"@tanstack/react-query-devtools": "catalog:",
 		"@tanstack/react-router": "catalog:",
 		"@tanstack/react-router-with-query": "catalog:",
 		"@tanstack/react-start": "catalog:",
+		"ai": "catalog:",
 		"better-auth": "catalog:",
 		"clsx": "catalog:",
 		"hono": "catalog:",

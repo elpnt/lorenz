@@ -1,10 +1,28 @@
 import { openai } from "@ai-sdk/openai";
-import { type ToolResultUnion, generateObject, streamText, tool } from "ai";
+import {
+	type ToolResultUnion,
+	appendClientMessage,
+	appendResponseMessages,
+	generateObject,
+	streamText,
+	tool,
+} from "ai";
 import { Hono } from "hono";
 import { stream } from "hono/streaming";
 import { z } from "zod";
 
+import { validator } from "hono/validator";
+import { createClient } from "../../db";
+import {
+	getChatById,
+	getMessagesByChatId,
+	getTrailingMessageId,
+	saveChat,
+	saveMessages,
+} from "../../lib/chat";
 import type { Env } from "../../types";
+import { generateTitleFromUserMessage } from "./lib";
+import { postRequestBodySchema } from "./schema";
 
 const tools = {
 	proofread: tool({
@@ -54,23 +72,56 @@ const app = new Hono<Env>()
 	})
 	.post(
 		"/",
-		// validator("json", (value, c) => {
-		// 	const parsed = schema.safeParse(value);
-		// 	if (!parsed.success) {
-		// 		return c.json({ error: "Invalid request body" }, 400);
-		// 	}
-		// 	return parsed.data;
-		// }),
+		validator("json", (value, c) => {
+			console.log(JSON.stringify(value, null, 2));
+			const parsed = postRequestBodySchema.safeParse(value);
+			if (!parsed.success) {
+				return c.json({ error: "Invalid request body" }, 400);
+			}
+			return parsed.data;
+		}),
 		async (c) => {
-			// const { message } = c.req.valid("json");
-			const { messages } = await c.req.json();
-			// const user = c.get("user");
-			// const db = createClient(c.env.DATABASE_URL);
-			// const conversationId: number | null = null;
+			const user = c.get("user");
+			if (!user) {
+				return c.json({ error: "Unauthorized" }, 401);
+			}
 
-			// if (user) {
-			// 	const [newConversation] = await db.insert(chat).values({ id: "123" });
-			// }
+			const db = createClient(c.env.DATABASE_URL);
+
+			const { id, message } = c.req.valid("json");
+			const chat = await getChatById(db, { id });
+
+			if (!chat) {
+				const title = await generateTitleFromUserMessage({
+					message,
+				});
+				await saveChat(db, { id, title, userId: user.id });
+			} else {
+				if (chat.userId !== user.id) {
+					return c.json({ error: "Forbidden" }, 403);
+				}
+			}
+
+			const previousMessages = await getMessagesByChatId(db, { id });
+			const messages = appendClientMessage({
+				messages: previousMessages.map((message) => ({
+					...message,
+					content:
+						message.parts[0].type === "text" ? message.parts[0].text : "",
+				})),
+				message,
+			});
+			await saveMessages(db, {
+				messages: [
+					{
+						chatId: id,
+						id: message.id,
+						role: "user",
+						parts: message.parts,
+						createdAt: new Date(),
+					},
+				],
+			});
 
 			const result = streamText({
 				model: openai("gpt-4o"),
@@ -92,8 +143,36 @@ Important:
 				messages,
 				tools,
 				maxSteps: 2,
-				onFinish: (result) => {
-					console.log(JSON.stringify(result, null, 2));
+				onFinish: async ({ response }) => {
+					try {
+						const assistantId = getTrailingMessageId({
+							messages: response.messages.filter(
+								(message) => message.role === "assistant",
+							),
+						});
+						if (!assistantId) {
+							throw new Error("No assistant message found");
+						}
+
+						const [, assistantMessage] = appendResponseMessages({
+							messages: [message],
+							responseMessages: response.messages,
+						});
+
+						await saveMessages(db, {
+							messages: [
+								{
+									id: assistantId,
+									chatId: id,
+									role: assistantMessage.role,
+									parts: assistantMessage.parts || [],
+									createdAt: new Date(),
+								},
+							],
+						});
+					} catch (_) {
+						console.error("Failed to save chat");
+					}
 				},
 			});
 

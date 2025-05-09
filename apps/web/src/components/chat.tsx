@@ -6,16 +6,9 @@ import {
 } from "@heroicons/react/16/solid";
 import { CheckIcon } from "@heroicons/react/16/solid";
 import type { ToolResult } from "@lorenz/api/types";
-import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef } from "react";
 
-import { Chat } from "../../components/chat";
-import { Button } from "../../components/ui/button";
-import { generateUUID } from "../../lib/generate-uuid";
-
-export const Route = createFileRoute("/_app/chat")({
-	component: RouteComponent,
-});
+import { Button } from "./ui/button";
 
 export function Note({ children }: { children: React.ReactNode }) {
 	return (
@@ -41,15 +34,21 @@ const UserMessage = ({ text, ok }: { text: string; ok?: boolean }) => (
 	</div>
 );
 
-function RouteComponent() {
-	const id = generateUUID();
-	return <Chat id={id} />;
+interface ChatProps {
+	id: string;
+}
 
+export function Chat({ id }: ChatProps) {
 	const { messages, input, handleInputChange, handleSubmit, status, stop } =
 		useChat({
+			id,
 			api: "http://localhost:8787/chat",
 			maxSteps: 2,
-			id: "123",
+			experimental_prepareRequestBody: (body) => ({
+				id,
+				message: body.messages.at(-1),
+			}),
+			credentials: "include",
 		});
 
 	const inputRef = useRef<HTMLTextAreaElement>(null);

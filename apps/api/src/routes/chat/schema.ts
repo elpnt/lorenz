@@ -8,7 +8,7 @@ const textPartSchema = z.object({
 export const postRequestBodySchema = z.object({
 	id: z.string().uuid(),
 	message: z.object({
-		id: z.string().uuid(),
+		id: z.string(),
 		createdAt: z.coerce.date(),
 		role: z.enum(["user"]),
 		content: z.string().min(1).max(2000),
@@ -23,8 +23,6 @@ export const postRequestBodySchema = z.object({
 			)
 			.optional(),
 	}),
-	selectedChatModel: z.enum(["chat-model", "chat-model-reasoning"]),
-	selectedVisibilityType: z.enum(["public", "private"]),
 });
 
 export type PostRequestBody = z.infer<typeof postRequestBodySchema>;

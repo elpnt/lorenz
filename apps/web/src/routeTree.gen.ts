@@ -21,6 +21,7 @@ import { Route as AppVocabImport } from './routes/_app/vocab'
 import { Route as AppSettingsImport } from './routes/_app/settings'
 import { Route as AppDashboardImport } from './routes/_app/dashboard'
 import { Route as AppChatImport } from './routes/_app/chat'
+import { Route as AppChatIdImport } from './routes/_app/chat.$id'
 
 // Create/Update Routes
 
@@ -80,6 +81,12 @@ const AppChatRoute = AppChatImport.update({
   id: '/chat',
   path: '/chat',
   getParentRoute: () => AppRoute,
+} as any)
+
+const AppChatIdRoute = AppChatIdImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => AppChatRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -156,13 +163,31 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppIndexImport
       parentRoute: typeof AppImport
     }
+    '/_app/chat/$id': {
+      id: '/_app/chat/$id'
+      path: '/$id'
+      fullPath: '/chat/$id'
+      preLoaderRoute: typeof AppChatIdImport
+      parentRoute: typeof AppChatImport
+    }
   }
 }
 
 // Create and export the route tree
 
+interface AppChatRouteChildren {
+  AppChatIdRoute: typeof AppChatIdRoute
+}
+
+const AppChatRouteChildren: AppChatRouteChildren = {
+  AppChatIdRoute: AppChatIdRoute,
+}
+
+const AppChatRouteWithChildren =
+  AppChatRoute._addFileChildren(AppChatRouteChildren)
+
 interface AppRouteChildren {
-  AppChatRoute: typeof AppChatRoute
+  AppChatRoute: typeof AppChatRouteWithChildren
   AppDashboardRoute: typeof AppDashboardRoute
   AppSettingsRoute: typeof AppSettingsRoute
   AppVocabRoute: typeof AppVocabRoute
@@ -170,7 +195,7 @@ interface AppRouteChildren {
 }
 
 const AppRouteChildren: AppRouteChildren = {
-  AppChatRoute: AppChatRoute,
+  AppChatRoute: AppChatRouteWithChildren,
   AppDashboardRoute: AppDashboardRoute,
   AppSettingsRoute: AppSettingsRoute,
   AppVocabRoute: AppVocabRoute,
@@ -195,7 +220,7 @@ const AuthRouteWithChildren = AuthRoute._addFileChildren(AuthRouteChildren)
 
 export interface FileRoutesByFullPath {
   '': typeof AuthRouteWithChildren
-  '/chat': typeof AppChatRoute
+  '/chat': typeof AppChatRouteWithChildren
   '/dashboard': typeof AppDashboardRoute
   '/settings': typeof AppSettingsRoute
   '/vocab': typeof AppVocabRoute
@@ -203,11 +228,12 @@ export interface FileRoutesByFullPath {
   '/login': typeof AuthLoginRoute
   '/register': typeof AuthRegisterRoute
   '/': typeof AppIndexRoute
+  '/chat/$id': typeof AppChatIdRoute
 }
 
 export interface FileRoutesByTo {
   '': typeof AuthRouteWithChildren
-  '/chat': typeof AppChatRoute
+  '/chat': typeof AppChatRouteWithChildren
   '/dashboard': typeof AppDashboardRoute
   '/settings': typeof AppSettingsRoute
   '/vocab': typeof AppVocabRoute
@@ -215,13 +241,14 @@ export interface FileRoutesByTo {
   '/login': typeof AuthLoginRoute
   '/register': typeof AuthRegisterRoute
   '/': typeof AppIndexRoute
+  '/chat/$id': typeof AppChatIdRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
   '/_app': typeof AppRouteWithChildren
   '/_auth': typeof AuthRouteWithChildren
-  '/_app/chat': typeof AppChatRoute
+  '/_app/chat': typeof AppChatRouteWithChildren
   '/_app/dashboard': typeof AppDashboardRoute
   '/_app/settings': typeof AppSettingsRoute
   '/_app/vocab': typeof AppVocabRoute
@@ -229,6 +256,7 @@ export interface FileRoutesById {
   '/_auth/login': typeof AuthLoginRoute
   '/_auth/register': typeof AuthRegisterRoute
   '/_app/': typeof AppIndexRoute
+  '/_app/chat/$id': typeof AppChatIdRoute
 }
 
 export interface FileRouteTypes {
@@ -243,6 +271,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/'
+    | '/chat/$id'
   fileRoutesByTo: FileRoutesByTo
   to:
     | ''
@@ -254,6 +283,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/register'
     | '/'
+    | '/chat/$id'
   id:
     | '__root__'
     | '/_app'
@@ -266,6 +296,7 @@ export interface FileRouteTypes {
     | '/_auth/login'
     | '/_auth/register'
     | '/_app/'
+    | '/_app/chat/$id'
   fileRoutesById: FileRoutesById
 }
 
@@ -313,7 +344,10 @@ export const routeTree = rootRoute
     },
     "/_app/chat": {
       "filePath": "_app/chat.tsx",
-      "parent": "/_app"
+      "parent": "/_app",
+      "children": [
+        "/_app/chat/$id"
+      ]
     },
     "/_app/dashboard": {
       "filePath": "_app/dashboard.tsx",
@@ -342,6 +376,10 @@ export const routeTree = rootRoute
     "/_app/": {
       "filePath": "_app/index.tsx",
       "parent": "/_app"
+    },
+    "/_app/chat/$id": {
+      "filePath": "_app/chat.$id.tsx",
+      "parent": "/_app/chat"
     }
   }
 }

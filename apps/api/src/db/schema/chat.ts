@@ -1,3 +1,5 @@
+import type { UIMessage } from "ai";
+import type { InferSelectModel } from "drizzle-orm";
 import { jsonb, pgTable, text, timestamp, uuid } from "drizzle-orm/pg-core";
 
 import { user } from "./auth";
@@ -12,12 +14,15 @@ export const chat = pgTable("chat", {
 });
 
 export const message = pgTable("message", {
-	id: uuid("id").primaryKey(),
-	content: text("content").notNull(),
+	id: text("id").primaryKey(),
 	createdAt: timestamp("created_at").notNull().defaultNow(),
 	chatId: uuid("chat_id")
 		.notNull()
 		.references(() => chat.id, { onDelete: "cascade" }),
-	role: text("role").notNull(),
-	parts: jsonb("parts").notNull(),
+	role: text("role", {
+		enum: ["user", "assistant", "data", "system"],
+	}).notNull(),
+	parts: jsonb("parts").$type<UIMessage["parts"]>().notNull(),
 });
+
+export type DBMessage = InferSelectModel<typeof message>;
