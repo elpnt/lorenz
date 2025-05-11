@@ -15,7 +15,7 @@ function RouteComponent() {
 
 	return (
 		<div>
-			<pre className="text-xs">{JSON.stringify(chatQuery.data)}</pre>
+			<pre className="text-xs">{JSON.stringify(chatQuery.data, null, 2)}</pre>
 		</div>
 	);
 }

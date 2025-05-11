@@ -7,12 +7,12 @@ import {
 	streamText,
 	tool,
 } from "ai";
+import { and, asc, eq } from "drizzle-orm";
 import { Hono } from "hono";
 import { stream } from "hono/streaming";
+import { validator } from "hono/validator";
 import { z } from "zod";
 
-import { asc, eq } from "drizzle-orm";
-import { validator } from "hono/validator";
 import { createClient } from "../../db";
 import { chat } from "../../db/schema";
 import {
@@ -88,8 +88,16 @@ const app = new Hono<Env>()
 		}
 		const db = createClient(c.env.DATABASE_URL);
 		const { id } = c.req.param();
-		const chat = await getChatById(db, { id });
-		return c.json(chat);
+		// const chat = await getChatById(db, { id });
+		// const messages = await getMessagesByChatId(db, { id });
+		// return c.json({ chat, messages });
+		const data = await db.query.chat.findFirst({
+			where: and(eq(chat.userId, user.id), eq(chat.id, id)),
+			with: {
+				messages: true,
+			},
+		});
+		return c.json(data);
 	})
 	.post(
 		"/",
