@@ -42,7 +42,7 @@ function Register() {
 			</Button>
 			<Text>
 				Already have an account?{" "}
-				<TextLink href="/login">
+				<TextLink to="/login">
 					<Strong>Sign in</Strong>
 				</TextLink>
 			</Text>

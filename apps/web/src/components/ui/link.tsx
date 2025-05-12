@@ -1,5 +1,3 @@
-// export { Link, type LinkProps } from "react-aria-components";
-
 import { type LinkComponent, createLink } from "@tanstack/react-router";
 import * as React from "react";
 import {
@@ -13,6 +11,7 @@ import type { AriaLinkOptions } from "react-aria";
 
 interface RACLinkProps extends Omit<AriaLinkOptions, "href"> {
 	children?: React.ReactNode;
+	className?: string;
 }
 
 const RACLinkComponent = React.forwardRef<HTMLAnchorElement, RACLinkProps>(
@@ -42,4 +41,4 @@ export const Link: LinkComponent<typeof RACLinkComponent> = (props) => {
 	return <CreatedLinkComponent preload={"intent"} {...props} />;
 };
 
-export type { RACLinkProps as LinkProps };
+export type LinkProps = React.ComponentProps<typeof Link>;

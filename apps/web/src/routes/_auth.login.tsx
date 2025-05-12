@@ -54,7 +54,7 @@ function Login() {
 			</Button>
 			<Text>
 				Don't have an account?{" "}
-				<TextLink href="/register">
+				<TextLink to="/register">
 					<Strong>Sign up</Strong>
 				</TextLink>
 			</Text>
