@@ -1,7 +1,7 @@
 import { queryOptions } from "@tanstack/react-query";
 import { createServerFn } from "@tanstack/react-start";
-
 import { z } from "zod";
+
 import { createAPIClient } from "../../lib/api-client";
 
 const fetchChats = createServerFn({ method: "GET" }).handler(async () => {
@@ -24,9 +24,10 @@ const fetchChatByIdSchema = z.object({
 const fetchChat = createServerFn({ method: "GET" })
 	.validator(fetchChatByIdSchema)
 	.handler(async ({ data }) => {
-		const api = createAPIClient();
-		const res = await api.chat[":id"].$get({ param: { id: data.id } });
-		return res.json();
+		const client = createAPIClient();
+		const res = await client.chat[":id"].$get({ param: { id: data.id } });
+		const json = await res.json();
+		return json;
 	});
 
 export const chatQueryOptions = (id: string) => {

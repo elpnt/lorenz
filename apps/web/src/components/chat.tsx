@@ -1,4 +1,4 @@
-import { useChat } from "@ai-sdk/react";
+import { type Message, useChat } from "@ai-sdk/react";
 import {
 	InformationCircleIcon,
 	PaperAirplaneIcon,
@@ -36,14 +36,16 @@ const UserMessage = ({ text, ok }: { text: string; ok?: boolean }) => (
 
 interface ChatProps {
 	id: string;
+	initialMessages?: Message[];
 }
 
-export function Chat({ id }: ChatProps) {
+export function Chat({ id, initialMessages }: ChatProps) {
 	const { messages, input, handleInputChange, handleSubmit, status, stop } =
 		useChat({
 			id,
 			api: "http://localhost:8787/chat",
 			maxSteps: 2,
+			initialMessages,
 			experimental_prepareRequestBody: (body) => ({
 				id,
 				message: body.messages.at(-1),

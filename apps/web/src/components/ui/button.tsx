@@ -34,11 +34,11 @@ const solidClasses = clsx(
 const buttonStyles = tv({
 	base: [
 		// Base
-		"relative isolate inline-flex items-baseline justify-center gap-x-2 rounded-lg border text-base/6 font-semibold",
+		"relative isolate inline-flex items-baseline justify-center gap-x-2 rounded-lg border text-base/6 font-semibold cursor-pointer",
 		// Focus
 		"focus-visible:outline-2 outline-offset-2 outline-blue-500",
 		// Disabled
-		"disabled:opacity-50",
+		"disabled:opacity-50 disabled:cursor-default aria-disabled:cursor-default",
 		// Icon
 		"*:data-[slot=icon]:-mx-0.5 *:data-[slot=icon]:my-0.5 *:data-[slot=icon]:size-5 *:data-[slot=icon]:shrink-0 *:data-[slot=icon]:self-center sm:*:data-[slot=icon]:my-1 sm:*:data-[slot=icon]:size-4 forced-colors:[--btn-icon:ButtonText] forced-colors:data-hover:[--btn-icon:ButtonText]",
 	],

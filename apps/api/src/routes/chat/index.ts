@@ -86,17 +86,23 @@ const app = new Hono<Env>()
 		if (!user) {
 			return c.json({ error: "Unauthorized" }, 401);
 		}
+
 		const db = createClient(c.env.DATABASE_URL);
 		const { id } = c.req.param();
-		// const chat = await getChatById(db, { id });
-		// const messages = await getMessagesByChatId(db, { id });
-		// return c.json({ chat, messages });
+
 		const data = await db.query.chat.findFirst({
 			where: and(eq(chat.userId, user.id), eq(chat.id, id)),
 			with: {
-				messages: true,
+				messages: {
+					columns: { id: true, role: true, parts: true },
+				},
 			},
 		});
+
+		if (!data) {
+			return c.json({ error: "Chat not found" }, 404);
+		}
+
 		return c.json(data);
 	})
 	.post(

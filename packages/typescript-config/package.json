@@ -2,5 +2,5 @@
 	"name": "@lorenz/typescript-config",
 	"version": "1.0.0",
 	"license": "MIT",
-	"packageManager": "pnpm@10.10.0"
+	"packageManager": "pnpm@10.11.0"
 }
