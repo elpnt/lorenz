@@ -1,4 +1,4 @@
-import { type Message, useChat } from "@ai-sdk/react";
+import { useChat } from "@ai-sdk/react";
 import {
 	InformationCircleIcon,
 	PaperAirplaneIcon,
@@ -6,8 +6,10 @@ import {
 } from "@heroicons/react/16/solid";
 import { CheckIcon } from "@heroicons/react/16/solid";
 import type { ToolResult } from "@lorenz/api/types";
+import type { UIMessage } from "ai";
 import { useEffect, useRef } from "react";
 
+import clsx from "clsx";
 import { Button } from "./ui/button";
 
 export function Note({ children }: { children: React.ReactNode }) {
@@ -21,22 +23,9 @@ export function Note({ children }: { children: React.ReactNode }) {
 	);
 }
 
-const UserMessage = ({ text, ok }: { text: string; ok?: boolean }) => (
-	<div className="flex justify-end items-center gap-1">
-		{ok && (
-			<div className="p-0.5 bg-emerald-500 rounded-full animate-scale-rotate-in flex items-center justify-center">
-				<CheckIcon className="text-white stroke-4 size-4" />
-			</div>
-		)}
-		<div className="max-w-64 sm:max-w-lg bg-zinc-100 px-4 py-2.5 dark:bg-zinc-700 dark:text-white rounded-xl">
-			{text}
-		</div>
-	</div>
-);
-
 interface ChatProps {
 	id: string;
-	initialMessages?: Message[];
+	initialMessages?: UIMessage[];
 }
 
 export function Chat({ id, initialMessages }: ChatProps) {
@@ -52,6 +41,8 @@ export function Chat({ id, initialMessages }: ChatProps) {
 			}),
 			credentials: "include",
 		});
+
+	console.log({ messages });
 
 	const inputRef = useRef<HTMLTextAreaElement>(null);
 	const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -72,70 +63,83 @@ export function Chat({ id, initialMessages }: ChatProps) {
 		<>
 			<div
 				ref={scrollContainerRef}
-				className="flex-1 overflow-y-scroll p-6 lg:p-10 "
+				className="flex-1 overflow-y-scroll p-6 lg:p-10"
 			>
-				<div className="mx-auto max-w-3xl space-y-8">
+				<div className="mx-auto max-w-3xl space-y-12">
 					{messages.map((message, i) => (
-						<div key={message.id} className="whitespace-pre-wrap">
-							{message.role === "user" ? (
-								<UserMessage
-									text={message.content}
-									ok={(function getProofreadOK() {
-										const nextMsg = messages[i + 1];
-										if (
-											nextMsg &&
-											nextMsg.role !== "user" &&
-											nextMsg.parts?.some(
-												(part) =>
-													part.type === "tool-invocation" &&
-													part.toolInvocation.toolName === "proofread" &&
-													part.toolInvocation.state === "result" &&
-													part.toolInvocation.result &&
-													part.toolInvocation.result.ok === true,
-											)
-										)
-											return true;
-										return false;
-									})()}
-								/>
-							) : (
-								<div className="">
-									{message.parts.map((part, index) => {
-										switch (part.type) {
-											case "text":
-												return (
-													// biome-ignore lint:
-													<div key={index} className="dark:text-white">
+						<div
+							key={message.id}
+							className={clsx(
+								message.role === "user" &&
+									"flex justify-end items-center gap-1",
+							)}
+						>
+							{/* {message.role === "user" && } */}
+							{message.parts.map((part, index) => {
+								switch (part.type) {
+									case "text":
+										if (message.role === "user") {
+											const ok = (function getProofreadOK() {
+												const nextMsg = messages[i + 1];
+												if (
+													nextMsg &&
+													nextMsg.role !== "user" &&
+													nextMsg.parts?.some(
+														(part) =>
+															part.type === "tool-invocation" &&
+															part.toolInvocation.toolName === "proofread" &&
+															part.toolInvocation.state === "result" &&
+															part.toolInvocation.result &&
+															part.toolInvocation.result.ok === true,
+													)
+												)
+													return true;
+												return false;
+											})();
+											return (
+												<>
+													{ok && (
+														<div className="p-0.5 bg-emerald-500 rounded-full animate-scale-rotate-in flex items-center justify-center">
+															<CheckIcon className="text-white stroke-4 size-4" />
+														</div>
+													)}
+													<div className="max-w-64 sm:max-w-lg bg-zinc-100 px-4 py-2.5 dark:bg-zinc-700 dark:text-white rounded-xl">
 														{part.text}
 													</div>
+												</>
+											);
+										}
+										return (
+											// biome-ignore lint:
+											<div key={index} className="dark:text-white">
+												{part.text}
+											</div>
+										);
+									case "tool-invocation": {
+										const callId = part.toolInvocation.toolCallId;
+										switch (part.toolInvocation.state) {
+											case "partial-call":
+											case "call":
+												return (
+													<div key={callId} className="animate-pulse">
+														Reviewing...
+													</div>
 												);
-											case "tool-invocation": {
-												const callId = part.toolInvocation.toolCallId;
-												switch (part.toolInvocation.state) {
-													case "partial-call":
-													case "call":
-														return (
-															<div key={callId} className="animate-pulse">
-																Reviewing...
-															</div>
-														);
-													case "result": {
-														const result: ToolResult["result"] =
-															part.toolInvocation.result;
-														if (result.ok) return null;
-														return (
-															<Note key={callId}>
-																<strong>{result.corrected}</strong>
-																<p>{result.explanation}</p>
-															</Note>
-														);
-													}
-												}
+											case "result": {
+												const result: ToolResult["result"] =
+													part.toolInvocation.result;
+												if (result.ok) return null;
+												return (
+													<Note key={callId}>
+														<strong>{result.corrected}</strong>
+														<p>{result.explanation}</p>
+													</Note>
+												);
 											}
 										}
-									})}
-								</div>
-							)}
+									}
+								}
+							})}
 						</div>
 					))}
 				</div>

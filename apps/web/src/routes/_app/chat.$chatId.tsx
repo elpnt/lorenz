@@ -21,13 +21,11 @@ function RouteComponent() {
 
 	return (
 		<div>
-			<pre className="text-xs">{JSON.stringify(chatQuery.data, null, 2)}</pre>
 			<Chat
 				id={chatId}
 				initialMessages={chatQuery.data.messages.map((message) => ({
-					id: message.id,
-					role: message.role,
-					content: message.role,
+					...message,
+					content: "", // Note: content will soon be deprecated in @ai-sdk/react
 				}))}
 			/>
 		</div>
