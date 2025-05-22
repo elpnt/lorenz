@@ -18,8 +18,8 @@ function DropdownMenu({
 		<AriaPopover
 			className={({ isEntering, isExiting, placement }) =>
 				clsx([
-					isEntering && "animate-in fade-in",
-					isExiting && "animate-out fade-out",
+					isEntering && "animate-in fade-in duration-100",
+					isExiting && "animate-out fade-out duration-100",
 					placement === "bottom" && "slide-in-from-top-1 slide-out-to-top-1",
 					placement === "top" && "slide-in-from-bottom-1 slide-out-to-bottom-1",
 					placement === "right" && "slide-in-from-left-1 slide-out-to-left-1",
@@ -44,8 +44,6 @@ function DropdownMenu({
 					"ring-1 shadow-lg ring-zinc-950/10 dark:ring-white/10 dark:ring-inset",
 					// Define grid at the menu level if subgrid is supported
 					"supports-[grid-template-columns:subgrid]:grid supports-[grid-template-columns:subgrid]:grid-cols-[auto_1fr_1.5rem_0.5rem_auto]",
-					// Transitions
-					"transition data-leave:duration-100 data-leave:ease-in data-closed:data-leave:opacity-0",
 				)}
 			>
 				{children}

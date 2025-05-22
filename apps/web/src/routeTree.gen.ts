@@ -18,6 +18,7 @@ import { Route as AuthRegisterImport } from './routes/_auth.register'
 import { Route as AuthLoginImport } from './routes/_auth.login'
 import { Route as AuthForgotPasswordImport } from './routes/_auth.forgot-password'
 import { Route as AppVocabImport } from './routes/_app/vocab'
+import { Route as AppSignoutImport } from './routes/_app/signout'
 import { Route as AppSettingsImport } from './routes/_app/settings'
 import { Route as AppDashboardImport } from './routes/_app/dashboard'
 import { Route as AppChatIndexImport } from './routes/_app/chat.index'
@@ -62,6 +63,12 @@ const AuthForgotPasswordRoute = AuthForgotPasswordImport.update({
 const AppVocabRoute = AppVocabImport.update({
   id: '/vocab',
   path: '/vocab',
+  getParentRoute: () => AppRoute,
+} as any)
+
+const AppSignoutRoute = AppSignoutImport.update({
+  id: '/signout',
+  path: '/signout',
   getParentRoute: () => AppRoute,
 } as any)
 
@@ -121,6 +128,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AppSettingsImport
       parentRoute: typeof AppImport
     }
+    '/_app/signout': {
+      id: '/_app/signout'
+      path: '/signout'
+      fullPath: '/signout'
+      preLoaderRoute: typeof AppSignoutImport
+      parentRoute: typeof AppImport
+    }
     '/_app/vocab': {
       id: '/_app/vocab'
       path: '/vocab'
@@ -178,6 +192,7 @@ declare module '@tanstack/react-router' {
 interface AppRouteChildren {
   AppDashboardRoute: typeof AppDashboardRoute
   AppSettingsRoute: typeof AppSettingsRoute
+  AppSignoutRoute: typeof AppSignoutRoute
   AppVocabRoute: typeof AppVocabRoute
   AppIndexRoute: typeof AppIndexRoute
   AppChatChatIdRoute: typeof AppChatChatIdRoute
@@ -187,6 +202,7 @@ interface AppRouteChildren {
 const AppRouteChildren: AppRouteChildren = {
   AppDashboardRoute: AppDashboardRoute,
   AppSettingsRoute: AppSettingsRoute,
+  AppSignoutRoute: AppSignoutRoute,
   AppVocabRoute: AppVocabRoute,
   AppIndexRoute: AppIndexRoute,
   AppChatChatIdRoute: AppChatChatIdRoute,
@@ -213,6 +229,7 @@ export interface FileRoutesByFullPath {
   '': typeof AuthRouteWithChildren
   '/dashboard': typeof AppDashboardRoute
   '/settings': typeof AppSettingsRoute
+  '/signout': typeof AppSignoutRoute
   '/vocab': typeof AppVocabRoute
   '/forgot-password': typeof AuthForgotPasswordRoute
   '/login': typeof AuthLoginRoute
@@ -226,6 +243,7 @@ export interface FileRoutesByTo {
   '': typeof AuthRouteWithChildren
   '/dashboard': typeof AppDashboardRoute
   '/settings': typeof AppSettingsRoute
+  '/signout': typeof AppSignoutRoute
   '/vocab': typeof AppVocabRoute
   '/forgot-password': typeof AuthForgotPasswordRoute
   '/login': typeof AuthLoginRoute
@@ -241,6 +259,7 @@ export interface FileRoutesById {
   '/_auth': typeof AuthRouteWithChildren
   '/_app/dashboard': typeof AppDashboardRoute
   '/_app/settings': typeof AppSettingsRoute
+  '/_app/signout': typeof AppSignoutRoute
   '/_app/vocab': typeof AppVocabRoute
   '/_auth/forgot-password': typeof AuthForgotPasswordRoute
   '/_auth/login': typeof AuthLoginRoute
@@ -256,6 +275,7 @@ export interface FileRouteTypes {
     | ''
     | '/dashboard'
     | '/settings'
+    | '/signout'
     | '/vocab'
     | '/forgot-password'
     | '/login'
@@ -268,6 +288,7 @@ export interface FileRouteTypes {
     | ''
     | '/dashboard'
     | '/settings'
+    | '/signout'
     | '/vocab'
     | '/forgot-password'
     | '/login'
@@ -281,6 +302,7 @@ export interface FileRouteTypes {
     | '/_auth'
     | '/_app/dashboard'
     | '/_app/settings'
+    | '/_app/signout'
     | '/_app/vocab'
     | '/_auth/forgot-password'
     | '/_auth/login'
@@ -320,6 +342,7 @@ export const routeTree = rootRoute
       "children": [
         "/_app/dashboard",
         "/_app/settings",
+        "/_app/signout",
         "/_app/vocab",
         "/_app/",
         "/_app/chat/$chatId",
@@ -340,6 +363,10 @@ export const routeTree = rootRoute
     },
     "/_app/settings": {
       "filePath": "_app/settings.tsx",
+      "parent": "/_app"
+    },
+    "/_app/signout": {
+      "filePath": "_app/signout.tsx",
       "parent": "/_app"
     },
     "/_app/vocab": {

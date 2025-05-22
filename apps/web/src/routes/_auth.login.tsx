@@ -30,7 +30,7 @@ function Login() {
 					<Checkbox name="remember">Remember me</Checkbox>
 				</CheckboxField>
 				<Text>
-					<TextLink href="/forgot-password">
+					<TextLink href={{ to: "/forgot-password" }}>
 						<Strong>Forgot password?</Strong>
 					</TextLink>
 				</Text>
@@ -54,7 +54,7 @@ function Login() {
 			</Button>
 			<Text>
 				Don't have an account?{" "}
-				<TextLink to="/register">
+				<TextLink href={{ to: "/register" }}>
 					<Strong>Sign up</Strong>
 				</TextLink>
 			</Text>

@@ -42,7 +42,7 @@ function Register() {
 			</Button>
 			<Text>
 				Already have an account?{" "}
-				<TextLink to="/login">
+				<TextLink href={{ to: "/login" }}>
 					<Strong>Sign in</Strong>
 				</TextLink>
 			</Text>

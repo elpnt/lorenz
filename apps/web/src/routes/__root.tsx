@@ -53,7 +53,7 @@ function RootComponent() {
 	return (
 		<RouterProvider
 			navigate={(href, options) => router.navigate({ ...href, ...options })}
-			useHref={(href) => router.buildLocation(href).href}
+			useHref={(href) => (href ? router.buildLocation(href).href : "")}
 		>
 			<RootDocument>
 				<Outlet />
