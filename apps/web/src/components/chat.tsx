@@ -157,7 +157,7 @@ export function Chat({ id, initialMessages }: ChatProps) {
 							placeholder="Ask anything..."
 							value={input}
 							onChange={handleInputChange}
-							className="text-base/6 sm:text-sm/6 resize-none size-full focus:outline-none placeholder-zinc-500 dark:text-white"
+							className="text-base/6 resize-none size-full focus:outline-none placeholder-zinc-500 dark:text-white"
 							onKeyDown={(e) => {
 								if (e.key === "Enter" && (e.metaKey || e.ctrlKey)) {
 									e.preventDefault();
