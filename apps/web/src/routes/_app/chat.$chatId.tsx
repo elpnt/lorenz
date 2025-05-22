@@ -15,7 +15,7 @@ function RouteComponent() {
 	const { chatId } = Route.useParams();
 	const chatQuery = useSuspenseQuery(chatQueryOptions(chatId));
 
-	if ("error" in chatQuery.data) {
+	if (!chatQuery.data) {
 		return null;
 	}
 

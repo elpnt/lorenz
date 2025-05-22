@@ -17,6 +17,22 @@ export const chatsQueryOptions = () => {
 	});
 };
 
+const fetchRecentChats = createServerFn({ method: "GET" }).handler(async () => {
+	const api = createAPIClient();
+	const res = await api.chat.recent.$get();
+	if (res.ok) {
+		const data = await res.json();
+		return data;
+	}
+});
+
+export const recentChatsQueryOptions = () => {
+	return queryOptions({
+		queryKey: ["chat", "recent"],
+		queryFn: fetchRecentChats,
+	});
+};
+
 const fetchChatByIdSchema = z.object({
 	id: z.string().uuid(),
 });
@@ -26,8 +42,16 @@ const fetchChat = createServerFn({ method: "GET" })
 	.handler(async ({ data }) => {
 		const client = createAPIClient();
 		const res = await client.chat[":id"].$get({ param: { id: data.id } });
-		const json = await res.json();
-		return json;
+		if (res.status === 501) {
+			const data = await res.json();
+			return data;
+		}
+		if (res.ok) {
+			const data = await res.json();
+			return data;
+		}
+		// const json = await res.json();
+		// return json;
 	});
 
 export const chatQueryOptions = (id: string) => {

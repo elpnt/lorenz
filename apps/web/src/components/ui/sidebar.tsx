@@ -134,7 +134,6 @@ type BaseSidebarItemProps = {
 
 type SidebarLinkItemProps = BaseSidebarItemProps &
 	LinkProps & {
-		href: string; // Make href required for Link variant
 		ref?: React.Ref<HTMLAnchorElement>;
 	};
 
@@ -149,7 +148,7 @@ type SidebarItemProps = SidebarLinkItemProps | SidebarButtonItemProps;
 
 const sidebarItemClasses = clsx(
 	// Base
-	"flex w-full items-center gap-3 rounded-lg px-2 py-2.5 text-left text-base/6 font-medium text-zinc-950 sm:py-2 sm:text-sm/5",
+	"inline-flex w-full items-center gap-3 rounded-lg px-2 py-2.5 text-left text-base/6 font-medium text-zinc-950 sm:py-2 sm:text-sm/5",
 	// Focus ring
 	"focus-visible:outline-2 outline-offset-2 outline-blue-500",
 	// Leading icon/icon-only
@@ -191,12 +190,12 @@ export const SidebarItem = ({
 			{"href" in props ? (
 				<Link
 					{...(props as SidebarLinkItemProps)}
-					className={sidebarItemClasses}
+					// className={sidebarItemClasses}
 					onPress={() => state?.close()}
 					data-current={current ? "true" : undefined}
 					ref={ref as React.RefObject<HTMLAnchorElement>}
 				>
-					{children}
+					<span className={sidebarItemClasses}>{children}</span>
 				</Link>
 			) : (
 				<AriaButton

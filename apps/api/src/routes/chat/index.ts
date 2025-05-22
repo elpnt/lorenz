@@ -7,7 +7,7 @@ import {
 	streamText,
 	tool,
 } from "ai";
-import { and, asc, eq } from "drizzle-orm";
+import { and, asc, desc, eq } from "drizzle-orm";
 import { Hono } from "hono";
 import { stream } from "hono/streaming";
 import { validator } from "hono/validator";
@@ -77,6 +77,20 @@ const app = new Hono<Env>()
 		const res = await db.query.chat.findMany({
 			where: eq(chat.userId, user.id),
 			orderBy: asc(chat.createdAt),
+			columns: { id: true, title: true },
+		});
+		return c.json(res);
+	})
+	.get("/recent", async (c) => {
+		const user = c.get("user");
+		if (!user) {
+			return c.json({ error: "Unauthorized" }, 401);
+		}
+		const db = createClient(c.env.DATABASE_URL);
+		const res = await db.query.chat.findMany({
+			where: eq(chat.userId, user.id),
+			orderBy: desc(chat.createdAt),
+			limit: 5,
 			columns: { id: true, title: true },
 		});
 		return c.json(res);
@@ -221,6 +235,22 @@ Important:
 
 			return stream(c, (stream) => stream.pipe(result.toDataStream()));
 		},
-	);
+	)
+	.delete("/:id", async (c) => {
+		const user = c.get("user");
+		if (!user) {
+			return c.json({ error: "Unauthorized" }, 401);
+		}
+
+		const db = createClient(c.env.DATABASE_URL);
+		const { id } = c.req.param();
+
+		const res = await db
+			.delete(chat)
+			.where(and(eq(chat.userId, user.id), eq(chat.id, id)))
+			.returning();
+
+		return c.json({ success: true, id: res[0].id });
+	});
 
 export default app;

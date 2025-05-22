@@ -6,15 +6,20 @@ import {
 	Scripts,
 	createRootRouteWithContext,
 } from "@tanstack/react-router";
-import type { NavigateOptions, ToOptions } from "@tanstack/react-router";
+import {
+	type NavigateOptions,
+	type ToOptions,
+	useRouter,
+} from "@tanstack/react-router";
 import type { Session } from "better-auth";
+import { RouterProvider } from "react-aria-components";
 
 // @ts-ignore
 import appCss from "../styles/app.css?url";
 
 declare module "react-aria-components" {
 	interface RouterConfig {
-		href: ToOptions["to"];
+		href: ToOptions;
 		routerOptions: Omit<NavigateOptions, keyof ToOptions>;
 	}
 }
@@ -43,11 +48,18 @@ export const Route = createRootRouteWithContext<{
 });
 
 function RootComponent() {
+	const router = useRouter();
+
 	return (
-		<RootDocument>
-			<Outlet />
-			<ReactQueryDevtools />
-		</RootDocument>
+		<RouterProvider
+			navigate={(href, options) => router.navigate({ ...href, ...options })}
+			useHref={(href) => router.buildLocation(href).href}
+		>
+			<RootDocument>
+				<Outlet />
+				<ReactQueryDevtools />
+			</RootDocument>
+		</RouterProvider>
 	);
 }
 
