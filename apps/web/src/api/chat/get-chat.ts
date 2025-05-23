@@ -42,7 +42,7 @@ const fetchChat = createServerFn({ method: "GET" })
 	.handler(async ({ data }) => {
 		const client = createAPIClient();
 		const res = await client.chat[":id"].$get({ param: { id: data.id } });
-		if (res.status === 501) {
+		if (res.status === 401) {
 			const data = await res.json();
 			return data;
 		}
@@ -50,8 +50,6 @@ const fetchChat = createServerFn({ method: "GET" })
 			const data = await res.json();
 			return data;
 		}
-		// const json = await res.json();
-		// return json;
 	});
 
 export const chatQueryOptions = (id: string) => {

@@ -2,13 +2,21 @@
 	"name": "@lorenz/api",
 	"scripts": {
 		"dev": "wrangler dev --show-interactive-dev-session false",
+		"dev:tsc": "tsc -p tsconfig.build.json --watch",
 		"deploy": "wrangler deploy --minify",
+		"build": "tsc -p tsconfig.build.json",
 		"cf-typegen": "wrangler types --env-interface Bindings",
 		"generate:auth-schema": "pnpm dlx @better-auth/cli generate --output ./src/db/schema/auth.ts -y",
 		"db:push": "drizzle-kit push"
 	},
 	"exports": {
-		"./types": "./types.d.ts"
+		"./types": "./types.d.ts",
+		"./hc": {
+			"import": {
+				"types": "./dist/hc.d.ts",
+				"default": "./dist/hc.js"
+			}
+		}
 	},
 	"dependencies": {
 		"@ai-sdk/anthropic": "catalog:",
@@ -26,6 +34,7 @@
 		"@lorenz/typescript-config": "workspace:*",
 		"@types/node": "catalog:",
 		"drizzle-kit": "catalog:",
+		"typescript": "catalog:",
 		"vite": "catalog:",
 		"wrangler": "catalog:"
 	}

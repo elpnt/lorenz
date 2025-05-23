@@ -79,7 +79,7 @@ const app = new Hono<Env>()
 			orderBy: asc(chat.createdAt),
 			columns: { id: true, title: true },
 		});
-		return c.json(res);
+		return c.json(res, 200);
 	})
 	.get("/recent", async (c) => {
 		const user = c.get("user");
@@ -93,7 +93,7 @@ const app = new Hono<Env>()
 			limit: 5,
 			columns: { id: true, title: true },
 		});
-		return c.json(res);
+		return c.json(res, 200);
 	})
 	.get("/:id", async (c) => {
 		const user = c.get("user");
@@ -117,7 +117,7 @@ const app = new Hono<Env>()
 			return c.json({ error: "Chat not found" }, 404);
 		}
 
-		return c.json(data);
+		return c.json(data, 200);
 	})
 	.post(
 		"/",
@@ -250,7 +250,7 @@ Important:
 			.where(and(eq(chat.userId, user.id), eq(chat.id, id)))
 			.returning();
 
-		return c.json({ success: true, id: res[0].id });
+		return c.json({ success: true, id: res[0].id }, 200);
 	});
 
 export default app;

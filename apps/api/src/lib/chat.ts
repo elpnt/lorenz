@@ -42,7 +42,10 @@ export async function saveChat(
 	}
 }
 
-export async function getMessagesByChatId(db: DB, { id }: { id: string }) {
+export async function getMessagesByChatId(
+	db: DB,
+	{ id }: { id: string },
+): Promise<DBMessage[]> {
 	try {
 		return await db
 			.select()

@@ -23,7 +23,6 @@ export const message = pgTable("message", {
 		enum: ["user", "assistant", "data", "system"],
 	}).notNull(),
 	parts: jsonb("parts").$type<UIMessage["parts"]>().notNull(),
-	// parts: jsonb("parts").notNull(),
 });
 
 export type DBMessage = InferSelectModel<typeof message>;
