@@ -56,5 +56,6 @@ export const chatQueryOptions = (id: string) => {
 	return queryOptions({
 		queryKey: ["chat", id],
 		queryFn: () => fetchChat({ data: { id } }),
+		staleTime: 1000 * 60 * 5, // 5 minutes
 	});
 };

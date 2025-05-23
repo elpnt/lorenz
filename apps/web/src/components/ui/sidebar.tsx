@@ -187,7 +187,7 @@ export const SidebarItem = ({
 					className="absolute inset-y-2 -left-4 w-0.5 rounded-full bg-zinc-950 dark:bg-white"
 				/>
 			)}
-			{"href" in props ? (
+			{"to" in props ? (
 				<Link
 					{...(props as SidebarLinkItemProps)}
 					// className={sidebarItemClasses}

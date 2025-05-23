@@ -49,28 +49,19 @@ function AppLayout() {
 				<Sidebar>
 					<SidebarBody>
 						<SidebarSection>
-							<SidebarItem href={{ to: "/" }} current={pathname === "/"}>
+							<SidebarItem to="/" current={pathname === "/"}>
 								<HomeIcon />
 								<SidebarLabel>Home</SidebarLabel>
 							</SidebarItem>
-							<SidebarItem
-								href={{ to: "/chat" }}
-								current={pathname.startsWith("/chat")}
-							>
+							<SidebarItem to="/chat" current={pathname.startsWith("/chat")}>
 								<ChatBubbleLeftIcon />
 								<SidebarLabel>Chat</SidebarLabel>
 							</SidebarItem>
-							<SidebarItem
-								href={{ to: "/vocab" }}
-								current={pathname === "/vocab"}
-							>
+							<SidebarItem to="/vocab" current={pathname === "/vocab"}>
 								<BookOpenIcon />
 								<SidebarLabel>Vocabulary</SidebarLabel>
 							</SidebarItem>
-							<SidebarItem
-								href={{ to: "/settings" }}
-								current={pathname === "/settings"}
-							>
+							<SidebarItem to="/settings" current={pathname === "/settings"}>
 								<Cog6ToothIcon />
 								<SidebarLabel>Settings</SidebarLabel>
 							</SidebarItem>
@@ -81,7 +72,8 @@ function AppLayout() {
 								{recentChatQuery.data?.map((chat) => (
 									<SidebarItem
 										key={chat.id}
-										href={{ to: "/chat/$chatId", params: { chatId: chat.id } }}
+										to="/chat/$chatId"
+										params={{ chatId: chat.id }}
 									>
 										{chat.title}
 									</SidebarItem>

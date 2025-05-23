@@ -1,1 +1,1 @@
-export { Link, type LinkProps } from "react-aria-components";
+export { Link, type LinkProps } from "@tanstack/react-router";
